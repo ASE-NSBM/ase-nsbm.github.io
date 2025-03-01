@@ -28,13 +28,13 @@ export const isNavItem = (item: HeaderItemType): item is NavItemType =>
   >
   <div class="flex justify-between py-4 sm:py-8">
     <a href="/" class="text-accent flex gap-2 text-2xl font-semibold">
-      <Image
-        alt="Nordlys logo, a drawing of two gray mountains with green northern lights in the background"
-        src={logo}
-        height={24}
-        loading="eager"
-      />
-      {config.title}
+      <Image alt="ASE Logo" src={logo} height={45} loading="eager" />
+      <span class="flex flex-col text-xl">
+        <span class="text-blue-600 dark:text-blue-800"
+          >{config.titleParts[0]}</span
+        >
+        <span>{config.titleParts[1]}</span>
+      </span>
     </a>
     <nav class="hidden flex-col justify-end sm:flex">
       <ul class="flex gap-6">

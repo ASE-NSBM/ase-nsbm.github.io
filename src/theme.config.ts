@@ -2,8 +2,10 @@ import { defineThemeConfig } from './types'
 
 export default defineThemeConfig({
   site: 'https://ase-nsbm.github.io/',
-  title: 'Association of Software Engineering',
-  description: 'A minimal Astro blog theme',
+  title: 'Association of' + ' ' + ' Software Engineering',
+  titleParts: ['Association of', 'Software Engineering'], // Added for components that need to split the title
+  description:
+    'The official Web of the Association of Software Engineering, NSBM Green University Town',
   author: 'ASENSBM',
   navbarItems: [
     { label: 'Blog', href: '/posts/' },
@@ -15,7 +17,7 @@ export default defineThemeConfig({
       children: [
         { label: 'Landing page', href: '/' },
         { label: '404 page', href: '/404' },
-        { label: 'Author: FjellOverflow', href: '/authors/FjellOverflow/' },
+        { label: 'Author: ASENSBM', href: '/authors/FjellOverflow/' },
         { label: 'Tag: documentation', href: '/tags/documentation/' }
       ]
     }
