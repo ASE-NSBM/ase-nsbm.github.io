@@ -2,9 +2,9 @@ import { defineThemeConfig } from './types'
 
 export default defineThemeConfig({
   site: 'https://ase-nsbm.github.io/',
-  title: 'Association of Computer Engineering',
+  title: 'Association of Software Engineering',
   description: 'A minimal Astro blog theme',
-  author: 'FjellOverflow',
+  author: 'ASENSBM',
   navbarItems: [
     { label: 'Blog', href: '/posts/' },
     { label: 'Projects', href: '/projects/' },
@@ -23,7 +23,7 @@ export default defineThemeConfig({
   footerItems: [
     {
       icon: 'tabler--brand-github',
-      href: 'https://github.com/FjellOverflow/nordlys',
+      href: 'https://github.com/ASE-NSBM',
       label: 'Github'
     },
     {
