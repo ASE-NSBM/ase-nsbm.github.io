@@ -1,116 +1,75 @@
-# Astrogency | Astro Agency Template | Storyblok CMS
+<p align="center">
+  <a href="https://nordlys.fjelloverflow.dev">
+    <img alt="logo" src="./public/favicon.svg" height="64">
+  </a>
+</p>
 
-[![License: CC BY-ND 4.0](https://img.shields.io/badge/License-CC_BY--ND_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nd/4.0/)
+<h1 align="center">
+  <a href="https://nordlys.fjelloverflow.dev">Nordlys</a>
+</h1>
 
-### 👉 [Demo & Docs](https://astrogency.unfolding.io/)
+<p align="center">
+  A minimal Astro blog theme
+</p>
 
-## 📝 1. Setting up the .env file
+<p align="center">
+  <img src="./public/preview.png" width="85%"/>
+</p>
 
-rename the `env.txt` to `.env` and fill in your details
+<p align="center">
+  <img src="https://img.shields.io/github/package-json/v/FjellOverflow/Nordlys?label=Version&color=success"/>
+  &ensp;
+  <img src="https://img.shields.io/github/license/FjellOverflow/Nordlys?label=License&color=success"/>
+  &ensp;
+  <img src="https://img.shields.io/github/actions/workflow/status/FjellOverflow/Nordlys/cd.yaml?branch=main&label=Build"/>
+</p>
 
-```
-STORYBLOK_PREVIEW_TOKEN=XXX
-STORYBLOK_PERSONAL_TOKEN=XXX
-STORYBLOK_SPACE_ID=000000
-STORYBLOK_REGION=eu
-LOCALE=en-US
-CURRENCY=USD
-SITE_LANG=en
-```
+<p align="center">
+  <a href="https://nordlys.fjelloverflow.dev">Preview</a> |
+  <a href="#features">Features</a> |
+  <a href="#installation">Installation</a> |
+  <a href="#getting-started">Getting started</a> |
+  <a href="#documentation">Documentation</a>
+</p>
 
-Also add this to your netlify/vercel deploy settings.
+## Features
 
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/ee5ab8ef-8c63-4810-a53f-622643e9e7a8" width="50%"/>
+  <div>Nordlys scores 100% on <a href="https://developer.chrome.com/docs/lighthouse/performance/performance-scoring/">Lighthouse</a></div>
+</div>
 
-### 🧰 2. Install dependencies
+- ⚙️ Easily configurable
+- 🔎 Built-in Search
+- 📱 Resonsive & mobile friendly
+- 🧑‍🦯 Accessible
+- 🎨 Built-in & custom color schemes
+- 🌙 Light & Dark mode
+- 🎁 Image zoom, generated _Table of Contents_, reading time & more ...
+- 👨‍💻 **For developers**:
+  - Best practices
+  - Minimal & up-to-date dependencies
+  - Strongly typed & linted
 
-```bash
-npm install
-```
+## Installation
 
-### 🛠️ 3. Start Development server
+0. Make sure you have [pnpm](https://pnpm.io/installation) installed on your system.
 
-```bash
-npm run dev
-```
+1. - Clone or [fork](https://github.com/new?template_name=nordlys&template_owner=FjellOverflow) this repository or
+   - Create a new project with `pnpm dlx create-astro --template FjellOverflow/nordlys`.
 
-### 🔄 4. Sync your Storyblok Space
+2. Run `pnpm install`.
 
-open `https://localhost:4321/setup`
+3. Run `pnpm dev`.
 
-And sync your Datasources, Components, and stories. it is best to first delete before syncing. 
-_if a sync or delete fails, try to refresh the page ant try again._
+4. (To install the recommended extensions for VSCode, open the _Extensions_ tab and type `@recommended`.)
 
-![Astrorante](https://astrorante.unfolding.io/screenshots/sync.png)
+## Getting started
 
-### ⚙️ 5. Add your site to the astro.config and set your adapter (vercel or netlify)
+The look and feel of the theme are configured in `theme.config.ts`. Make sure to adjust the title, author, URL, and color scheme to your preferences. Defaults are provided for most settings.
 
+All content is written in Markdown or MDX. Adding new pages, blog posts, or projects is as simple as creating a `my-latest-post.md` file in the appropriate directory and adjusting the frontmatter. For specific properties that can or need to be set, refer to the provided examples.
 
-```javascript
+## Documentation
 
-export default defineConfig({
-	site: 'https://your-website.com',
-	output: "hybrid",
-  	adapter: vercel(), // vercel() or netlify()
-
-    ....
-
-```
-
-## 💎 Premium Features
-Enjoy the freedom of no attribution, effortless integration with Mailgun, Postmark, or Slack for contact forms, and Mailchimp support for your newsletters. Plus, harness the power of premium page builder blocks to create stunning, customized layouts that captivate your audience.
-
-### 👉 [upgrade](https://shop.unfolding.io/b/IWyfD)
-
-### 👉 [more information](https://astrogency.unfolding.io/blog/premium-components-and-features/)
-
-
-
-## 🛸 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                    | Action                                           |
-| -------------------------- | ------------------------------------------------ |
-| `npm install`              | Installs dependencies                            |
-| `npm run dev`              | Starts local dev server at `localhost:4321`      |
-| `npm run build`            | Build your production site to `./dist/`          |
-| `npm run preview`          | Preview your build locally, before deploying     |
-| `npm run astro ...`        | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help`  | Get help using the Astro CL                      |
-
-## 👀 Want to learn more about Astro?
-
-Check out [Astro documentation](https://docs.astro.build) or jump into Astro's [Discord server](https://astro.build/chat).
-
-## 📚 Tech Stack
-
-Astro, Storyblok CMS, Vue, TailwindCSS
-
-## 🛟 Support
-
-If you encounter any issues or bugs, we encourage you to open an issue in the repository. To help us quickly address the problem, please provide detailed information about the bug and steps to reproduce it.
-
-For those seeking priority assistance, we offer premium support services. Feel free to reach out to us by email at [hello@unfolding.io.](mailto:hello@unfolding.io.) We're here to help!
-
-
-## ☕️ Want to Caffeinate your Developer? 
-
-By [caffeinating](https://www.buymeacoffee.com/unfolding.io) your developer, you're not just getting the best out of them; you're also ensuring a cheerful and energetic work environment.😊
-
-[![buymeacoffee](https://starfunnel.unfolding.io/screenshots/bymeacoffee.webp)](https://www.buymeacoffee.com/unfolding.io)
-
-
-## 📸 Screenshots
-
-![Astrorante](https://astrogency.unfolding.io/screenshots/Screenshot_0.png)
-![Astrorante](https://astrogency.unfolding.io/screenshots/Screenshot_1.png)
-![Astrorante](https://astrogency.unfolding.io/screenshots/Screenshot_2.png)
-![Astrorante](https://astrogency.unfolding.io/screenshots/Screenshot_3.png)
-![Astrorante](https://astrogency.unfolding.io/screenshots/Screenshot_4.png)
-![Astrorante](https://astrogency.unfolding.io/screenshots/Screenshot_5.png) 
-
-
-
-
-
-
+The theme is self-documenting. Just head over to [nordlys.fjelloverflow.dev](https://nordlys.fjelloverflow.dev/posts/) for examples and tutorials on how to use and customize the theme.
