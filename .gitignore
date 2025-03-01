@@ -1,24 +1,78 @@
-# build output
+# Build output
 dist/
-# generated types
+.output/
 .astro/
 
-# dependencies
+# Dependencies
 node_modules/
+.pnp.*
+.pnpm-store/
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
-# logs
+# Logs
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+lerna-debug.log*
 
-
-# environment variables
+# Environment variables
 .env
+.env.*
+!.env.example
 .env.production
 
-# macOS-specific files
-.DS_Store
-
-# jetbrains setting folder
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
 .idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+.fleet
+.project
+.classpath
+*.launch
+.settings/
+
+# Testing
+coverage/
+.nyc_output
+
+# Temporary files
+.tmp/
+.cache/
+.eslintcache
+.stylelintcache
+.prettiercache
+
+# Generated files
+public/sitemap*.xml
+public/robots.txt
+public/rss.xml
+
+# OS specific files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Lockfiles (depending on your package manager preference)
+# Uncomment the one you don't want to track:
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Pagefind search index
+public/pagefind/
