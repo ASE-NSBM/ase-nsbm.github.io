@@ -1,8 +1,8 @@
 import { defineThemeConfig } from './types'
 
 export default defineThemeConfig({
-  site: 'https://nordlys.fjelloverflow.dev',
-  title: 'Nordlys',
+  site: 'https://ase-nsbm.github.io/',
+  title: 'Association of Computer Engineering',
   description: 'A minimal Astro blog theme',
   author: 'FjellOverflow',
   navbarItems: [
@@ -37,7 +37,7 @@ export default defineThemeConfig({
   locale: 'en',
   mode: 'dark',
   modeToggle: true,
-  colorScheme: 'scheme-mono',
+  colorScheme: 'scheme-aurora',
   openGraphImage: undefined,
   postsPerPage: 4,
   projectsPerPage: 3,
