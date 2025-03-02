@@ -50,7 +50,7 @@ const { frontmatter } = Astro.props
           {config.modeToggle && <ModeToggle />}
         </div>
         <!-- New section for the links -->
-        <div class="flex justify-center gap-6 py-4 text-xl sm:py-8 sm:text-2xl">
+        <div class="gap- flex justify-center py-4 text-xl sm:py-8 sm:text-2xl">
           <a href="/about/" class="hover:text-accent">/ About Us</a>
           <a href="/events/" class="hover:text-accent">/ Events</a>
           <a href="/timeline/" class="hover:text-accent">/ Timeline</a>
@@ -69,8 +69,8 @@ const { frontmatter } = Astro.props
   /* Blue glow effect */
   .glow-blue {
     text-shadow:
-      0 0 8px rgba(69, 113, 185, 0.8),
-      0 0 16px rgba(19, 65, 138, 0.6);
+      0 0 8px rgb(0, 89, 253),
+      0 0 16px rgba(0, 98, 255, 0.9);
   }
 
   #animated-links {
