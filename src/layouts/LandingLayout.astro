@@ -19,7 +19,20 @@ const { frontmatter } = Astro.props
   >
     <div class="mt-16 px-4 sm:mt-36 sm:px-12">
       <main id="main">
-        {frontmatter.title && <Hero {frontmatter}>{frontmatter.title}</Hero>}
+        {
+          frontmatter.title && (
+            <Hero {frontmatter}>
+              <div class="text-center">
+                <span class="glow-blue block text-left text-4xl leading-none font-bold text-blue-600 sm:text-5xl">
+                  Association of
+                </span>
+                <span class="block text-2xl leading-tight font-semibold text-green-500 sm:text-4xl">
+                  Software Engineering - NSBM
+                </span>
+              </div>
+            </Hero>
+          )
+        }
         <div
           id="animated-links"
           class="text-3xl font-semibold tracking-tight text-gray-700/50 sm:text-4xl sm:leading-[46px] dark:text-gray-300/50"
@@ -33,18 +46,31 @@ const { frontmatter } = Astro.props
           class="flex justify-between gap-2 py-4 text-3xl sm:py-8 sm:text-5xl"
         >
           {config.footerItems.map((item) => <FooterItem {item} />)}
-
           <div class="grow"></div>
-
           {config.modeToggle && <ModeToggle />}
+        </div>
+        <!-- New section for the links -->
+        <div class="flex justify-center gap-6 py-4 text-xl sm:py-8 sm:text-2xl">
+          <a href="/about/" class="hover:text-accent">/ About Us</a>
+          <a href="/events/" class="hover:text-accent">/ Events</a>
+          <a href="/timeline/" class="hover:text-accent">/ Timeline</a>
+          <a href="/joinus/" class="hover:text-accent">/ Join Us</a>
         </div>
       </footer>
     </div>
   </div>
 </BaseLayout>
+
 <style is:global>
   :root {
     overflow-y: auto !important;
+  }
+
+  /* Blue glow effect */
+  .glow-blue {
+    text-shadow:
+      0 0 8px rgba(69, 113, 185, 0.8),
+      0 0 16px rgba(19, 65, 138, 0.6);
   }
 
   #animated-links {
