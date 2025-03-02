@@ -1,0 +1,886 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro'
+import { Image } from 'astro:assets'
+import logo from '@/assets/logo.svg'
+import config from '@/theme.config'
+
+// You'll need to create or import these images
+// These are placeholders - replace with actual image imports
+const greenexeImage =
+  'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070'
+const madfestImage =
+  'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070'
+const teamImage =
+  'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070'
+
+// Access title parts from config
+const titleParts = config.titleParts || [
+  'Association of',
+  'Software Engineering'
+]
+
+// Create proper frontmatter for PageLayout
+const frontmatter = {
+  title: 'About | Association of Software Engineering',
+  description:
+    'Learn about the Association of Software Engineering at NSBM, our history, mission, and key events',
+  activeHeaderLink: 'About',
+  searchable: true
+}
+---
+
+<PageLayout {frontmatter}>
+  <!-- Hero Section -->
+  <div class="hero-container">
+    <div class="logo-container fade-in">
+      <Image
+        src={logo}
+        alt="ASE Logo"
+        width={200}
+        height={200}
+        class="logo-pulse"
+      />
+    </div>
+
+    <h1 class="title slide-up">
+      <span class="text-accent">{titleParts[0]}</span>
+      <br />
+      <span class="text-gradient">{titleParts[1]}</span>
+    </h1>
+
+    <div class="subtitle slide-up-delay">
+      <div class="typing-text">Innovate. Collaborate. Excel.</div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section class="content-section fade-in-section">
+    <h2 class="section-heading">About Us</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>
+          The Association of Software Engineering at NSBM, formerly known as the
+          Student Circle of Software Engineering, was established in February
+          2024 under the guidance of the Department of Software Engineering and
+          Information Systems. The association was formed to foster a
+          collaborative environment where students following a discipline in
+          Software Engineering could enhance their skills, share knowledge, and
+          engage in various activities that complement their academic pursuits.
+        </p>
+      </div>
+      <div class="about-image">
+        <div class="floating-icons">
+          <span class="icon code-icon">{'<>'}</span>
+          <span class="icon gear-icon">⚙️</span>
+          <span class="icon rocket-icon">🚀</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Evolution Timeline -->
+  <section class="timeline-section fade-in-section">
+    <h2 class="section-heading">Evolution of the Association</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content slide-right">
+          <h3>February 2024</h3>
+          <p>
+            Established as the Student Circle of Software Engineering under the
+            Department of Software Engineering and Information Systems.
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content slide-left">
+          <h3>2024</h3>
+          <p>
+            Organized inaugural events including GreenEXE 2.0 and MadFest,
+            establishing a foundation for future initiatives.
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content slide-right">
+          <h3>2025</h3>
+          <p>
+            New board election led to rebranding as the "Association of Software
+            Engineering" to reflect growth and expanding scope.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Events -->
+  <section class="events-section fade-in-section">
+    <h2 class="section-heading">Key Events and Contributions</h2>
+    <div class="events-grid">
+      <div class="event-card">
+        <div class="event-image-container">
+          <img
+            src={greenexeImage}
+            alt="GreenEXE 2.0 Event"
+            class="event-image"
+          />
+          <div class="event-overlay">
+            <div class="event-details">
+              <h4>GreenEXE 2.0</h4>
+              <p>
+                An application development competition with over 50 participants
+                across web, mobile, and desktop platforms.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="event-summary">
+          <h3>GreenEXE 2.0</h3>
+          <p>
+            Annual application development competition challenging students to
+            create innovative software solutions.
+          </p>
+          <ul class="event-highlights">
+            <li>50+ participants</li>
+            <li>Three competitive rounds</li>
+            <li>Cash prizes for winners</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-image-container">
+          <img src={madfestImage} alt="MadFest Event" class="event-image" />
+          <div class="event-overlay">
+            <div class="event-details">
+              <h4>MadFest</h4>
+              <p>
+                A Mobile Application Development Exhibition where students
+                presented their innovative mobile applications.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="event-summary">
+          <h3>MadFest</h3>
+          <p>
+            Mobile Application Development Exhibition showcasing student-created
+            applications.
+          </p>
+          <ul class="event-highlights">
+            <li>Student showcases</li>
+            <li>Industry recognition</li>
+            <li>Competitive awards</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission and Vision -->
+  <section class="mission-section fade-in-section">
+    <div class="mission-container">
+      <h2 class="section-heading">Our Mission and Vision</h2>
+      <div class="mission-cards">
+        <div class="mission-card">
+          <div class="card-icon mission-icon">🎯</div>
+          <h3>Mission</h3>
+          <p>
+            To empower software engineering students by providing opportunities
+            for professional growth, networking, and skill development.
+          </p>
+        </div>
+        <div class="mission-card">
+          <div class="card-icon vision-icon">👁️</div>
+          <h3>Vision</h3>
+          <p>
+            To create a dynamic community where students can collaborate,
+            innovate, and contribute meaningfully to the field of software
+            engineering.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="team-section fade-in-section">
+    <h2 class="section-heading">Join Our Community</h2>
+    <div class="team-container">
+      <div class="team-image-container">
+        <img src={teamImage} alt="Team Working Together" class="team-image" />
+      </div>
+      <div class="team-text">
+        <p>
+          Be part of a thriving community of software engineers at NSBM. Whether
+          you're interested in coding, design, project management, or simply
+          want to connect with like-minded peers, the Association of Software
+          Engineering welcomes you.
+        </p>
+        <div class="cta-button">
+          <a href="#">Get Involved</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  /* Base Styles */
+  section {
+    margin-bottom: 6rem;
+    opacity: 1; /* Changed from 0 to make sections initially visible */
+    transform: translateY(0); /* Changed from 20px to fix initial position */
+  }
+
+  /* Fix heading visibility */
+  .section-heading {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: rgb(
+      var(--accent)
+    ); /* Direct color instead of gradient for better visibility */
+    position: relative;
+    font-weight: bold;
+  }
+
+  .section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light))
+    );
+    border-radius: 2px;
+  }
+
+  /* Hero section - updated to work with PageLayout */
+  .hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0 4rem;
+    margin-bottom: 2rem;
+  }
+
+  .logo-container {
+    margin-bottom: 2rem;
+  }
+
+  .logo-pulse {
+    animation: pulse 2s infinite;
+    width: 200px;
+    height: 200px;
+  }
+
+  .title {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    transform: translateY(30px);
+    opacity: 0;
+    animation: slideUp 0.8s forwards ease-out;
+    animation-delay: 0.3s;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .text-accent {
+    color: rgb(var(--accent));
+    text-shadow: 0 0 5px rgba(var(--accent), 0.5); /* Add text shadow for emphasis */
+  }
+
+  .text-gradient {
+    /* Updated gradient with better visibility */
+    background: linear-gradient(
+      90deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light))
+    );
+    color: transparent; /* Make text transparent to show gradient */
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: 0 0 5px rgba(var(--accent-light), 0.5); /* Add text shadow */
+    font-weight: 900; /* Make bolder */
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #e0e0e0;
+    transform: translateY(30px);
+    opacity: 0;
+    animation: slideUp 0.8s forwards ease-out;
+    animation-delay: 0.6s;
+  }
+
+  /* Keep original h2 style for non-section headings if needed */
+  h2:not(.section-heading) {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    background: linear-gradient(
+      90deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light))
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+  }
+
+  h2:not(.section-heading)::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light))
+    );
+    border-radius: 2px;
+  }
+
+  /* The rest of your existing styles */
+  /* ...existing code... */
+
+  /* Additional CSS to ensure heading visibility in dark mode */
+  :global(.dark) .section-heading {
+    color: rgb(var(--accent-light)); /* Brighter color for dark mode */
+  }
+
+  :global(.dark) .text-gradient {
+    text-shadow: 0 0 8px rgba(var(--accent), 0.8); /* Stronger shadow in dark mode */
+  }
+
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
+  }
+
+  .typing-text {
+    border-right: 3px solid rgb(var(--accent));
+    white-space: nowrap;
+    overflow: hidden;
+    animation:
+      typing 3.5s steps(30, end) 1s forwards,
+      blink-caret 0.75s step-end infinite;
+    width: 0;
+  }
+
+  /* About Section */
+  .about-content {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .about-text {
+    flex: 1;
+    min-width: 300px;
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  .about-image {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  .floating-icons {
+    position: relative;
+    height: 250px;
+    width: 250px;
+  }
+
+  .icon {
+    position: absolute;
+    font-size: 2.5rem;
+    opacity: 0.8;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+
+  .code-icon {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-name: floatUp;
+  }
+
+  .gear-icon {
+    bottom: 20px;
+    left: 20%;
+    animation-name: floatRight;
+    animation-delay: 0.5s;
+  }
+
+  .rocket-icon {
+    bottom: 20px;
+    right: 20%;
+    animation-name: floatLeft;
+    animation-delay: 1s;
+  }
+
+  /* Timeline Section */
+  .timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background: linear-gradient(
+      to bottom,
+      rgba(var(--accent), 0.2),
+      rgba(var(--accent), 0.8)
+    );
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+    border-radius: 2px;
+  }
+
+  .timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+    margin: 2rem 0;
+  }
+
+  .timeline-item:nth-child(odd) {
+    left: 0;
+    text-align: right;
+  }
+
+  .timeline-item:nth-child(even) {
+    left: 50%;
+    text-align: left;
+  }
+
+  .timeline-dot {
+    width: 20px;
+    height: 20px;
+    background-color: rgb(var(--accent));
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    right: -10px;
+    z-index: 10;
+    box-shadow: 0 0 10px rgba(var(--accent), 0.5);
+  }
+
+  .timeline-item:nth-child(even) .timeline-dot {
+    left: -10px;
+  }
+
+  .timeline-content {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(var(--accent), 0.2);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.6s ease;
+  }
+
+  .timeline-item:nth-child(even) .timeline-content {
+    transform: translateX(-50px);
+  }
+
+  .timeline-content h3 {
+    color: rgb(var(--accent));
+    margin-top: 0;
+  }
+
+  /* Events Section */
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .event-card {
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(var(--accent), 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .event-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  }
+
+  .event-image-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .event-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .event-card:hover .event-image {
+    transform: scale(1.1);
+  }
+
+  .event-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    color: white;
+  }
+
+  .event-card:hover .event-overlay {
+    opacity: 1;
+  }
+
+  .event-summary {
+    padding: 1.5rem;
+  }
+
+  .event-summary h3 {
+    color: rgb(var(--accent));
+    margin-top: 0;
+  }
+
+  .event-highlights {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 1rem;
+  }
+
+  .event-highlights li {
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+
+  .event-highlights li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: rgb(var(--accent));
+  }
+
+  /* Mission and Vision Section */
+  .mission-container {
+    text-align: center;
+  }
+
+  .mission-cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .mission-card {
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+    padding: 2rem;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(var(--accent), 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .mission-card:hover {
+    transform: translateY(-10px);
+  }
+
+  .card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Team Section */
+  .team-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .team-image-container {
+    flex: 1;
+    min-width: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .team-image {
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease;
+  }
+
+  .team-image:hover {
+    transform: scale(1.05);
+  }
+
+  .team-text {
+    flex: 1;
+    min-width: 300px;
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  .cta-button {
+    margin-top: 2rem;
+  }
+
+  .cta-button a {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(
+      90deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light))
+    );
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(var(--accent), 0.4);
+  }
+
+  .cta-button a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(var(--accent), 0.6);
+  }
+
+  /* Animations */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slideUp {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes blink-caret {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: rgb(var(--accent));
+    }
+  }
+
+  @keyframes floatUp {
+    0%,
+    100% {
+      transform: translateY(0) translateX(-50%);
+    }
+    50% {
+      transform: translateY(-15px) translateX(-50%);
+    }
+  }
+
+  @keyframes floatRight {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(15px);
+    }
+  }
+
+  @keyframes floatLeft {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(-15px);
+    }
+  }
+
+  .fade-in {
+    animation: fadeIn 1s forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .slide-right {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+
+  .slide-left {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+
+  .show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .show .slide-right,
+  .show .slide-left {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  /* Dark mode adjustments */
+  :global(.dark) .about-container {
+    color: #e0e0e0;
+  }
+
+  :global(.dark) .event-card,
+  :global(.dark) .mission-card,
+  :global(.dark) .timeline-content {
+    background: rgba(30, 30, 30, 0.7);
+    border-color: rgba(var(--accent), 0.3);
+  }
+
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .title {
+      font-size: 3rem;
+    }
+
+    .timeline::before {
+      left: 31px;
+    }
+
+    .timeline-item {
+      width: 100%;
+      padding-left: 70px;
+      padding-right: 25px;
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+      text-align: left;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 0;
+    }
+
+    .timeline-dot {
+      left: 21px;
+      right: auto;
+    }
+
+    .timeline-content {
+      transform: translateX(0) !important;
+    }
+
+    .mission-cards {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+
+<script>
+  // Intersection Observer for scroll animations
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.fade-in-section')
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show')
+          }
+        })
+      },
+      {
+        threshold: 0.1
+      }
+    )
+
+    sections.forEach((section) => {
+      observer.observe(section)
+    })
+  })
+</script>
