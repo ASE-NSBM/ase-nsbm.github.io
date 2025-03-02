@@ -8,19 +8,19 @@ export default defineThemeConfig({
     'The official Web of the Association of Software Engineering, NSBM Green University Town',
   author: 'ASENSBM',
   navbarItems: [
-    { label: 'Blog', href: '/posts/' },
-    { label: 'Projects', href: '/projects/' },
-    { label: 'Tags', href: '/tags/' },
-    { label: 'About', href: '/about/' },
-    {
-      label: 'Other pages',
-      children: [
-        { label: 'Landing page', href: '/' },
-        { label: '404 page', href: '/404' },
-        { label: 'Author: ASENSBM', href: '/authors/FjellOverflow/' },
-        { label: 'Tag: documentation', href: '/tags/documentation/' }
-      ]
-    }
+    { label: 'Join Us', href: '/posts/' },
+    { label: 'Events', href: '/projects/' },
+    { label: 'Our Timeline', href: '/tags/' },
+    { label: 'About', href: '/about/' }
+    // {
+    //   label: 'Other pages',
+    //   children: [
+    //     { label: 'Landing page', href: '/' },
+    //     { label: '404 page', href: '/404' },
+    //     { label: 'Author: ASENSBM', href: '/authors/FjellOverflow/' },
+    //     { label: 'Tag: documentation', href: '/tags/documentation/' }
+    //   ]
+    // }
   ],
   footerItems: [
     {
