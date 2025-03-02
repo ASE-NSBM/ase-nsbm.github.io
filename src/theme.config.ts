@@ -9,9 +9,8 @@ export default defineThemeConfig({
   author: 'ASENSBM',
   navbarItems: [
     { label: 'About', href: '/about/' },
-    { label: 'Excom', href: '/posts/' },
-    { label: 'Events', href: '/events/' },
-    { label: 'Our Timeline', href: '/tags/' },
+    { label: 'Events', href: '/posts/' },
+    { label: 'Timeline', href: '/timeline/' },
     { label: 'Excom', href: '/excom/' }
     // {
     //   label: 'Other pages',
