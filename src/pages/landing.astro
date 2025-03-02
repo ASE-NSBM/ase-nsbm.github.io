@@ -1,0 +1,113 @@
+<div class="launch-overlay" id="launchOverlay">
+    <div class="launch-content">
+        <p>
+            <strong
+                >OUR LATEST MASTERPIECE THAT REFLECTS THE KEY VALUES OF OUR
+                ASSOCIATION AND ITS HISTORY</strong
+            >
+        </p>
+        <p><strong>AWAIT EVEN MORE AMAZING UPDATES INCOMING</strong></p>
+        <button class="launch-button" id="launchButton">
+            <span>LAUNCH NOW</span>
+        </button>
+    </div>
+</div>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+    .launch-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #0a192f, #064e3b);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: background 1.5s ease;
+    }
+
+    .launch-content {
+        text-align: center;
+        color: white;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .launch-button {
+        position: relative;
+        padding: 20px 60px;
+        border: none;
+        border-radius: 50px;
+        background: linear-gradient(90deg, #10b981, #2563eb);
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 30px rgba(16, 185, 129, 0.5);
+        margin-top: 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .launch-button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 50px rgba(37, 99, 235, 0.6);
+    }
+
+    .rocket {
+        transition:
+            transform 0.5s ease,
+            opacity 0.5s ease;
+        font-size: 24px;
+        opacity: 0;
+    }
+
+    .launch-button:hover .rocket {
+        opacity: 1;
+        transform: translateX(20px);
+    }
+
+    .launch-active {
+        animation: launchEffect 1.5s ease-in forwards;
+        background: rgba(0, 0, 0, 0);
+    }
+
+    @keyframes launchEffect {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.2);
+            opacity: 0.5;
+        }
+        100% {
+            transform: scale(0);
+            opacity: 0;
+            background: rgba(0, 0, 0, 0);
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const launchButton = document.getElementById('launchButton')
+        const launchOverlay = document.getElementById('launchOverlay')
+
+        launchButton.addEventListener('click', () => {
+            launchButton.style.pointerEvents = 'none'
+            launchOverlay.classList.add('launch-active')
+            document.body.style.background = '#0a192f'
+
+            setTimeout(() => {
+                window.location.href = '/'
+            }, 1500)
+        })
+    })
+</script>
