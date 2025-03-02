@@ -8,10 +8,11 @@ export default defineThemeConfig({
     'The official Web of the Association of Software Engineering, NSBM Green University Town',
   author: 'ASENSBM',
   navbarItems: [
-    { label: 'Join Us', href: '/posts/' },
-    { label: 'Events', href: '/projects/' },
+    { label: 'About', href: '/about/' },
+    { label: 'Excom', href: '/posts/' },
+    { label: 'Events', href: '/events/' },
     { label: 'Our Timeline', href: '/tags/' },
-    { label: 'About', href: '/about/' }
+    { label: 'Excom', href: '/excom/' }
     // {
     //   label: 'Other pages',
     //   children: [
