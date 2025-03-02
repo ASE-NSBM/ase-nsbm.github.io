@@ -23,7 +23,7 @@ const { frontmatter } = Astro.props
           frontmatter.title && (
             <Hero {frontmatter}>
               <div class="text-center">
-                <span class="glow-blue block text-left text-4xl leading-none font-bold text-blue-600 sm:text-5xl">
+                <span class="glow-blue assoc-text block text-left text-4xl leading-none font-bold text-blue-600 sm:text-5xl">
                   Association of
                 </span>
                 <span class="block text-2xl leading-tight font-semibold text-green-500 sm:text-4xl">
@@ -50,11 +50,11 @@ const { frontmatter } = Astro.props
           {config.modeToggle && <ModeToggle />}
         </div>
         <!-- New section for the links -->
-        <div class="flex justify-center gap-8 py-4 text-xl sm:py-8 sm:text-2xl">
-          <a href="/about/" class="hover:text-accent">/ About Us</a>
-          <a href="/events/" class="hover:text-accent">/ Events</a>
-          <a href="/timeline/" class="hover:text-accent">/ Timeline</a>
-          <a href="/joinus/" class="hover:text-accent">/ Join Us</a>
+        <div class="sm:text-s text-m flex justify-center gap-8 py-4 sm:py-8">
+          <a href="/about/" class="hover:text-accent">/About Us</a>
+          <a href="/events/" class="hover:text-accent">/Events</a>
+          <a href="/timeline/" class="hover:text-accent">/Timeline</a>
+          <a href="/joinus/" class="hover:text-accent">/Join Us</a>
         </div>
       </footer>
     </div>
@@ -89,6 +89,12 @@ const { frontmatter } = Astro.props
       &:hover {
         background-size: 100%;
       }
+    }
+  }
+
+  .assoc-text {
+    @media (max-width: 640px) {
+      margin-left: 1.5rem;
     }
   }
 </style>

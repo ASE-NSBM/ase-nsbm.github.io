@@ -811,8 +811,7 @@ const frontmatter = {
 </style>
 
 <script>
-  // Intersection Observer for scroll animations
-  document.addEventListener('DOMContentLoaded', () => {
+  function initializeAnimations() {
     const sections = document.querySelectorAll('.fade-in-section')
 
     const observer = new IntersectionObserver(
@@ -830,6 +829,20 @@ const frontmatter = {
 
     sections.forEach((section) => {
       observer.observe(section)
+    })
+  }
+
+  // Run on initial page load
+  document.addEventListener('DOMContentLoaded', initializeAnimations)
+
+  // Run on Astro page transitions
+  document.addEventListener('astro:page-load', initializeAnimations)
+
+  // Cleanup on page exit
+  document.addEventListener('astro:before-swap', () => {
+    // Disconnect all existing observers
+    document.querySelectorAll('.fade-in-section').forEach((section) => {
+      section.classList.remove('show')
     })
   })
 </script>

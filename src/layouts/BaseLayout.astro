@@ -109,7 +109,11 @@ const openGraphImageUrl = new URL(resolveImageUrl(openGraphImage), Astro.site)
     <ClientRouter />
   </head>
   <body>
-    <slot />
+    <div transition:animate="slide">
+      <main id="main">
+        <slot />
+      </main>
+    </div>
     <CopyCodeButtonsPlugin />
     <MediumZoomPlugin />
   </body>
