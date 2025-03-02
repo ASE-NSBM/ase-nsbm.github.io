@@ -23,7 +23,7 @@ const { frontmatter } = Astro.props
           frontmatter.title && (
             <Hero {frontmatter}>
               <div class="text-center">
-                <span class="glow-blue assoc-text block text-left text-4xl leading-none font-bold text-blue-600 sm:text-5xl">
+                <span class="glow-blue assoc-text block text-left text-3xl leading-none font-bold text-blue-600 sm:text-4xl">
                   Association of
                 </span>
                 <span class="block text-2xl leading-tight font-semibold text-green-500 sm:text-4xl">
@@ -50,7 +50,7 @@ const { frontmatter } = Astro.props
           {config.modeToggle && <ModeToggle />}
         </div>
         <!-- New section for the links -->
-        <div class="sm:text-s text-m flex justify-center gap-8 py-4 sm:py-8">
+        <div class="sm:text-s text-s flex justify-center gap-4 py-4 sm:py-8">
           <a href="/about/" class="hover:text-accent">/About Us</a>
           <a href="/events/" class="hover:text-accent">/Events</a>
           <a href="/timeline/" class="hover:text-accent">/Timeline</a>
@@ -94,7 +94,7 @@ const { frontmatter } = Astro.props
 
   .assoc-text {
     @media (max-width: 640px) {
-      margin-left: 1.5rem;
+      text-align: center;
     }
   }
 </style>
