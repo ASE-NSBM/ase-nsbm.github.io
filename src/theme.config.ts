@@ -29,9 +29,29 @@ export default defineThemeConfig({
       label: 'Github'
     },
     {
-      icon: 'tabler--rss',
-      href: '/feed.xml',
-      label: 'RSS feed'
+      icon: 'tabler--brand-instagram',
+      href: 'https://www.instagram.com/sesa.nsbm/',
+      label: 'instagram'
+    },
+    {
+      icon: 'tabler--brand-linkedin',
+      href: 'https://www.linkedin.com/company/sesansbm/ ',
+      label: 'Github'
+    },
+    {
+      icon: 'tabler--brand-facebook',
+      href: 'https://www.facebook.com/scse.nsbm',
+      label: 'Facebook'
+    },
+    {
+      icon: 'tabler--brand-tiktok',
+      href: 'https://www.tiktok.com/@sesa.nsbm',
+      label: 'tiktok'
+    },
+    {
+      icon: 'tabler--brand-x',
+      href: 'https://x.com/ASE_NSBM',
+      label: 'X'
     }
   ],
 
