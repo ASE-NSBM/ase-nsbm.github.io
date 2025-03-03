@@ -41,5 +41,5 @@ Students must:
 
 ## Social Media
 
-Follow us for the latest updates:  
+Follow us for our latest updates:  
 📌 **#MatFest2024 #NSBMGreenUniversity #SoftwareEngineering #MobileInnovation**

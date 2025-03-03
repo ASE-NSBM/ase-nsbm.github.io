@@ -1,8 +1,18 @@
 <div class="launch-overlay" id="launchOverlay">
     <div class="launch-content">
+        <div class="logo-container">
+            <img src="logo.svg" alt="Logo" class="logo-pulse" />
+        </div>
+        <h1 class="title">
+            <span class="text-accent">Association of</span>
+            <br />
+            <span class="text-neon-green">Software Engineering</span>
+        </h1>
+
+        <h2 style="color:rgb(21, 172, 172) ">asensbm.live</h2>
         <p>
             <strong
-                >OUR LATEST MASTERPIECE THAT REFLECTS THE KEY VALUES OF OUR
+                >OUR LATEST MASTERPIECE THAT REFLECTS THE KEY VALUES<br /> OF OUR
                 ASSOCIATION AND ITS HISTORY</strong
             >
         </p>
@@ -34,6 +44,60 @@
         text-align: center;
         color: white;
         font-family: 'Inter', sans-serif;
+        max-width: 800px;
+        padding: 2rem;
+    }
+
+    /* Logo styles */
+    .logo-container {
+        margin-bottom: 2rem;
+    }
+
+    .logo-pulse {
+        animation: pulse 2s infinite;
+        width: 150px;
+        height: 150px;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* Title styles */
+    .title {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 2rem;
+        line-height: 1.2;
+        animation: fadeIn 1s forwards;
+    }
+
+    .text-accent {
+        color: rgb(53, 53, 235);
+        text-shadow: 0 0 5px rgba(0, 0, 139, 0.5);
+    }
+
+    .text-neon-green {
+        color: #39ff14;
+        text-shadow: 0 0 5px #39ff14;
+        font-weight: 900;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
 
     .launch-button {
@@ -91,6 +155,23 @@
             transform: scale(0);
             opacity: 0;
             background: rgba(0, 0, 0, 0);
+        }
+    }
+
+    /* Add responsive styles */
+    @media (max-width: 768px) {
+        .title {
+            font-size: 2.5rem;
+        }
+
+        .logo-pulse {
+            width: 120px;
+            height: 120px;
+        }
+
+        .launch-button {
+            padding: 15px 40px;
+            font-size: 20px;
         }
     }
 </style>
