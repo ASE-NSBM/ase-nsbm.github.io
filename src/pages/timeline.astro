@@ -1,0 +1,734 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro'
+
+// Create proper frontmatter for PageLayout
+const frontmatter = {
+  title: 'Event Timeline | Association of Software Engineering - NSBM',
+  description:
+    'Explore past and upcoming events of the Association of Software Engineering at NSBM Green University.',
+  activeHeaderLink: 'Timeline',
+  searchable: true
+}
+
+// Timeline events data
+const events = [
+  {
+    id: 'madfest-2024',
+    title: 'MADFEST',
+    date: 'June 18, 2024',
+    exactDate: new Date('2024-06-18'),
+    description:
+      'MadFest 2024 was a Mobile Application Development Exhibition organized by the Student Circle of Software Engineering. During this event, students presented mobile applications they had created either as part of their final year or through innovative initiatives.',
+    image:
+      'https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1974',
+    type: 'past',
+    tags: ['exhibition', 'mobile', 'development']
+  },
+  {
+    id: 'greenexe-2024',
+    title: 'GREEN EXE 2.0',
+    date: 'October 16, 2024',
+    exactDate: new Date('2024-10-16'),
+    description:
+      'GreenEXE is an annual application development competition held at NSBM Green University. It was initiated to challenge students to innovate and create impactful software solutions. In 2024, the association hosted GreenEXE 2.0, which was a tremendous success.',
+    image:
+      'https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=2070',
+    type: 'past',
+    tags: ['competition', 'development', 'innovation']
+  },
+  {
+    id: 'inauguration-2025',
+    title: 'Inauguration 25',
+    date: 'March 3, 2025',
+    exactDate: new Date('2025-03-03'),
+    description:
+      'The official badging ceremony of the Board of the Association of Software Engineering for the year 2025/26!',
+    image:
+      'https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=2069',
+    type: 'future',
+    tags: ['ceremony', 'leadership']
+  },
+  {
+    id: 'bootcamp-2025',
+    title: 'Why Software Engineering?',
+    date: 'March 2025',
+    exactDate: new Date('2025-03-15'),
+    description:
+      'A boot camp for aspiring software engineers to understand the field better and make informed career choices.',
+    image:
+      'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070',
+    type: 'future',
+    tags: ['bootcamp', 'education']
+  }
+]
+
+// Sort events by date
+const sortedEvents = [...events].sort(
+  (a, b) => a.exactDate.getTime() - b.exactDate.getTime()
+)
+
+// Get today's date to determine past vs future events
+const today = new Date()
+
+// Define CSS classes for reuse
+const eventClasses = {
+  left: 'timeline-event left',
+  right: 'timeline-event right',
+  past: 'past',
+  future: 'future'
+}
+---
+
+<PageLayout {frontmatter}>
+  <!-- Hero section -->
+  <div class="timeline-hero">
+    <h1 class="timeline-title">Association Timeline</h1>
+    <p class="timeline-subtitle">
+      Explore our journey through past events and upcoming milestones
+    </p>
+
+    <!-- Filter Controls -->
+    <div class="filter-controls">
+      <button class="filter-btn active" data-filter="all">All Events</button>
+      <button class="filter-btn" data-filter="past">Past Events</button>
+      <button class="filter-btn" data-filter="future">Upcoming Events</button>
+    </div>
+  </div>
+
+  <!-- Timeline container -->
+  <div class="timeline-container">
+    <div class="timeline-line"></div>
+
+    <!-- Event 1 -->
+    {
+      sortedEvents[0] && (
+        <div
+          class={`${eventClasses.left} ${sortedEvents[0].exactDate.getTime() < today.getTime() ? eventClasses.past : eventClasses.future}`}
+          data-type={
+            sortedEvents[0].exactDate.getTime() < today.getTime()
+              ? 'past'
+              : 'future'
+          }
+        >
+          <div class="timeline-marker">
+            <div class="timeline-dot" />
+            <div class="timeline-date">
+              <span>{sortedEvents[0].date}</span>
+            </div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-image-container">
+              <img
+                src={sortedEvents[0].image}
+                alt={sortedEvents[0].title}
+                class="timeline-image"
+              />
+              <div class="timeline-overlay">
+                <div class="event-status">
+                  {sortedEvents[0].exactDate.getTime() < today.getTime()
+                    ? 'Completed'
+                    : 'Upcoming'}
+                </div>
+              </div>
+            </div>
+            <div class="timeline-content">
+              <h3 class="event-title">{sortedEvents[0].title}</h3>
+              <p class="event-description">{sortedEvents[0].description}</p>
+              <div class="event-tags">
+                {sortedEvents[0].tags.map((tag) => (
+                  <span class="event-tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    <!-- Event 2 -->
+    {
+      sortedEvents[1] && (
+        <div
+          class={`${eventClasses.right} ${sortedEvents[1].exactDate.getTime() < today.getTime() ? eventClasses.past : eventClasses.future}`}
+          data-type={
+            sortedEvents[1].exactDate.getTime() < today.getTime()
+              ? 'past'
+              : 'future'
+          }
+        >
+          <div class="timeline-marker">
+            <div class="timeline-dot" />
+            <div class="timeline-date">
+              <span>{sortedEvents[1].date}</span>
+            </div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-image-container">
+              <img
+                src={sortedEvents[1].image}
+                alt={sortedEvents[1].title}
+                class="timeline-image"
+              />
+              <div class="timeline-overlay">
+                <div class="event-status">
+                  {sortedEvents[1].exactDate.getTime() < today.getTime()
+                    ? 'Completed'
+                    : 'Upcoming'}
+                </div>
+              </div>
+            </div>
+            <div class="timeline-content">
+              <h3 class="event-title">{sortedEvents[1].title}</h3>
+              <p class="event-description">{sortedEvents[1].description}</p>
+              <div class="event-tags">
+                {sortedEvents[1].tags.map((tag) => (
+                  <span class="event-tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    <!-- Event 3 -->
+    {
+      sortedEvents[2] && (
+        <div
+          class={`${eventClasses.left} ${sortedEvents[2].exactDate.getTime() < today.getTime() ? eventClasses.past : eventClasses.future}`}
+          data-type={
+            sortedEvents[2].exactDate.getTime() < today.getTime()
+              ? 'past'
+              : 'future'
+          }
+        >
+          <div class="timeline-marker">
+            <div class="timeline-dot" />
+            <div class="timeline-date">
+              <span>{sortedEvents[2].date}</span>
+            </div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-image-container">
+              <img
+                src={sortedEvents[2].image}
+                alt={sortedEvents[2].title}
+                class="timeline-image"
+              />
+              <div class="timeline-overlay">
+                <div class="event-status">
+                  {sortedEvents[2].exactDate.getTime() < today.getTime()
+                    ? 'Completed'
+                    : 'Upcoming'}
+                </div>
+              </div>
+            </div>
+            <div class="timeline-content">
+              <h3 class="event-title">{sortedEvents[2].title}</h3>
+              <p class="event-description">{sortedEvents[2].description}</p>
+              <div class="event-tags">
+                {sortedEvents[2].tags.map((tag) => (
+                  <span class="event-tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    <!-- Event 4 -->
+    {
+      sortedEvents[3] && (
+        <div
+          class={`${eventClasses.right} ${sortedEvents[3].exactDate.getTime() < today.getTime() ? eventClasses.past : eventClasses.future}`}
+          data-type={
+            sortedEvents[3].exactDate.getTime() < today.getTime()
+              ? 'past'
+              : 'future'
+          }
+        >
+          <div class="timeline-marker">
+            <div class="timeline-dot" />
+            <div class="timeline-date">
+              <span>{sortedEvents[3].date}</span>
+            </div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-image-container">
+              <img
+                src={sortedEvents[3].image}
+                alt={sortedEvents[3].title}
+                class="timeline-image"
+              />
+              <div class="timeline-overlay">
+                <div class="event-status">
+                  {sortedEvents[3].exactDate.getTime() < today.getTime()
+                    ? 'Completed'
+                    : 'Upcoming'}
+                </div>
+              </div>
+            </div>
+            <div class="timeline-content">
+              <h3 class="event-title">{sortedEvents[3].title}</h3>
+              <p class="event-description">{sortedEvents[3].description}</p>
+              <div class="event-tags">
+                {sortedEvents[3].tags.map((tag) => (
+                  <span class="event-tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    <!-- Timeline End Marker -->
+    <div class="timeline-end">
+      <div class="end-dot"></div>
+      <p>More Events Coming Soon</p>
+    </div>
+  </div>
+</PageLayout>
+
+<style>
+  /* Timeline Container Styles */
+  .timeline-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 20px;
+  }
+
+  /* Timeline Line */
+  .timeline-line {
+    position: absolute;
+    width: 4px;
+    background: linear-gradient(
+      to bottom,
+      rgba(var(--accent), 0.3),
+      rgba(var(--accent), 0.8)
+    );
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+  }
+
+  /* Hero Section */
+  .timeline-hero {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+  }
+
+  .timeline-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: rgb(var(--accent));
+    margin-bottom: 1rem;
+  }
+
+  .timeline-subtitle {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    opacity: 0.9;
+  }
+
+  /* Filter Controls */
+  .filter-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1.5rem;
+    background: rgba(var(--accent), 0.1);
+    border: 1px solid rgba(var(--accent), 0.3);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .filter-btn:hover {
+    background: rgba(var(--accent), 0.2);
+  }
+
+  .filter-btn.active {
+    background: rgb(var(--accent));
+    color: white;
+    box-shadow: 0 0 15px rgba(var(--accent), 0.5);
+  }
+
+  /* Timeline Events */
+  .timeline-event {
+    position: relative;
+    width: 50%;
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.8s forwards;
+    transition: all 0.5s ease;
+  }
+
+  /* Alternating sides */
+  .timeline-event.left {
+    padding-right: 40px;
+    left: 0;
+  }
+
+  .timeline-event.right {
+    padding-left: 40px;
+    left: 50%;
+  }
+
+  /* Timeline Marker */
+  .timeline-marker {
+    position: absolute;
+    top: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .timeline-event.left .timeline-marker {
+    right: -20px;
+  }
+
+  .timeline-event.right .timeline-marker {
+    left: -20px;
+  }
+
+  .timeline-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgb(var(--accent));
+    box-shadow:
+      0 0 0 4px rgba(var(--accent), 0.3),
+      0 0 0 8px rgba(var(--accent), 0.2);
+  }
+
+  .timeline-date {
+    position: absolute;
+    width: max-content;
+    max-width: 150px;
+    background: rgb(var(--accent));
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .timeline-event.left .timeline-date {
+    right: calc(100% - 30px);
+    top: -10px;
+  }
+
+  .timeline-event.right .timeline-date {
+    left: calc(100% - 30px);
+    top: -10px;
+  }
+
+  /* Timeline Card */
+  .timeline-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(var(--accent), 0.2);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .timeline-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  }
+
+  .timeline-image-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .timeline-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .timeline-card:hover .timeline-image {
+    transform: scale(1.1);
+  }
+
+  .timeline-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 1rem;
+  }
+
+  .event-status {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+
+  .past .event-status {
+    background: rgba(var(--accent), 0.8);
+    color: white;
+  }
+
+  .future .event-status {
+    background: #39ff14;
+    color: black;
+  }
+
+  .timeline-content {
+    padding: 1.5rem;
+    color: var(--color-text);
+  }
+
+  .event-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: rgb(var(--accent));
+  }
+
+  .event-description {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .event-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .event-tag {
+    background: rgba(var(--accent), 0.1);
+    color: rgb(var(--accent-light));
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  /* Timeline End */
+  .timeline-end {
+    position: relative;
+    text-align: center;
+    padding-top: 4rem;
+    margin-top: 2rem;
+    opacity: 0;
+    animation: fadeIn 0.8s forwards 0.5s;
+  }
+
+  .end-dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgb(var(--accent));
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow:
+      0 0 0 5px rgba(var(--accent), 0.3),
+      0 0 0 10px rgba(var(--accent), 0.2),
+      0 0 20px rgba(var(--accent), 0.4);
+  }
+
+  .timeline-end p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: rgb(var(--accent));
+  }
+
+  /* Animation Keyframes */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Animation delays for sequential appearance */
+  .timeline-event:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+  .timeline-event:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+  .timeline-event:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+  .timeline-event:nth-child(4) {
+    animation-delay: 0.8s;
+  }
+
+  /* Responsive design */
+  @media (max-width: 992px) {
+    .timeline-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .timeline-line {
+      left: 40px;
+    }
+
+    .timeline-event {
+      width: 100%;
+      padding-left: 80px !important;
+      padding-right: 20px !important;
+      left: 0 !important;
+    }
+
+    .timeline-marker {
+      left: 30px !important;
+      right: auto !important;
+    }
+
+    .timeline-date {
+      left: 80px !important;
+      right: auto !important;
+      top: -40px !important;
+      max-width: 120px;
+    }
+
+    .timeline-title {
+      font-size: 2rem;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .timeline-line {
+      left: 20px;
+    }
+
+    .timeline-event {
+      padding-left: 50px !important;
+    }
+
+    .timeline-marker {
+      left: 10px !important;
+      width: 30px;
+      height: 30px;
+    }
+
+    .timeline-dot {
+      width: 16px;
+      height: 16px;
+    }
+
+    .timeline-date {
+      font-size: 0.8rem;
+      left: 50px !important;
+      max-width: 100px;
+    }
+
+    .event-title {
+      font-size: 1.3rem;
+    }
+
+    .timeline-content {
+      padding: 1rem;
+    }
+  }
+
+  /* Additional dark mode styles */
+  :global(.dark) .timeline-card {
+    background: rgba(30, 30, 30, 0.7);
+    border-color: rgba(var(--accent), 0.3);
+  }
+
+  :global(.dark) .timeline-line {
+    background: linear-gradient(
+      to bottom,
+      rgba(var(--accent), 0.4),
+      rgba(var(--accent), 1)
+    );
+  }
+
+  :global(.dark) .end-dot {
+    box-shadow:
+      0 0 0 5px rgba(var(--accent), 0.3),
+      0 0 0 10px rgba(var(--accent), 0.2),
+      0 0 20px rgba(var(--accent), 0.6);
+  }
+</style>
+
+<script>
+  function setupTimelineInteractions() {
+    // Event filtering functionality
+    const filterButtons = document.querySelectorAll('.filter-btn')
+    const timelineEvents = document.querySelectorAll('.timeline-event')
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach((btn) => btn.classList.remove('active'))
+
+        // Add active class to clicked button
+        button.classList.add('active')
+
+        const filter = button.getAttribute('data-filter')
+
+        // Show/hide events based on filter
+        timelineEvents.forEach((event) => {
+          if (filter === 'all' || event.getAttribute('data-type') === filter) {
+            event.style.display = ''
+            setTimeout(() => {
+              event.style.opacity = '1'
+            }, 100)
+          } else {
+            event.style.opacity = '0'
+            setTimeout(() => {
+              event.style.display = 'none'
+            }, 500)
+          }
+        })
+      })
+    })
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', setupTimelineInteractions)
+
+  // Support for Astro's view transitions
+  document.addEventListener('astro:page-load', setupTimelineInteractions)
+</script>
