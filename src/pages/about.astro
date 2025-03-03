@@ -1157,20 +1157,6 @@ const frontmatter = {
     })
   }
 
-  // Run on initial page load
-  document.addEventListener('DOMContentLoaded', initializeAnimations)
-
-  // Run on Astro page transitions
-  document.addEventListener('astro:page-load', initializeAnimations)
-
-  // Cleanup on page exit
-  document.addEventListener('astro:before-swap', () => {
-    // Disconnect all existing observers
-    document.querySelectorAll('.fade-in-section').forEach((section) => {
-      section.classList.remove('show')
-    })
-  })
-
   function initializeTestimonials() {
     const container = document.querySelector('.testimonial-container')
     const dots = document.querySelectorAll('.nav-dot')
@@ -1235,14 +1221,26 @@ const frontmatter = {
     })
   }
 
+  // Initialize everything on page load
+  function initializePage() {
+    initializeAnimations()
+    initializeTestimonials()
+  }
+
   // Run on initial page load
-  document.addEventListener('DOMContentLoaded', initializeTestimonials)
+  document.addEventListener('DOMContentLoaded', initializePage)
 
   // Run on Astro page transitions
-  document.addEventListener('astro:page-load', initializeTestimonials)
+  document.addEventListener('astro:page-load', initializePage)
 
   // Cleanup on page exit
   document.addEventListener('astro:before-swap', () => {
+    // Disconnect all existing observers
+    document.querySelectorAll('.fade-in-section').forEach((section) => {
+      section.classList.remove('show')
+    })
+
+    // Clear testimonial interval
     const interval = document.querySelector('.testimonial-container')?._interval
     if (interval) clearInterval(interval)
   })
