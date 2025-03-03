@@ -7,8 +7,6 @@ tags:
   - App Development
   - Competition
   - NSBM Green University
-publishedDate: 2025-03-01
-startDate: 2023-01-01
 ---
 
 ![GreenEXE 2.0](/greenexe.png)

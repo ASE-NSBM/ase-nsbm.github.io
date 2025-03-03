@@ -2,7 +2,6 @@
 title: MadFest 2024 - Mobile Application Exhibition
 description: Mobile Application Development Exhibition organized by the Association of Software Engineering at NSBM Green University. The event provides a platform for students to showcase their mobile app innovations
 publishedDate: 2025-03-01
-startDate: 2023-01-01
 tags:
   - Mobile Development
   - Software Engineering
