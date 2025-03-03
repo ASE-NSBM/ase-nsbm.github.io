@@ -40,6 +40,11 @@ const frontmatter = {
     <div class="subtitle slide-up-delay">
       <div class="typing-text">Innovate. Collaborate. Excel.</div>
     </div>
+
+    <!-- Add the "Read More" button -->
+    <button class="read-more-button" onclick="window.location.reload()">
+      Read More
+    </button>
   </div>
 
   <!-- About Section -->
@@ -1133,9 +1138,41 @@ const frontmatter = {
       font-size: 1rem;
     }
   }
+
+  .read-more-button {
+    margin-top: 2rem;
+    padding: 12px 24px;
+    background: linear-gradient(
+      90deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light))
+    );
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(var(--accent), 0.4);
+  }
+
+  .read-more-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(var(--accent), 0.6);
+  }
 </style>
 
 <script>
+  function scrollToSection() {
+    const section = document.querySelector('.about-section') // Replace with the section you want to scroll to
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   function initializeAnimations() {
     const sections = document.querySelectorAll('.fade-in-section')
 
