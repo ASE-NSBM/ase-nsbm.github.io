@@ -4,9 +4,8 @@ description: an annual application development competition organized by the **As
 publishedDate: 2025-03-01
 tags:
   - Software Engineering
-  - App Development
   - Competition
-  - NSBM Green University
+
 ---
 
 ![GreenEXE 2.0](/greenexe.png)

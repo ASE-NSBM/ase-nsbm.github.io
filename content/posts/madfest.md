@@ -4,9 +4,7 @@ description: Mobile Application Development Exhibition organized by the Associat
 publishedDate: 2025-03-01
 tags:
   - Mobile Development
-  - Software Engineering
   - Innovation
-  - NSBM Green University
 ---
 
 ![MadFest](/madfest.jpg)
