@@ -8,7 +8,7 @@ import readingTimePlugin from './src/plugins/readingTimePlugin'
 import config from './src/theme.config'
 
 export default defineConfig({
-  site: 'https://ase-nsbm.github.io',
+  site: 'https://asensbm.live',
   integrations: [mdx(), sitemap()],
 
   markdown: {
