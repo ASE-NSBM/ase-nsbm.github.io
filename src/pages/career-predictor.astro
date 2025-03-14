@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tech Career Compass</title>
+    <style>
+      :root {
+        --primary: #3b82f6;
+        --primary-dark: #2563eb;
+        --secondary: #6366f1;
+        --bg-light: #f8fafc;
+        --text-dark: #1e293b;
+        --text-light: #f8fafc;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --error: #ef4444;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--bg-light);
+        color: var(--text-dark);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--primary);
+      }
+
+      header p {
+        font-size: 1.1rem;
+        color: var(--text-dark);
+        opacity: 0.8;
+      }
+
+      .card {
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .progress-bar {
+        height: 8px;
+        background-color: #e2e8f0;
+        border-radius: 4px;
+        margin-bottom: 2rem;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background-color: var(--primary);
+        transition: width 0.3s ease;
+      }
+
+      .question {
+        margin-bottom: 1.5rem;
+      }
+
+      .question h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+      }
+
+      .options {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .option {
+        padding: 1rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .option:hover {
+        border-color: var(--primary);
+        background-color: rgba(59, 130, 246, 0.05);
+      }
+
+      .option.selected {
+        border-color: var(--primary);
+        background-color: rgba(59, 130, 246, 0.1);
+      }
+
+      .slider-container {
+        margin: 1.5rem 0;
+      }
+
+      .slider-container label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+
+      .slider {
+        width: 100%;
+        height: 8px;
+        border-radius: 4px;
+        background: #e2e8f0;
+        outline: none;
+        -webkit-appearance: none;
+      }
+
+      .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--primary);
+        cursor: pointer;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+      }
+
+      button {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      button.primary {
+        background-color: var(--primary);
+        color: white;
+      }
+
+      button.primary:hover {
+        background-color: var(--primary-dark);
+      }
+
+      button.secondary {
+        background-color: #e2e8f0;
+        color: var(--text-dark);
+      }
+
+      button.secondary:hover {
+        background-color: #cbd5e1;
+      }
+
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .results {
+        display: none;
+      }
+
+      .results.active {
+        display: block;
+      }
+
+      .results h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        color: var(--primary);
+        text-align: center;
+      }
+
+      .career-match {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        border-radius: 8px;
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      .match-percentage {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: var(--primary);
+        color: white;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      .match-info {
+        flex: 1;
+      }
+
+      .match-info h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .match-info p {
+        color: var(--text-dark);
+        opacity: 0.8;
+        font-size: 0.95rem;
+      }
+
+      .match-details {
+        margin-top: 0.75rem;
+        font-size: 0.9rem;
+      }
+
+      .match-details strong {
+        color: var(--primary);
+      }
+
+      .skill-tag {
+        display: inline-block;
+        background-color: rgba(99, 102, 241, 0.1);
+        color: var(--secondary);
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .restart-btn {
+        display: block;
+        width: fit-content;
+        margin: 2rem auto 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Tech Career Compass</h1>
+        <p>
+          Discover the perfect IT career path based on your skills and interests
+        </p>
+      </header>
+
+      <div class="card" id="quiz-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+        </div>
+
+        <div id="question-container"></div>
+
+        <div class="buttons">
+          <button id="prev-btn" class="secondary" disabled>Previous</button>
+          <button id="next-btn" class="primary">Next</button>
+        </div>
+      </div>
+
+      <div class="card results" id="results-container">
+        <h2>Your Career Matches</h2>
+        <div id="results-content"></div>
+        <button id="restart-btn" class="primary restart-btn">Start Over</button>
+      </div>
+    </div>
+
+    <script>
+      // Quiz questions
+      const questions = [
+        {
+          id: 'problemSolving',
+          question: 'How much do you enjoy solving complex logical problems?',
+          type: 'slider',
+          min: 1,
+          max: 10,
+          default: 5
+        },
+        {
+          id: 'mathematics',
+          question:
+            'Rate your interest in mathematics and statistical analysis:',
+          type: 'slider',
+          min: 1,
+          max: 10,
+          default: 5
+        },
+        {
+          id: 'creativity',
+          question: 'How important is creative expression in your work?',
+          type: 'slider',
+          min: 1,
+          max: 10,
+          default: 5
+        },
+        {
+          id: 'teamwork',
+          question:
+            'Do you prefer working independently or in collaborative teams?',
+          type: 'options',
+          options: [
+            { text: 'Strongly prefer working independently', value: 1 },
+            { text: 'Somewhat prefer working independently', value: 3 },
+            { text: 'Equal mixture of both', value: 5 },
+            { text: 'Somewhat prefer working in teams', value: 7 },
+            { text: 'Strongly prefer working in teams', value: 10 }
+          ]
+        },
+        {
+          id: 'programming',
+          question: 'How much do you enjoy writing code and creating software?',
+          type: 'slider',
+          min: 1,
+          max: 10,
+          default: 5
+        },
+        {
+          id: 'design',
+          question: 'Rate your interest in visual design and user experience:',
+          type: 'slider',
+          min: 1,
+          max: 10,
+          default: 5
+        },
+        {
+          id: 'security',
+          question:
+            'How interested are you in cybersecurity and protecting systems?',
+          type: 'slider',
+          min: 1,
+          max: 10,
+          default: 5
+        },
+        {
+          id: 'data',
+          question: 'How much do you enjoy analyzing data to extract insights?',
+          type: 'slider',
+          min: 1,
+          max: 10,
+          default: 5
+        },
+        {
+          id: 'hardware',
+          question:
+            'Rate your interest in computer hardware and infrastructure:',
+          type: 'slider',
+          min: 1,
+          max: 10,
+          default: 5
+        },
+        {
+          id: 'leadership',
+          question: 'How interested are you in leading projects or teams?',
+          type: 'slider',
+          min: 1,
+          max: 10,
+          default: 5
+        },
+        {
+          id: 'learningStyle',
+          question: 'What learning approach do you prefer?',
+          type: 'options',
+          options: [
+            {
+              text: 'Practical, hands-on learning by doing',
+              value: 'practical'
+            },
+            {
+              text: 'Theoretical understanding of concepts and principles',
+              value: 'theoretical'
+            },
+            {
+              text: 'Balanced approach of both theory and practice',
+              value: 'balanced'
+            }
+          ]
+        },
+        {
+          id: 'workEnvironment',
+          question: 'What type of work environment appeals to you most?',
+          type: 'options',
+          options: [
+            { text: 'Corporate/enterprise setting', value: 'corporate' },
+            { text: 'Startup/entrepreneurial environment', value: 'startup' },
+            { text: 'Research or academic setting', value: 'research' },
+            { text: 'Freelance/independent consulting', value: 'freelance' }
+          ]
+        }
+      ]
+
+      // Career paths data with matching logic
+      const careerPaths = [
+        {
+          title: 'Software Developer',
+          description: 'Design, build and maintain software applications',
+          degrees: ['Software Engineering', 'Computer Science'],
+          match: (answers) => {
+            let score = 0
+            score += answers.programming * 2
+            score += answers.problemSolving * 1.5
+            score += answers.mathematics * 0.5
+            return Math.min(100, Math.round(score / 4))
+          },
+          skills: ['Programming', 'Problem-solving', 'Software design'],
+          details:
+            'Software Developers create applications that allow users to perform specific tasks or systems that run devices and networks. Ideal for those who enjoy logical thinking and coding.'
+        },
+        {
+          title: 'UX/UI Designer',
+          description: 'Create intuitive and appealing user interfaces',
+          degrees: ['Software Engineering', 'Computer Science'],
+          match: (answers) => {
+            let score = 0
+            score += answers.design * 2.5
+            score += answers.creativity * 2
+            score += answers.programming * 0.3
+            return Math.min(100, Math.round(score / 4.8))
+          },
+          skills: ['Visual design', 'User research', 'Prototyping'],
+          details:
+            'UX/UI Designers focus on creating intuitive and visually appealing interfaces. Perfect for those with a blend of creativity and technical understanding.'
+        },
+        {
+          title: 'Data Scientist',
+          description:
+            'Extract insights from complex datasets using statistical methods',
+          degrees: ['Data Science', 'Computer Science'],
+          match: (answers) => {
+            let score = 0
+            score += answers.data * 2.5
+            score += answers.mathematics * 2
+            score += answers.programming * 0.5
+            return Math.min(100, Math.round(score / 5))
+          },
+          skills: [
+            'Statistical analysis',
+            'Machine learning',
+            'Data visualization'
+          ],
+          details:
+            'Data Scientists analyze complex datasets to extract meaningful insights. Suited for those who enjoy mathematics, statistics, and uncovering patterns in data.'
+        },
+        {
+          title: 'Network Engineer',
+          description: 'Design and implement computer networks',
+          degrees: ['Computer Networking', 'Computer Science'],
+          match: (answers) => {
+            let score = 0
+            score += answers.hardware * 2
+            score += answers.problemSolving * 1
+            score += answers.security * 1
+            return Math.min(100, Math.round(score / 4))
+          },
+          skills: ['Network design', 'Troubleshooting', 'System configuration'],
+          details:
+            'Network Engineers design and maintain the infrastructure that allows computers to communicate. Great for those interested in hardware and systems.'
+        },
+        {
+          title: 'Cybersecurity Analyst',
+          description: 'Protect systems and networks from security threats',
+          degrees: ['Computer Security', 'Computer Science'],
+          match: (answers) => {
+            let score = 0
+            score += answers.security * 2.5
+            score += answers.problemSolving * 1
+            score += answers.hardware * 0.5
+            return Math.min(100, Math.round(score / 4))
+          },
+          skills: [
+            'Security assessment',
+            'Threat analysis',
+            'Incident response'
+          ],
+          details:
+            'Cybersecurity Analysts protect digital assets from threats. Ideal for those who enjoy problem-solving in a security context and staying ahead of emerging threats.'
+        },
+        {
+          title: 'IT Project Manager',
+          description: 'Lead technology projects and teams',
+          degrees: ['Technology Management', 'Management Information Systems'],
+          match: (answers) => {
+            let score = 0
+            score += answers.leadership * 2.5
+            score += answers.teamwork * 2
+            score +=
+              ((answers.programming + answers.data + answers.security) / 3) *
+              0.5
+            return Math.min(100, Math.round(score / 5))
+          },
+          skills: ['Project planning', 'Team leadership', 'Communication'],
+          details:
+            'IT Project Managers coordinate resources, timelines, and teams to deliver technical projects. Perfect for those who enjoy leadership and organizing complex initiatives.'
+        },
+        {
+          title: 'Machine Learning Engineer',
+          description: 'Build AI systems and intelligent applications',
+          degrees: ['Data Science', 'Computer Science'],
+          match: (answers) => {
+            let score = 0
+            score += answers.programming * 1.5
+            score += answers.mathematics * 2
+            score += answers.data * 1.5
+            return Math.min(100, Math.round(score / 5))
+          },
+          skills: ['ML algorithms', 'Neural networks', 'Model optimization'],
+          details:
+            'Machine Learning Engineers build systems that can learn from data. Ideal for those with strong mathematical skills and interest in artificial intelligence.'
+        },
+        {
+          title: 'DevOps Engineer',
+          description: 'Integrate development and operations processes',
+          degrees: [
+            'Software Engineering',
+            'Computer Science',
+            'Computer Networking'
+          ],
+          match: (answers) => {
+            let score = 0
+            score += answers.programming * 1
+            score += answers.hardware * 1.5
+            score += answers.problemSolving * 1.5
+            return Math.min(100, Math.round(score / 4))
+          },
+          skills: ['CI/CD pipelines', 'Cloud infrastructure', 'Automation'],
+          details:
+            'DevOps Engineers bridge the gap between software development and IT operations. Great for those who enjoy both coding and system administration.'
+        },
+        {
+          title: 'Database Administrator',
+          description: 'Design and maintain database systems',
+          degrees: [
+            'Computer Science',
+            'Management Information Systems',
+            'Data Science'
+          ],
+          match: (answers) => {
+            let score = 0
+            score += answers.data * 2
+            score += answers.programming * 1
+            score += answers.security * 1
+            return Math.min(100, Math.round(score / 4))
+          },
+          skills: ['Database design', 'Query optimization', 'Data integrity'],
+          details:
+            'Database Administrators organize and ensure the performance of database systems. Suited for those who enjoy working with structured data and maintaining critical systems.'
+        },
+        {
+          title: 'Systems Analyst',
+          description: 'Analyze and improve IT systems and processes',
+          degrees: ['Management Information Systems', 'Computer Science'],
+          match: (answers) => {
+            let score = 0
+            score += answers.problemSolving * 2
+            score += answers.teamwork * 1
+            score += answers.data * 1
+            return Math.min(100, Math.round(score / 4))
+          },
+          skills: [
+            'Requirements analysis',
+            'Process improvement',
+            'System evaluation'
+          ],
+          details:
+            'Systems Analysts assess business needs and recommend IT solutions. Great for those who enjoy analyzing processes and implementing improvements.'
+        },
+        {
+          title: 'Cloud Solutions Architect',
+          description: 'Design cloud-based infrastructure and solutions',
+          degrees: [
+            'Computer Science',
+            'Software Engineering',
+            'Computer Networking'
+          ],
+          match: (answers) => {
+            let score = 0
+            score += answers.hardware * 1.5
+            score += answers.problemSolving * 1.5
+            score += answers.programming * 1
+            return Math.min(100, Math.round(score / 4))
+          },
+          skills: ['Cloud platforms', 'Solution design', 'System integration'],
+          details:
+            'Cloud Solutions Architects design scalable and resilient cloud environments. Ideal for those interested in modern infrastructure and distributed systems.'
+        },
+        {
+          title: 'Business Intelligence Analyst',
+          description: 'Transform data into actionable business insights',
+          degrees: ['Management Information Systems', 'Data Science'],
+          match: (answers) => {
+            let score = 0
+            score += answers.data * 2
+            score += answers.mathematics * 1
+            score += answers.teamwork * 1
+            return Math.min(100, Math.round(score / 4))
+          },
+          skills: ['Data analysis', 'Dashboard creation', 'Business acumen'],
+          details:
+            'BI Analysts convert complex data into business insights. Perfect for those who enjoy analyzing data while understanding its business implications.'
+        }
+      ]
+
+      // Application state
+      let currentQuestionIndex = 0
+      const userAnswers = {}
+
+      // DOM elements
+      const questionContainer = document.getElementById('question-container')
+      const progressFill = document.getElementById('progress-fill')
+      const prevButton = document.getElementById('prev-btn')
+      const nextButton = document.getElementById('next-btn')
+      const quizContainer = document.getElementById('quiz-container')
+      const resultsContainer = document.getElementById('results-container')
+      const resultsContent = document.getElementById('results-content')
+      const restartButton = document.getElementById('restart-btn')
+
+      // Initialize the quiz
+      function initQuiz() {
+        renderQuestion(currentQuestionIndex)
+        updateProgressBar()
+        updateNavigationButtons()
+
+        prevButton.addEventListener('click', goToPreviousQuestion)
+        nextButton.addEventListener('click', goToNextQuestion)
+        restartButton.addEventListener('click', restartQuiz)
+      }
+
+      // Render current question
+      function renderQuestion(index) {
+        const question = questions[index]
+        let html = ''
+
+        html += `<div class="question">
+                <h2>${index + 1}. ${question.question}</h2>
+            `
+
+        if (question.type === 'slider') {
+          const value =
+            userAnswers[question.id] !== undefined
+              ? userAnswers[question.id]
+              : question.default
+          html += `
+                <div class="slider-container">
+                    <input type="range" min="${question.min}" max="${question.max}" value="${value}" class="slider" id="${question.id}">
+                    <div style="display: flex; justify-content: space-between; margin-top: 0.5rem;">
+                        <span>Low</span>
+                        <span>High</span>
+                    </div>
+                    <div style="text-align: center; margin-top: 0.5rem;">
+                        <strong>Selected: <span id="${question.id}-value">${value}</span></strong>
+                    </div>
+                </div>
+                `
+        } else if (question.type === 'options') {
+          html += `<div class="options">`
+          question.options.forEach((option) => {
+            const isSelected = userAnswers[question.id] === option.value
+            html += `
+                    <div class="option ${
+                      isSelected ? 'selected' : ''
+                    }" data-question="${question.id}" data-value="${
+                      option.value
+                    }">
+                        ${option.text}
+                    </div>
+                    `
+          })
+          html += `</div>`
+        }
+
+        html += `</div>`
+        questionContainer.innerHTML = html
+
+        // Add event listeners for the current question
+        if (question.type === 'slider') {
+          const slider = document.getElementById(question.id)
+          const valueDisplay = document.getElementById(`${question.id}-value`)
+
+          slider.addEventListener('input', function () {
+            valueDisplay.textContent = this.value
+            userAnswers[question.id] = parseInt(this.value)
+          })
+        } else if (question.type === 'options') {
+          const options = document.querySelectorAll('.option')
+          options.forEach((option) => {
+            option.addEventListener('click', function () {
+              // Remove selection from all options
+              options.forEach((opt) => opt.classList.remove('selected'))
+
+              // Add selection to clicked option
+              this.classList.add('selected')
+
+              // Save answer
+              const questionId = this.getAttribute('data-question')
+              const value = this.getAttribute('data-value')
+              userAnswers[questionId] = isNaN(value) ? value : parseInt(value)
+            })
+          })
+        }
+      }
+
+      // Update progress bar
+      function updateProgressBar() {
+        const progress = ((currentQuestionIndex + 1) / questions.length) * 100
+        progressFill.style.width = `${progress}%`
+      }
+
+      // Update navigation buttons
+      function updateNavigationButtons() {
+        prevButton.disabled = currentQuestionIndex === 0
+
+        if (currentQuestionIndex === questions.length - 1) {
+          nextButton.textContent = 'See Results'
+        } else {
+          nextButton.textContent = 'Next'
+        }
+      }
+
+      // Go to previous question
+      function goToPreviousQuestion() {
+        if (currentQuestionIndex > 0) {
+          currentQuestionIndex--
+          renderQuestion(currentQuestionIndex)
+          updateProgressBar()
+          updateNavigationButtons()
+        }
+      }
+
+      // Go to next question or show results
+      function goToNextQuestion() {
+        const currentQuestion = questions[currentQuestionIndex]
+
+        // Make sure the current question is answered
+        if (userAnswers[currentQuestion.id] === undefined) {
+          // If not answered and it's a slider, use default value
+          if (currentQuestion.type === 'slider') {
+            userAnswers[currentQuestion.id] = currentQuestion.default
+          } else {
+            // For options, select the first option by default
+            const firstOption = currentQuestion.options[0]
+            userAnswers[currentQuestion.id] = firstOption.value
+
+            // Update UI to show selection
+            const options = document.querySelectorAll('.option')
+            if (options.length > 0) {
+              options.forEach((opt) => opt.classList.remove('selected'))
+              options[0].classList.add('selected')
+            }
+          }
+        }
+
+        if (currentQuestionIndex < questions.length - 1) {
+          currentQuestionIndex++
+          renderQuestion(currentQuestionIndex)
+          updateProgressBar()
+          updateNavigationButtons()
+        } else {
+          showResults()
+        }
+      }
+
+      // Show results
+      function showResults() {
+        // Calculate matches
+        const matches = careerPaths
+          .map((career) => {
+            const matchScore = career.match(userAnswers)
+            return {
+              ...career,
+              matchScore
+            }
+          })
+          .sort((a, b) => b.matchScore - a.matchScore)
+
+        // Generate HTML for results
+        let resultsHTML = ''
+
+        matches.forEach((career, index) => {
+          if (index < 5) {
+            // Show top 5 matches
+            resultsHTML += `
+                    <div class="career-match">
+                        <div class="match-percentage">${
+                          career.matchScore
+                        }%</div>
+                        <div class="match-info">
+                            <h3>${career.title}</h3>
+                            <p>${career.description}</p>
+                            <div class="match-details">
+                                <p><strong>Relevant degrees:</strong> ${career.degrees.join(
+                                  ', '
+                                )}</p>
+                                <p><strong>Key skills:</strong></p>
+                                <div>
+                                    ${career.skills
+                                      .map(
+                                        (skill) =>
+                                          `<span class="skill-tag">${skill}</span>`
+                                      )
+                                      .join('')}
+                                </div>
+                                <p>${career.details}</p>
+                            </div>
+                        </div>
+                    </div>
+                    `
+          }
+        })
+
+        resultsContent.innerHTML = resultsHTML
+
+        // Hide quiz, show results
+        quizContainer.style.display = 'none'
+        resultsContainer.classList.add('active')
+      }
+
+      // Restart quiz
+      function restartQuiz() {
+        // Reset state
+        currentQuestionIndex = 0
+        Object.keys(userAnswers).forEach((key) => delete userAnswers[key])
+
+        // Reset UI
+        quizContainer.style.display = 'block'
+        resultsContainer.classList.remove('active')
+
+        // Start over
+        renderQuestion(currentQuestionIndex)
+        updateProgressBar()
+        updateNavigationButtons()
+      }
+
+      // Start the application
+      document.addEventListener('DOMContentLoaded', initQuiz)
+
+      // TensorFlow.js implementation (optional enhancement)
+      /* 
+        // This would be added if you want to use a trained model instead of rule-based matching
+        async function loadAndRunModel() {
+            const model = await tf.loadLayersModel('model/model.json');
+            
+            // Convert user answers to tensor format
+            const userVector = tf.tensor2d([
+                [
+                    userAnswers.problemSolving / 10,
+                    userAnswers.mathematics / 10,
+                    userAnswers.creativity / 10,
+                    userAnswers.teamwork / 10,
+                    userAnswers.programming / 10,
+                    userAnswers.design / 10,
+                    userAnswers.security / 10,
+                    userAnswers.data / 10,
+                    userAnswers.hardware / 10,
+                    userAnswers.leadership / 10,
+                    // Convert categorical values to one-hot encoding...
+                ]
+            ]);
+            
+            // Run prediction
+            const prediction = model.predict(userVector);
+            const scores = prediction.dataSync();
+            
+            return scores;
+        }
+        */
+    </script>
+  </body>
+</html>
