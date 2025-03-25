@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WhatsApp Confirmation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --primary-color: #25D366;
+            --primary-hover: #128C7E;
+            --clicked-color: #8E44AD;
+            --clicked-hover: #703688;
+            --background-color: #f5f5f5;
+            --card-bg: white;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: var(--primary-hover);
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .whatsapp-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            min-width: 45px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .whatsapp-button:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .whatsapp-button.clicked {
+            background-color: var(--clicked-color);
+        }
+
+        .whatsapp-button.clicked:hover {
+            background-color: var(--clicked-hover);
+        }
+
+        .progress {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-text {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            height: 20px;
+            background-color: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            transition: width 0.5s ease-in-out;
+        }
+
+        @media (max-width: 768px) {
+            .button-container {
+                gap: 8px;
+            }
+            
+            .whatsapp-button {
+                padding: 12px 15px;
+                font-size: 14px;
+                min-width: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .whatsapp-button {
+                padding: 10px 12px;
+                font-size: 12px;
+                min-width: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Confirm Registrations via WhatsApp</h1>
+            <p>Click the buttons below to send a confirmation message to each participant. Purple buttons indicate messages you've already sent.</p>
+        </div>
+
+        <div class="button-container" id="button-container">
+            <!-- Buttons will be inserted here by JavaScript -->
+        </div>
+
+        <div class="progress">
+            <div class="progress-text">Progress: <span id="progress-count">0</span> / <span id="total-count">0</span></div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var numbers = [
+            "+94710941138", "+94754718296", "+94702805593",
+            "+94766117648", "+94711186189", "+94741813703",
+            "+94762376375", "+94755571405", "+94705565752",
+            "+94704408983", "+94775823500", "+94762939736",
+            "+94766057528", "+94754501335", "+94740818093",
+            "+94718303644", "+94705390110", "+94711760449",
+            "+94713456484", "+94758702922", "+94710627653",
+            "+94705752145", "+94753837488", "+94773609820",
+            "+94704632079", "+94772143651", "+94785975121",
+            "+94701985947", "+94715691499", "+94704865427",
+            "+94761917784", "+94760590030", "+94717773301",
+            "+94755701145", "+94750393013", "+94711625588",
+            "+94714415582", "+94720818873", "+94771921750",
+            "+94705706250", "+94764807201", "+94781150359",
+            "+94710897322", "+94702031483", "+94712781386",
+            "+94711519402", "+94761527963", "+94754547122",
+            "+94772779976", "+94761800860", "+94766674599",
+            "+94760132835", "+94712449151", "+94773401552",
+            "+94778464939", "+94755939245", "+94740636779",
+            "+94703287062", "+94714579779", "+94715353632",
+            "+94702544733", "+94704209309", "+94764172917",
+            "+94714838022", "+94704859053", "+94766864160",
+            "+94713490512", "+94714949739", "+94769932361",
+            "+94702629989", "+94716350529", "+94703871920",
+            "+94701308122", "+94753519504", "+94760622620",
+            "+94718516721", "+94704357299", "+94760390923",
+            "+94705107785", "+94762257106", "+94760595655",
+            "+94702305490", "+94714078219", "+94711924757",
+            "+94778281670", "+94721815873", "+94774494500",
+            "+94701044837", "+94705605766", "+94769433487",
+            "+94782558854", "+94777547672", "+94701719720",
+            "+94772134590", "+94762395995", "+94755089587",
+            "+94776481917", "+94769281764", "+94713415772",
+            "+94740525101", "+94711372902", "+94782390103",
+            "+94717688237", "+94778724269", "+94779719884",
+            "+94720804240", "+94701007892", "+94701330836",
+            "+94766057717", "+94775365097", "+94764677483",
+            "+94706520041", "+94771759318", "+94768959668",
+            "+94713245039", "+94776502947", "+94728866260"
+        ];
+
+        var baseURL = "https://wa.me/";
+        var message = "?text=Thanks%20for%20registering%20for%20the%20%22Why%20Software%20Engineering%3F%22%20Boot%20Camp%21%20We%27re%20thrilled%20you%27re%20joining%20us.%20Since%20spots%20are%20limited%2C%20please%20confirm%20your%20participation%20ASAP%20to%20lock%20in%20your%20seat.%0A%0AHere%27s%20the%20lowdown%3A%0A%0AOnline%20Session%3A%0A%E2%80%A2%20Business%20Analysis%3A%20Turn%20business%20ideas%20into%20killer%20software%20solutions%0A%E2%80%A2%20UI/UX%20Design%3A%20Dream%20up%20the%20perfect%20solution%20design%0A%E2%80%A2%20Project%20Management%3A%20Nail%20down%20your%20project%20plan%0A%E2%80%A2%20LinkedIn%3A%20Polish%20up%20your%20profile%20to%20shine%0A%0APhysical%20Session%3A%0A%E2%80%A2%20GitHub%20Crash%20Course%3A%20Master%20version%20control%20like%20a%20pro%0A%E2%80%A2%20Development%3A%20Bring%20your%20software%20solution%20to%20life%0A%E2%80%A2%20QA%3A%20Test%20like%20a%20tech%20wizard%0A%E2%80%A2%20DevOps%3A%20Deploy%20your%20solution%20with%20ease%0A%0AOur%20first%20session%20is%20on%20March%2026th%20at%207%3A30%20PM%20on%20Zoom.%20Confirm%20your%20spot%2C%20and%20let%27s%20make%20this%20journey%20epic!%0A%0AZoom%20Link%20-%20https%3A%2F%2Fplymouth.zoom.us%2Fj%2F96211638956";
+
+        // Initialize clicked buttons from localStorage or create empty set
+        let clickedButtons = new Set(JSON.parse(localStorage.getItem('clickedWhatsAppButtons')) || []);
+        
+        // Update progress display
+        function updateProgress() {
+            const totalCount = numbers.length;
+            const clickedCount = clickedButtons.size;
+            document.getElementById('total-count').textContent = totalCount;
+            document.getElementById('progress-count').textContent = clickedCount;
+            const percentage = (clickedCount / totalCount * 100) || 0;
+            document.getElementById('progress-fill').style.width = `${percentage}%`;
+        }
+
+        // Create buttons and update their appearance
+        function renderButtons() {
+            const container = document.getElementById('button-container');
+            container.innerHTML = ''; // Clear existing buttons
+            
+            for (let i = 0; i < numbers.length; i++) {
+                const button = document.createElement("a");
+                button.href = baseURL + numbers[i] + message;
+                button.className = "whatsapp-button";
+                if (clickedButtons.has(i.toString())) {
+                    button.classList.add('clicked');
+                }
+                button.textContent = (i + 1);
+                button.dataset.index = i;
+                button.target = "_blank"; // Open in a new tab
+                
+                // Track which buttons have been clicked
+                button.addEventListener('click', function() {
+                    const index = this.dataset.index;
+                    clickedButtons.add(index);
+                    this.classList.add('clicked');
+                    localStorage.setItem('clickedWhatsAppButtons', JSON.stringify([...clickedButtons]));
+                    updateProgress();
+                });
+                
+                container.appendChild(button);
+            }
+        }
+        
+        // Initialize the page
+        renderButtons();
+        updateProgress();
+    </script>
+</body>
+</html>
