@@ -1,326 +1,323 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>WhatsApp Confirmation</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Number Copier</title>
     <style>
         :root {
-            --primary-color: #25D366;
-            --primary-hover: #128C7E;
-            --clicked-color: #8E44AD;
-            --clicked-hover: #703688;
-            --background-color: #f5f5f5;
-            --card-bg: white;
-            --text-color: #333;
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --background-color: #eef2f7;
+            --button-hover-color: #0056b3;
+            --copied-color: #1a682c; /* Darker green for copied state */
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
+            margin: 0;
             padding: 20px;
             background-color: var(--background-color);
-            color: var(--text-color);
-            margin: 0;
+            color: var(--dark-color);
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .header {
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: var(--card-bg);
+            background-color: var(--light-color);
+            padding: 25px 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 900px; /* Adjust max-width as needed */
+            text-align: center;
+            margin-bottom: 30px;
         }
 
         h1 {
-            color: var(--primary-hover);
-            margin-bottom: 10px;
-        }
-
-        p {
+            color: var(--primary-color);
             margin-bottom: 20px;
-            font-size: 18px;
+            font-weight: 600;
         }
 
-        .button-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 20px;
-            padding: 15px;
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Responsive grid */
+            gap: 15px; /* Spacing between buttons */
+            margin-bottom: 30px;
         }
 
-        .whatsapp-button {
+        .copy-button {
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 15px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            font-weight: bold;
+            padding: 12px 10px; /* Adjusted padding */
+            border-radius: 6px;
             cursor: pointer;
-            border-radius: 8px;
-            min-width: 45px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            min-width: 80px; /* Ensure buttons have a minimum width */
         }
 
-        .whatsapp-button:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .copy-button:hover {
+            background-color: var(--button-hover-color);
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+
+        .copy-button:active {
+            transform: translateY(0); /* Press down effect */
+        }
+
+        .copy-button.copied {
+            background-color: var(--copied-color); /* Use the darker green */
+            color: #e0ffe0; /* Light green text for contrast */
+            cursor: not-allowed;
+        }
+
+        .copied-section {
+             background-color: var(--light-color);
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             width: 100%;
-            height: 100%;
-            background: rgba(255,255,255,0.1);
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
+            max-width: 900px;
+            text-align: left;
         }
 
-        .whatsapp-button:hover:before {
-            transform: translateY(0);
+        h2 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            font-weight: 500;
         }
 
-        .whatsapp-button:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        #copied-list {
+            list-style-type: disc;
+            padding-left: 25px;
+            margin: 0;
+            max-height: 200px; /* Limit height and make scrollable */
+            overflow-y: auto;
+            font-size: 0.95rem;
+        }
+        #copied-list li {
+             margin-bottom: 8px;
+             color: #555;
         }
 
-        .whatsapp-button:active {
-            transform: translateY(0);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        .tooltip {
+            position: fixed;
+            background-color: var(--dark-color);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none; /* Don't interfere with clicks */
+            z-index: 1000;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        .whatsapp-button.clicked {
-            background-color: var(--clicked-color);
-            border: 2px solid var(--clicked-hover);
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        .tooltip.show {
+            opacity: 1;
         }
 
-        .whatsapp-button.clicked:hover {
-            background-color: var(--clicked-hover);
-        }
-
-        .progress {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .progress-text {
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .progress-bar {
-            height: 20px;
-            background-color: #eee;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background-color: var(--primary-color);
-            border-radius: 10px;
-            transition: width 0.5s ease-in-out;
-        }
-
-        @media (max-width: 768px) {
-            .button-container {
-                gap: 8px;
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
             }
-            
-            .whatsapp-button {
-                padding: 12px 15px;
-                font-size: 14px;
-                min-width: 40px;
+            .container, .copied-section {
+                padding: 20px 15px;
             }
-        }
-
-        @media (max-width: 480px) {
-            .whatsapp-button {
-                padding: 10px 12px;
-                font-size: 12px;
-                min-width: 35px;
+            .button-grid {
+                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); /* Smaller min width on mobile */
+                gap: 10px;
+            }
+            .copy-button {
+                padding: 10px 8px;
+                font-size: 0.9rem;
+                min-width: 70px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+             h2 {
+                font-size: 1.2rem;
             }
         }
+
     </style>
 </head>
 <body>
+
     <div class="container">
-        <div class="header">
-            <h1>Confirm Registrations via WhatsApp</h1>
-            <p>Click the buttons below to send a confirmation message to each participant. Purple buttons indicate messages you've already sent.</p>
-        </div>
-
-        <div class="button-container" id="button-container">
-            <!-- Buttons will be inserted here by JavaScript -->
-        </div>
-
-        <div class="progress">
-            <div class="progress-text">Progress: <span id="progress-count">0</span> / <span id="total-count">0</span></div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
-            </div>
+        <h1>Phone Number Copier</h1>
+        <div id="button-grid" class="button-grid">
+            <!-- Buttons will be generated here by JavaScript -->
         </div>
     </div>
 
+    <div class="copied-section">
+        <h2>Copied Numbers:</h2>
+        <ul id="copied-list">
+            <!-- Copied numbers will be listed here -->
+             <li>No numbers copied yet.</li>
+        </ul>
+    </div>
+
+    <div id="tooltip" class="tooltip">Copied!</div>
+
     <script>
-        var numbers = [
-            "+94710941138", "+94754718296", "+94702805593",
-            "+94766117648", "+94711186189", "+94741813703",
-            "+94762376375", "+94755571405", "+94705565752",
-            "+94704408983", "+94775823500", "+94762939736",
-            "+94766057528", "+94754501335", "+94740818093",
-            "+94718303644", "+94705390110", "+94711760449",
-            "+94713456484", "+94758702922", "+94710627653",
-            "+94705752145", "+94753837488", "+94773609820",
-            "+94704632079", "+94772143651", "+94785975121",
-            "+94701985947", "+94715691499", "+94704865427",
-            "+94761917784", "+94760590030", "+94717773301",
-            "+94755701145", "+94750393013", "+94711625588",
-            "+94714415582", "+94720818873", "+94771921750",
-            "+94705706250", "+94764807201", "+94781150359",
-            "+94710897322", "+94702031483", "+94712781386",
-            "+94711519402", "+94761527963", "+94754547122",
-            "+94772779976", "+94761800860", "+94766674599",
-            "+94760132835", "+94712449151", "+94773401552",
-            "+94778464939", "+94755939245", "+94740636779",
-            "+94703287062", "+94714579779", "+94715353632",
-            "+94702544733", "+94704209309", "+94764172917",
-            "+94714838022", "+94704859053", "+94766864160",
-            "+94713490512", "+94714949739", "+94769932361",
-            "+94702629989", "+94716350529", "+94703871920",
-            "+94701308122", "+94753519504", "+94760622620",
-            "+94718516721", "+94704357299", "+94760390923",
-            "+94705107785", "+94762257106", "+94760595655",
-            "+94702305490", "+94714078219", "+94711924757",
-            "+94778281670", "+94721815873", "+94774494500",
-            "+94701044837", "+94705605766", "+94769433487",
-            "+94782558854", "+94777547672", "+94701719720",
-            "+94772134590", "+94762395995", "+94755089587",
-            "+94776481917", "+94769281764", "+94713415772",
-            "+94740525101", "+94711372902", "+94782390103",
-            "+94717688237", "+94778724269", "+94779719884",
-            "+94720804240", "+94701007892", "+94701330836",
-            "+94766057717", "+94775365097", "+94764677483",
-            "+94706520041", "+94771759318", "+94768959668",
-            "+94713245039", "+94776502947", "+94728866260"
+        const phoneNumbers = [
+            '+94710941138', '+94754718296', '+94702805593', '+94766117648', '+94711186189',
+            '+94741813703', '+94762376375', '+94755571405', '+94705565752', '+94704408983',
+            '+94775823500', '+94762939736', '+94766057528', '+94754501335', '+94740818093',
+            '+94718303644', '+94705390110', '+94711760449', '+94713456484', '+94758702922',
+            '+94710627653', '+94705752145', '+94753837488', '+94773609820', '+94704632079',
+            '+94772143651', '+94785975121', '+94701985947', '+94715691499', '+94704865427',
+            '+94761917784', '+94760590030', '+94717773301', '+94755701145', '+94750393013',
+            '+94711625588', '+94714415582', '+94720818873', '+94771921750', '+94705706250',
+            '+94764807201', '+94781150359', '+94710897322', '+94702031483', '+94712781386',
+            '+94711519402', '+94761527963', '+94754547122', '+94772779976', '+94761800860',
+            '+94766674599', '+94760132835', '+94712449151', '+94773401552', '+94778464939',
+            '+94755939245', '+94740636779', '+94703287062', '+94714579779', '+94715353632',
+            '+94702544733', '+94704209309', '+94764172917', '+94714838022', '+94704859053',
+            '+94766864160', '+94713490512', '+94714949739', '+94769932361', '+94702629989',
+            '+94716350529', '+94703871920', '+94701308122', '+94753519504', '+94760622620',
+            '+94718516721', '+94704357299', '+94760390923', '+94705107785', '+94762257106',
+            '+94760595655', '+94702305490', '+94714078219', '+94711924757', '+94778281670',
+            '+94721815873', '+94774494500', '+94701044837', '+94705605766', '+94769433487',
+            '+94782558854', '+94777547672', '+94701719720', '+94772134590', '+94762395995',
+            '+94755089587', '+94776481917', '+94769281764', '+94713415772', '+94740525101',
+            '+94711372902', '+94782390103', '+94717688237', '+94778724269', '+94779719884',
+            '+94720804240', '+94701007892', '+94701330836', '+94766057717', '+94775365097',
+            '+94764677483', '+94706520041', '+94771759318', '+94768959668', '+94713245039',
+            '+94776502947', '+94728866260'
         ];
 
-        var baseURL = "https://wa.me/";
-        var message = "?text=Thanks%20for%20registering%20for%20the%20%22Why%20Software%20Engineering%3F%22%20Boot%20Camp%21%20We%27re%20thrilled%20you%27re%20joining%20us.%20Since%20spots%20are%20limited%2C%20please%20confirm%20your%20participation%20ASAP%20to%20lock%20in%20your%20seat.%0A%0AHere%27s%20the%20lowdown%3A%0A%0AOnline%20Session%3A%0A%E2%80%A2%20Business%20Analysis%3A%20Turn%20business%20ideas%20into%20killer%20software%20solutions%0A%E2%80%A2%20UI/UX%20Design%3A%20Dream%20up%20the%20perfect%20solution%20design%0A%E2%80%A2%20Project%20Management%3A%20Nail%20down%20your%20project%20plan%0A%E2%80%A2%20LinkedIn%3A%20Polish%20up%20your%20profile%20to%20shine%0A%0APhysical%20Session%3A%0A%E2%80%A2%20GitHub%20Crash%20Course%3A%20Master%20version%20control%20like%20a%20pro%0A%E2%80%A2%20Development%3A%20Bring%20your%20software%20solution%20to%20life%0A%E2%80%A2%20QA%3A%20Test%20like%20a%20tech%20wizard%0A%E2%80%A2%20DevOps%3A%20Deploy%20your%20solution%20with%20ease%0A%0AOur%20first%20session%20is%20on%20March%2026th%20at%207%3A30%20PM%20on%20Zoom.%20Confirm%20your%20spot%2C%20and%20let%27s%20make%20this%20journey%20epic!%0A%0AZoom%20Link%20-%20https%3A%2F%2Fplymouth.zoom.us%2Fj%2F96211638956";
+        const buttonGrid = document.getElementById('button-grid');
+        const copiedList = document.getElementById('copied-list');
+        const tooltip = document.getElementById('tooltip');
+        const copiedNumbersSet = new Set(); // To track unique copied numbers
 
-        // Fix: Properly initialize clicked buttons from localStorage
-        let clickedButtons;
-        try {
-            const savedButtons = localStorage.getItem('clickedWhatsAppButtons');
-            clickedButtons = new Set(savedButtons ? JSON.parse(savedButtons) : []);
-        } catch (e) {
-            console.error("Error loading saved buttons:", e);
-            clickedButtons = new Set();
-        }
-        
-        // Update progress display
-        function updateProgress() {
-            const totalCount = numbers.length;
-            const clickedCount = clickedButtons.size;
-            document.getElementById('total-count').textContent = String(totalCount);
-            document.getElementById('progress-count').textContent = String(clickedCount);
-            const percentage = (clickedCount / totalCount * 100) || 0;
-            document.getElementById('progress-fill').style.width = `${percentage}%`;
+        // Function to show feedback tooltip
+        function showTooltip(message) {
+            tooltip.textContent = message;
+            tooltip.classList.add('show');
+            setTimeout(() => {
+                tooltip.classList.remove('show');
+            }, 1500); // Tooltip disappears after 1.5 seconds
         }
 
-        // Create buttons and update their appearance
-        function renderButtons() {
-            const container = document.getElementById('button-container');
-            container.innerHTML = ''; // Clear existing buttons
-            
-            for (let i = 0; i < numbers.length; i++) {
-                const button = document.createElement("a");
-                button.href = baseURL + numbers[i] + message;
-                button.className = "whatsapp-button";
-                
-                // Check if button is clicked by using the index as a string key
-                if (clickedButtons.has(i.toString())) {
-                    button.classList.add('clicked');
-                }
-                
-                button.textContent = String(i + 1);
-                button.dataset.index = String(i);
-                button.target = "_blank"; // Open in a new tab
-                
-                // Add a title attribute to show phone number on hover
-                button.title = `Send WhatsApp message to ${numbers[i]}`;
-                
-                // Track which buttons have been clicked
-                button.addEventListener('click', function(e) {
-                    const index = this.dataset.index;
-                    clickedButtons.add(index);
-                    this.classList.add('clicked');
-                    
-                    // Save to localStorage
-                    try {
-                        localStorage.setItem('clickedWhatsAppButtons', 
-                            JSON.stringify(Array.from(clickedButtons)));
-                    } catch (err) {
-                        console.error("Error saving button state:", err);
-                    }
-                    
-                    updateProgress();
-                });
-                
-                container.appendChild(button);
+        // Function to update the list of copied numbers display
+        function updateCopiedList() {
+            copiedList.innerHTML = ''; // Clear current list
+
+            if (copiedNumbersSet.size === 0) {
+                 copiedList.innerHTML = '<li>No numbers copied yet.</li>';
+                 return;
             }
-        }
-        
-        // Add a reset button to clear clicked state (optional)
-        function addResetButton() {
-            const container = document.querySelector('.progress');
-            const resetBtn = document.createElement('button');
-            resetBtn.textContent = 'Reset All';
-            resetBtn.style.marginTop = '15px';
-            resetBtn.style.padding = '8px 15px';
-            resetBtn.style.borderRadius = '5px';
-            resetBtn.style.backgroundColor = '#f44336';
-            resetBtn.style.color = 'white';
-            resetBtn.style.border = 'none';
-            resetBtn.style.cursor = 'pointer';
-            
-            resetBtn.addEventListener('click', function() {
-                if (confirm('Are you sure you want to reset all clicked buttons?')) {
-                    clickedButtons.clear();
-                    localStorage.removeItem('clickedWhatsAppButtons');
-                    renderButtons();
-                    updateProgress();
-                }
+
+            copiedNumbersSet.forEach(number => {
+                const listItem = document.createElement('li');
+                listItem.textContent = String(number);
+                copiedList.appendChild(listItem);
             });
-            
-            container.appendChild(resetBtn);
         }
-        
-        // Initialize the page
-        renderButtons();
-        updateProgress();
-        addResetButton();
+
+        // Generate buttons
+        phoneNumbers.forEach((number, index) => {
+            const button = document.createElement('button');
+            button.textContent = String(index + 1); // Number the buttons 1, 2, 3...
+            button.classList.add('copy-button');
+            button.dataset.number = number; // Store the actual number in a data attribute
+
+            button.addEventListener('click', () => {
+                const numberToCopy = button.dataset.number;
+
+                // Use the modern Clipboard API
+                navigator.clipboard.writeText(numberToCopy)
+                    .then(() => {
+                        // --- Success ---
+                        console.log('Copied:', numberToCopy);
+                        showTooltip(`Copied: ${numberToCopy}`);
+
+                        // Add to tracking set
+                        const previouslyCopied = copiedNumbersSet.has(numberToCopy);
+                        copiedNumbersSet.add(numberToCopy);
+
+                        // Update the displayed list only if it's a new number
+                        if (!previouslyCopied) {
+                             updateCopiedList();
+                        }
+
+
+                        // Visual feedback on the button
+                        button.classList.add('copied');
+                        button.disabled = true; // Temporarily disable
+
+                        // Optional: Re-enable button after a delay
+                        setTimeout(() => {
+                             button.classList.remove('copied'); // Or keep the style if preferred
+                             button.disabled = false;
+                        }, 2000); // Re-enable after 2 seconds
+
+                    })
+                    .catch(err => {
+                        // --- Error ---
+                        console.error('Failed to copy text: ', err);
+                        showTooltip('Failed to copy!');
+                        // Fallback for older browsers (less reliable)
+                        try {
+                            const textArea = document.createElement('textarea');
+                            textArea.value = numberToCopy;
+                            textArea.style.position = 'fixed'; // Avoid scrolling
+                            textArea.style.opacity = '0';
+                            document.body.appendChild(textArea);
+                            textArea.focus();
+                            textArea.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(textArea);
+                            showTooltip(`Copied (fallback): ${numberToCopy}`);
+                             // Add to tracking set (even with fallback)
+                            const previouslyCopied = copiedNumbersSet.has(numberToCopy);
+                            copiedNumbersSet.add(numberToCopy);
+                             if (!previouslyCopied) {
+                                updateCopiedList();
+                            }
+                            button.classList.add('copied');
+                            button.disabled = true;
+                             setTimeout(() => {
+                                 button.classList.remove('copied');
+                                 button.disabled = false;
+                             }, 2000);
+
+                        } catch (fallbackErr) {
+                            console.error('Fallback copy failed: ', fallbackErr);
+                             showTooltip('Copy failed!');
+                        }
+                    });
+            });
+
+            buttonGrid.appendChild(button);
+        });
+
+         // Initial update of the copied list (in case you want to load from storage later)
+         updateCopiedList();
+
     </script>
+
 </body>
 </html>
