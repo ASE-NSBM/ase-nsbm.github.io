@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Why Software Engineering? - Boot Camp Invitation</title>
+    <style>
+      :root {
+        --primary: #3b82f6;
+        --primary-dark: #2563eb;
+        --secondary: #6366f1;
+        --bg-light: #f8fafc;
+        --text-dark: #1e293b;
+        --text-light: #f8fafc;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --error: #ef4444;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--bg-light);
+        color: var(--text-dark);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--primary);
+      }
+
+      header p {
+        font-size: 1.1rem;
+        color: var(--text-dark);
+        opacity: 0.8;
+      }
+
+      .card {
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--primary-dark);
+      }
+
+      .session-list {
+        margin: 1.5rem 0;
+      }
+
+      .session-list li {
+        margin-bottom: 0.75rem;
+        position: relative;
+        padding-left: 1.5rem;
+      }
+
+      .session-list li::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: var(--primary);
+        font-size: 1.2rem;
+      }
+
+      .zoom-button {
+        display: block;
+        background-color: var(--primary);
+        color: white;
+        text-align: center;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        text-decoration: none;
+        margin: 2rem auto;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: fit-content;
+      }
+
+      .zoom-button:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .highlight {
+        background-color: rgba(59, 130, 246, 0.1);
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin: 1.5rem 0;
+        border-left: 4px solid var(--primary);
+      }
+
+      .date-time {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: rgba(16, 185, 129, 0.1);
+        padding: 1rem;
+        border-radius: 8px;
+        margin: 1.5rem 0;
+      }
+
+      .date-time-label {
+        font-weight: 600;
+        color: var(--success);
+      }
+
+      .date-time-value {
+        font-weight: 600;
+      }
+
+      @media (max-width: 640px) {
+        header h1 {
+          font-size: 2rem;
+        }
+        
+        .date-time {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Why Software Engineering?</h1>
+        <p>Boot Camp Invitation</p>
+      </header>
+
+      <div class="card">
+        <div class="highlight">
+          <p>Thanks for registering for the "Why Software Engineering?" Boot Camp! We're thrilled you're joining us. Since spots are limited, please confirm your participation ASAP to lock in your seat.</p>
+        </div>
+
+        <h2 class="section-title">Online Session</h2>
+        <ul class="session-list">
+          <li><strong>Business Analysis:</strong> Turn business ideas into killer software solutions</li>
+          <li><strong>UI/UX Design:</strong> Dream up the perfect solution design</li>
+          <li><strong>Project Management:</strong> Nail down your project plan</li>
+          <li><strong>LinkedIn:</strong> Polish up your profile to shine</li>
+        </ul>
+
+        <h2 class="section-title">Physical Session</h2>
+        <ul class="session-list">
+          <li><strong>GitHub Crash Course:</strong> Master version control like a pro</li>
+          <li><strong>Development:</strong> Bring your software solution to life</li>
+          <li><strong>QA:</strong> Test like a tech wizard</li>
+          <li><strong>DevOps:</strong> Deploy your solution with ease</li>
+        </ul>
+
+        <div class="date-time">
+          <div>
+            <span class="date-time-label">Date:</span>
+            <span class="date-time-value">March 26th</span>
+          </div>
+          <div>
+            <span class="date-time-label">Time:</span>
+            <span class="date-time-value">7:30 PM</span>
+          </div>
+          <div>
+            <span class="date-time-label">Platform:</span>
+            <span class="date-time-value">Zoom</span>
+          </div>
+        </div>
+
+        <p>Our first session is on March 26th at 7:30 PM on Zoom. Confirm your spot, and let's make this journey epic!</p>
+
+        <a href="https://plymouth.zoom.us/j/96211638956" class="zoom-button" target="_blank">
+          Join Zoom Meeting
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
