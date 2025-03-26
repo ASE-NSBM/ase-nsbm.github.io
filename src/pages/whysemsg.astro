@@ -1,323 +1,350 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phone Number Copier</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Why SE? - Interactive Games</title>
     <style>
-        :root {
-            --primary-color: #007bff;
-            --secondary-color: #6c757d;
-            --success-color: #28a745;
-            --light-color: #f8f9fa;
-            --dark-color: #343a40;
-            --background-color: #eef2f7;
-            --button-hover-color: #0056b3;
-            --copied-color: #1a682c; /* Darker green for copied state */
-        }
+      :root {
+        --primary-color: #3b82f6;
+        --primary-dark: #2563eb;
+        --secondary-color: #6366f1;
+        --ui-ux-color: #10b981; /* Green */
+        --business-color: #f59e0b; /* Orange/Yellow */
+        --project-color: #8b5cf6; /* Purple */
+        --light-color: #f8fafc;
+        --dark-color: #1e293b;
+        --background-color: #eef2f7;
+      }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: var(--background-color);
-            color: var(--dark-color);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        .container {
-            background-color: var(--light-color);
-            padding: 25px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 900px; /* Adjust max-width as needed */
-            text-align: center;
-            margin-bottom: 30px;
-        }
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--background-color);
+        color: var(--dark-color);
+        line-height: 1.6;
+      }
 
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding: 2rem 0;
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--primary-dark);
+      }
+
+      .subtitle {
+        font-size: 1.25rem;
+        color: var(--secondary-color);
+        margin-bottom: 1rem;
+      }
+
+      .intro {
+        max-width: 800px;
+        margin: 0 auto 1.5rem;
+        font-size: 1.1rem;
+      }
+
+      .games-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 25px;
+        margin-top: 2rem;
+      }
+
+      .game-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .game-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .card-header {
+        padding: 1.5rem;
+        color: white;
+      }
+
+      .ui-ux .card-header {
+        background-color: var(--ui-ux-color);
+      }
+
+      .business .card-header {
+        background-color: var(--business-color);
+      }
+
+      .project .card-header {
+        background-color: var(--project-color);
+      }
+
+      .card-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .card-subtitle {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+
+      .card-body {
+        padding: 1.5rem;
+        flex-grow: 1;
+      }
+
+      .card-description {
+        margin-bottom: 1.5rem;
+      }
+
+      .play-button {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: auto;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .ui-ux .play-button:hover {
+        background-color: var(--ui-ux-color);
+      }
+
+      .business .play-button:hover {
+        background-color: var(--business-color);
+      }
+
+      .project .play-button:hover {
+        background-color: var(--project-color);
+      }
+
+      .coming-soon {
+        background-color: var(--secondary-color);
+        opacity: 0.9;
+        cursor: not-allowed;
+      }
+
+      .coming-soon:hover {
+        background-color: var(--secondary-color) !important;
+        opacity: 1;
+      }
+
+      .badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background-color: rgba(255, 255, 255, 0.9);
+        color: var(--dark-color);
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .game-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .divider {
+        height: 1px;
+        background-color: #e5e7eb;
+        margin: 1.5rem 0;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 3rem;
+        padding: 2rem 0;
+        color: var(--secondary-color);
+        font-size: 0.9rem;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .games-container {
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+      }
+
+      @media (max-width: 480px) {
         h1 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-weight: 600;
+          font-size: 2rem;
         }
+        .game-card {
+          margin-bottom: 1.5rem;
+        }
+      }
 
-        .button-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Responsive grid */
-            gap: 15px; /* Spacing between buttons */
-            margin-bottom: 30px;
+      /* Animation for cards */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
         }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-        .copy-button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 10px; /* Adjusted padding */
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: background-color 0.3s ease, transform 0.1s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            min-width: 80px; /* Ensure buttons have a minimum width */
-        }
+      .game-card {
+        animation: fadeIn 0.6s ease-out forwards;
+        opacity: 0;
+      }
 
-        .copy-button:hover {
-            background-color: var(--button-hover-color);
-            transform: translateY(-2px); /* Slight lift on hover */
-        }
-
-        .copy-button:active {
-            transform: translateY(0); /* Press down effect */
-        }
-
-        .copy-button.copied {
-            background-color: var(--copied-color); /* Use the darker green */
-            color: #e0ffe0; /* Light green text for contrast */
-            cursor: not-allowed;
-        }
-
-        .copied-section {
-             background-color: var(--light-color);
-            padding: 25px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 900px;
-            text-align: left;
-        }
-
-        h2 {
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px;
-            font-weight: 500;
-        }
-
-        #copied-list {
-            list-style-type: disc;
-            padding-left: 25px;
-            margin: 0;
-            max-height: 200px; /* Limit height and make scrollable */
-            overflow-y: auto;
-            font-size: 0.95rem;
-        }
-        #copied-list li {
-             margin-bottom: 8px;
-             color: #555;
-        }
-
-        .tooltip {
-            position: fixed;
-            background-color: var(--dark-color);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none; /* Don't interfere with clicks */
-            z-index: 1000;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .tooltip.show {
-            opacity: 1;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-            .container, .copied-section {
-                padding: 20px 15px;
-            }
-            .button-grid {
-                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); /* Smaller min width on mobile */
-                gap: 10px;
-            }
-            .copy-button {
-                padding: 10px 8px;
-                font-size: 0.9rem;
-                min-width: 70px;
-            }
-            h1 {
-                font-size: 1.5rem;
-            }
-             h2 {
-                font-size: 1.2rem;
-            }
-        }
-
+      .game-card:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+      .game-card:nth-child(2) {
+        animation-delay: 0.4s;
+      }
+      .game-card:nth-child(3) {
+        animation-delay: 0.6s;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="container">
-        <h1>Phone Number Copier</h1>
-        <div id="button-grid" class="button-grid">
-            <!-- Buttons will be generated here by JavaScript -->
+      <header>
+        <h1>Why Software Engineering?</h1>
+        <div class="subtitle">Interactive Learning Games</div>
+        <p class="intro">
+          Test your knowledge and have fun with these interactive Kahoot games
+          designed for each session of our boot camp.
+        </p>
+      </header>
+
+      <div class="games-container">
+        <!-- UI/UX Design Game Card -->
+        <div class="game-card ui-ux">
+          <div class="card-header">
+            <h2 class="card-title">UI/UX Design</h2>
+            <p class="card-subtitle">Dream up the perfect solution design</p>
+          </div>
+          <span class="badge">Available Now</span>
+          <div class="card-body">
+            <p class="card-description">
+              Test your understanding of user interface design principles, user
+              experience concepts, and design thinking. Can you create
+              interfaces that users will love?
+            </p>
+            <div class="divider"></div>
+            <div style="text-align: center;">
+              <a
+                href="https://play.kahoot.it/v2/?quizId=bdda0d46-a20b-49c9-b5a2-3c9ddef460dd&hostId=92623791-9a8e-4884-892b-0c5ac6fcc0fa"
+                class="play-button"
+                target="_blank">Play Now</a
+              >
+            </div>
+          </div>
         </div>
-    </div>
 
-    <div class="copied-section">
-        <h2>Copied Numbers:</h2>
-        <ul id="copied-list">
-            <!-- Copied numbers will be listed here -->
-             <li>No numbers copied yet.</li>
-        </ul>
-    </div>
+        <!-- Business Analysis Game Card -->
+        <div class="game-card business">
+          <div class="card-header">
+            <h2 class="card-title">Business Analysis</h2>
+            <p class="card-subtitle">
+              Turn business ideas into killer software solutions
+            </p>
+          </div>
+          <span class="badge">Coming Soon</span>
+          <div class="card-body">
+            <p class="card-description">
+              Challenge your analytical thinking and problem-solving skills.
+              Learn how to identify business needs and translate them into
+              effective software requirements.
+            </p>
+            <div class="divider"></div>
+            <div style="text-align: center;">
+              <button class="play-button coming-soon">Coming Soon</button>
+            </div>
+          </div>
+        </div>
 
-    <div id="tooltip" class="tooltip">Copied!</div>
+        <!-- Project Management Game Card -->
+        <div class="game-card project">
+          <div class="card-header">
+            <h2 class="card-title">Project Management</h2>
+            <p class="card-subtitle">Nail down your project plan</p>
+          </div>
+          <span class="badge">Coming Soon</span>
+          <div class="card-body">
+            <p class="card-description">
+              Put your project management skills to the test! Learn about Agile
+              methodologies, task prioritization, and how to lead a software
+              project to success.
+            </p>
+            <div class="divider"></div>
+            <div style="text-align: center;">
+              <button class="play-button coming-soon">Coming Soon</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>Part of the "Why Software Engineering?" Boot Camp | ASE NSBM</p>
+      </footer>
+    </div>
 
     <script>
-        const phoneNumbers = [
-            '+94710941138', '+94754718296', '+94702805593', '+94766117648', '+94711186189',
-            '+94741813703', '+94762376375', '+94755571405', '+94705565752', '+94704408983',
-            '+94775823500', '+94762939736', '+94766057528', '+94754501335', '+94740818093',
-            '+94718303644', '+94705390110', '+94711760449', '+94713456484', '+94758702922',
-            '+94710627653', '+94705752145', '+94753837488', '+94773609820', '+94704632079',
-            '+94772143651', '+94785975121', '+94701985947', '+94715691499', '+94704865427',
-            '+94761917784', '+94760590030', '+94717773301', '+94755701145', '+94750393013',
-            '+94711625588', '+94714415582', '+94720818873', '+94771921750', '+94705706250',
-            '+94764807201', '+94781150359', '+94710897322', '+94702031483', '+94712781386',
-            '+94711519402', '+94761527963', '+94754547122', '+94772779976', '+94761800860',
-            '+94766674599', '+94760132835', '+94712449151', '+94773401552', '+94778464939',
-            '+94755939245', '+94740636779', '+94703287062', '+94714579779', '+94715353632',
-            '+94702544733', '+94704209309', '+94764172917', '+94714838022', '+94704859053',
-            '+94766864160', '+94713490512', '+94714949739', '+94769932361', '+94702629989',
-            '+94716350529', '+94703871920', '+94701308122', '+94753519504', '+94760622620',
-            '+94718516721', '+94704357299', '+94760390923', '+94705107785', '+94762257106',
-            '+94760595655', '+94702305490', '+94714078219', '+94711924757', '+94778281670',
-            '+94721815873', '+94774494500', '+94701044837', '+94705605766', '+94769433487',
-            '+94782558854', '+94777547672', '+94701719720', '+94772134590', '+94762395995',
-            '+94755089587', '+94776481917', '+94769281764', '+94713415772', '+94740525101',
-            '+94711372902', '+94782390103', '+94717688237', '+94778724269', '+94779719884',
-            '+94720804240', '+94701007892', '+94701330836', '+94766057717', '+94775365097',
-            '+94764677483', '+94706520041', '+94771759318', '+94768959668', '+94713245039',
-            '+94776502947', '+94728866260'
-        ];
+      // JavaScript to replace "Coming Soon" with actual links when available
+      function updateGameLink(gameId, kahootLink) {
+        const gameButton = document.getElementById(gameId)
+        if (gameButton && kahootLink) {
+          gameButton.href = kahootLink
+          gameButton.classList.remove('coming-soon')
+          gameButton.textContent = 'Play Now'
 
-        const buttonGrid = document.getElementById('button-grid');
-        const copiedList = document.getElementById('copied-list');
-        const tooltip = document.getElementById('tooltip');
-        const copiedNumbersSet = new Set(); // To track unique copied numbers
-
-        // Function to show feedback tooltip
-        function showTooltip(message) {
-            tooltip.textContent = message;
-            tooltip.classList.add('show');
-            setTimeout(() => {
-                tooltip.classList.remove('show');
-            }, 1500); // Tooltip disappears after 1.5 seconds
+          // Update badge
+          const card = gameButton.closest('.game-card')
+          const badge = card.querySelector('.badge')
+          if (badge) {
+            badge.textContent = 'Available Now'
+          }
         }
+      }
 
-        // Function to update the list of copied numbers display
-        function updateCopiedList() {
-            copiedList.innerHTML = ''; // Clear current list
-
-            if (copiedNumbersSet.size === 0) {
-                 copiedList.innerHTML = '<li>No numbers copied yet.</li>';
-                 return;
-            }
-
-            copiedNumbersSet.forEach(number => {
-                const listItem = document.createElement('li');
-                listItem.textContent = String(number);
-                copiedList.appendChild(listItem);
-            });
-        }
-
-        // Generate buttons
-        phoneNumbers.forEach((number, index) => {
-            const button = document.createElement('button');
-            button.textContent = String(index + 1); // Number the buttons 1, 2, 3...
-            button.classList.add('copy-button');
-            button.dataset.number = number; // Store the actual number in a data attribute
-
-            button.addEventListener('click', () => {
-                const numberToCopy = button.dataset.number;
-
-                // Use the modern Clipboard API
-                navigator.clipboard.writeText(numberToCopy)
-                    .then(() => {
-                        // --- Success ---
-                        console.log('Copied:', numberToCopy);
-                        showTooltip(`Copied: ${numberToCopy}`);
-
-                        // Add to tracking set
-                        const previouslyCopied = copiedNumbersSet.has(numberToCopy);
-                        copiedNumbersSet.add(numberToCopy);
-
-                        // Update the displayed list only if it's a new number
-                        if (!previouslyCopied) {
-                             updateCopiedList();
-                        }
-
-
-                        // Visual feedback on the button
-                        button.classList.add('copied');
-                        button.disabled = true; // Temporarily disable
-
-                        // Optional: Re-enable button after a delay
-                        setTimeout(() => {
-                             button.classList.remove('copied'); // Or keep the style if preferred
-                             button.disabled = false;
-                        }, 2000); // Re-enable after 2 seconds
-
-                    })
-                    .catch(err => {
-                        // --- Error ---
-                        console.error('Failed to copy text: ', err);
-                        showTooltip('Failed to copy!');
-                        // Fallback for older browsers (less reliable)
-                        try {
-                            const textArea = document.createElement('textarea');
-                            textArea.value = numberToCopy;
-                            textArea.style.position = 'fixed'; // Avoid scrolling
-                            textArea.style.opacity = '0';
-                            document.body.appendChild(textArea);
-                            textArea.focus();
-                            textArea.select();
-                            document.execCommand('copy');
-                            document.body.removeChild(textArea);
-                            showTooltip(`Copied (fallback): ${numberToCopy}`);
-                             // Add to tracking set (even with fallback)
-                            const previouslyCopied = copiedNumbersSet.has(numberToCopy);
-                            copiedNumbersSet.add(numberToCopy);
-                             if (!previouslyCopied) {
-                                updateCopiedList();
-                            }
-                            button.classList.add('copied');
-                            button.disabled = true;
-                             setTimeout(() => {
-                                 button.classList.remove('copied');
-                                 button.disabled = false;
-                             }, 2000);
-
-                        } catch (fallbackErr) {
-                            console.error('Fallback copy failed: ', fallbackErr);
-                             showTooltip('Copy failed!');
-                        }
-                    });
-            });
-
-            buttonGrid.appendChild(button);
-        });
-
-         // Initial update of the copied list (in case you want to load from storage later)
-         updateCopiedList();
-
+      // Function to be called when new links are available
+      // Example usage:
+      // updateGameLink('business-game', 'https://play.kahoot.it/v2/?quizId=xxxx');
     </script>
-
-</body>
+  </body>
 </html>
