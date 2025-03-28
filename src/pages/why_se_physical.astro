@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Confirm Participation - Why SE Physical Event</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        background: #fff;
+        border: 3px solid #800080;
+        border-radius: 12px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        max-width: 500px;
+        text-align: center;
+      }
+      h1 {
+        color: #800080;
+        margin-bottom: 10px;
+      }
+      p {
+        color: #333;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 10px 0;
+      }
+      .details {
+        background: #f7f7ff;
+        border: 1px solid #800080;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 20px 0;
+      }
+      .btn-confirm {
+        background: #800080;
+        color: #fff;
+        border: none;
+        padding: 15px 30px;
+        font-size: 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+      .btn-confirm:hover {
+        background: #660066;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Confirm Your Spot!</h1>
+      <p>We're excited for the physical session of the "Why SE" event.</p>
+      <div class="details">
+        <p><strong>Date:</strong> 1st April</p>
+        <p><strong>Time:</strong> 10:00 AM - 12:00 PM</p>
+        <p><strong>Venue:</strong> FOC L101</p>
+      </div>
+      <p>
+        Since spots are limited, please confirm your participation by clicking
+        the button below.
+      </p>
+      <button class="btn-confirm" id="confirmBtn">Confirm Participation</button>
+    </div>
+
+    <script>
+      document
+        .getElementById('confirmBtn')
+        .addEventListener('click', function () {
+          // Get user details - in a real app, you might want to collect these via form
+          const userName = prompt('Please enter your name:', '')
+          const userEmail = prompt('Please enter your email address:', '')
+          const userPhone = prompt('Please enter your phone number:', '')
+
+          if (!userName || !userEmail) {
+            alert('Name and email are required to confirm your participation.')
+            return
+          }
+
+          // Replace the email address with the intended recipient
+          const email = 'scse.nsbm@gmail.com'
+          const subject = encodeURIComponent(
+            'Confirmation for Why SE Physical Event - ' + userName
+          )
+          const body = encodeURIComponent(
+            `Dear ASE NSBM Team,
+
+I would like to confirm my participation for the Why SE Physical Event on April 1st.
+
+Participant Details:
+- Name: ${userName}
+- Email: ${userEmail}
+- Phone: ${userPhone || 'Not provided'}
+
+I am looking forward to attending the event and learning about:
+- GitHub Crash Course
+- Development of software solutions
+- QA techniques
+- DevOps deployment
+
+Thank you!
+
+Regards,
+${userName}`
+          )
+
+          window.location.href =
+            'mailto:' + email + '?subject=' + subject + '&body=' + body
+
+          // Store confirmation in local storage
+          try {
+            localStorage.setItem(
+              'whySE_confirmation',
+              JSON.stringify({
+                name: userName,
+                email: userEmail,
+                phone: userPhone,
+                confirmed: true,
+                date: new Date().toISOString()
+              })
+            )
+          } catch (e) {
+            console.error('Could not save confirmation data:', e)
+          }
+        })
+
+      // Check if user has already confirmed
+      document.addEventListener('DOMContentLoaded', function () {
+        try {
+          const confirmedData = JSON.parse(
+            localStorage.getItem('whySE_confirmation')
+          )
+          if (confirmedData && confirmedData.confirmed) {
+            document.getElementById('confirmBtn').textContent =
+              'Already Confirmed ✓'
+            document.getElementById('confirmBtn').style.backgroundColor =
+              '#4CAF50'
+          }
+        } catch (e) {
+          console.error('Error checking confirmation status:', e)
+        }
+      })
+    </script>
+  </body>
+</html>
