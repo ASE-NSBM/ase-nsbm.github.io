@@ -6,15 +6,21 @@
     <title>Tech Career Compass</title>
     <style>
       :root {
-        --primary: #3b82f6;
-        --primary-dark: #2563eb;
+        --primary: #39ff14; /* Neon green */
+        --primary-dark: #2bd411;
+        --primary-light: #e8ffdb;
         --secondary: #6366f1;
         --bg-light: #f8fafc;
+        --bg-dark: #1a1a1a;
         --text-dark: #1e293b;
         --text-light: #f8fafc;
         --success: #10b981;
         --warning: #f59e0b;
         --error: #ef4444;
+        --glow-dark:
+          0 0 5px var(--primary), 0 0 10px var(--primary),
+          0 0 15px var(--primary), 0 0 20px var(--primary);
+        --glow-light: 0 0 2px rgba(0, 0, 0, 0.3);
       }
 
       * {
@@ -22,12 +28,20 @@
         padding: 0;
         box-sizing: border-box;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        transition:
+          background-color 0.3s,
+          color 0.3s;
       }
 
       body {
         background-color: var(--bg-light);
         color: var(--text-dark);
         line-height: 1.6;
+      }
+
+      body.dark-mode {
+        background-color: var(--bg-dark);
+        color: var(--text-light);
       }
 
       .container {
@@ -45,12 +59,26 @@
         font-size: 2.5rem;
         margin-bottom: 0.5rem;
         color: var(--primary);
+        text-shadow: var(--glow-dark);
+      }
+
+      .dark-mode header h1 {
+        text-shadow: var(--glow-dark);
+      }
+
+      .light-mode header h1 {
+        color: #0a8f00;
+        text-shadow: var(--glow-light);
       }
 
       header p {
         font-size: 1.1rem;
         color: var(--text-dark);
         opacity: 0.8;
+      }
+
+      .dark-mode header p {
+        color: var(--text-light);
       }
 
       .card {
@@ -61,6 +89,11 @@
         margin-bottom: 2rem;
       }
 
+      .dark-mode .card {
+        background-color: #2d2d2d;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+
       .progress-bar {
         height: 8px;
         background-color: #e2e8f0;
@@ -69,10 +102,22 @@
         overflow: hidden;
       }
 
+      .dark-mode .progress-bar {
+        background-color: #333;
+      }
+
       .progress-fill {
         height: 100%;
         background-color: var(--primary);
         transition: width 0.3s ease;
+      }
+
+      .dark-mode .progress-fill {
+        box-shadow: var(--glow-dark);
+      }
+
+      .light-mode .progress-fill {
+        box-shadow: var(--glow-light);
       }
 
       .question {
@@ -82,6 +127,16 @@
       .question h2 {
         font-size: 1.4rem;
         margin-bottom: 1rem;
+        color: var(--primary);
+      }
+
+      .dark-mode .question h2 {
+        text-shadow: var(--glow-dark);
+      }
+
+      .light-mode .question h2 {
+        color: #0a8f00;
+        text-shadow: var(--glow-light);
       }
 
       .options {
@@ -91,49 +146,141 @@
       }
 
       .option {
-        padding: 1rem;
+        position: relative;
+        padding: 1rem 1rem 1rem 2.5rem;
         border: 2px solid #e2e8f0;
         border-radius: 8px;
         cursor: pointer;
         transition: all 0.2s;
       }
 
+      .dark-mode .option {
+        border-color: #444;
+        background-color: #333;
+      }
+
       .option:hover {
         border-color: var(--primary);
-        background-color: rgba(59, 130, 246, 0.05);
+        box-shadow: var(--glow-light);
+      }
+
+      .dark-mode .option:hover {
+        background-color: rgba(57, 255, 20, 0.1);
+        box-shadow: var(--glow-dark);
       }
 
       .option.selected {
         border-color: var(--primary);
-        background-color: rgba(59, 130, 246, 0.1);
+        background-color: var(--primary-light);
+        box-shadow: var(--glow-light);
       }
 
-      .slider-container {
+      .dark-mode .option.selected {
+        background-color: rgba(57, 255, 20, 0.2);
+        box-shadow: var(--glow-dark);
+      }
+
+      .option input[type='radio'] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .option-radio {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        width: 1.2rem;
+        height: 1.2rem;
+        border: 2px solid #ccc;
+        border-radius: 50%;
+        transition: all 0.2s;
+      }
+
+      .option.selected .option-radio {
+        border-color: var(--primary);
+        background-color: var(--primary);
+      }
+
+      .option-radio::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0.6rem;
+        height: 0.6rem;
+        border-radius: 50%;
+        background-color: white;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+
+      .option.selected .option-radio::after {
+        opacity: 1;
+      }
+
+      /* Rating scale styles */
+      .rating-scale {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
         margin: 1.5rem 0;
       }
 
-      .slider-container label {
+      .rating-options {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5rem;
+      }
+
+      .rating-option {
+        flex: 1;
+        text-align: center;
+      }
+
+      .rating-option input[type='radio'] {
+        display: none;
+      }
+
+      .rating-option label {
         display: block;
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-      }
-
-      .slider {
-        width: 100%;
-        height: 8px;
-        border-radius: 4px;
-        background: #e2e8f0;
-        outline: none;
-        -webkit-appearance: none;
-      }
-
-      .slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: var(--primary);
+        padding: 0.5rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 6px;
         cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .dark-mode .rating-option label {
+        border-color: #444;
+        background-color: #333;
+      }
+
+      .rating-option label:hover {
+        border-color: var(--primary);
+      }
+
+      .rating-option input[type='radio']:checked + label {
+        border-color: var(--primary);
+        background-color: var(--primary-light);
+      }
+
+      .dark-mode .rating-option input[type='radio']:checked + label {
+        background-color: rgba(57, 255, 20, 0.2);
+      }
+
+      .rating-labels {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      .dark-mode .rating-labels {
+        color: #aaa;
       }
 
       .buttons {
@@ -153,7 +300,15 @@
 
       button.primary {
         background-color: var(--primary);
-        color: white;
+        color: black;
+      }
+
+      .dark-mode button.primary {
+        box-shadow: var(--glow-dark);
+      }
+
+      .light-mode button.primary {
+        box-shadow: var(--glow-light);
       }
 
       button.primary:hover {
@@ -165,8 +320,17 @@
         color: var(--text-dark);
       }
 
+      .dark-mode button.secondary {
+        background-color: #444;
+        color: var(--text-light);
+      }
+
       button.secondary:hover {
         background-color: #cbd5e1;
+      }
+
+      .dark-mode button.secondary:hover {
+        background-color: #555;
       }
 
       button:disabled {
@@ -189,28 +353,29 @@
         text-align: center;
       }
 
+      .dark-mode .results h2 {
+        text-shadow: var(--glow-dark);
+      }
+
+      .light-mode .results h2 {
+        color: #0a8f00;
+        text-shadow: var(--glow-light);
+      }
+
       .career-match {
         display: flex;
-        align-items: center;
+        flex-direction: column;
         gap: 1rem;
         margin-bottom: 1.5rem;
-        padding: 1rem;
+        padding: 1.5rem;
         border-radius: 8px;
         background-color: white;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
       }
 
-      .match-percentage {
-        width: 60px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        background-color: var(--primary);
-        color: white;
-        font-weight: bold;
-        font-size: 1.2rem;
+      .dark-mode .career-match {
+        background-color: #2d2d2d;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
       }
 
       .match-info {
@@ -219,13 +384,27 @@
 
       .match-info h3 {
         font-size: 1.2rem;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.5rem;
+        color: var(--primary);
+      }
+
+      .dark-mode .match-info h3 {
+        text-shadow: var(--glow-dark);
+      }
+
+      .light-mode .match-info h3 {
+        color: #0a8f00;
+        text-shadow: var(--glow-light);
       }
 
       .match-info p {
         color: var(--text-dark);
         opacity: 0.8;
         font-size: 0.95rem;
+      }
+
+      .dark-mode .match-info p {
+        color: var(--text-light);
       }
 
       .match-details {
@@ -235,6 +414,15 @@
 
       .match-details strong {
         color: var(--primary);
+      }
+
+      .dark-mode .match-details strong {
+        text-shadow: var(--glow-dark);
+      }
+
+      .light-mode .match-details strong {
+        color: #0a8f00;
+        text-shadow: var(--glow-light);
       }
 
       .skill-tag {
@@ -248,14 +436,57 @@
         margin-bottom: 0.5rem;
       }
 
+      .dark-mode .skill-tag {
+        background-color: rgba(99, 102, 241, 0.2);
+      }
+
       .restart-btn {
         display: block;
         width: fit-content;
         margin: 2rem auto 0;
       }
+
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--primary);
+        color: black;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 100;
+      }
+
+      .dark-mode .theme-toggle {
+        box-shadow: var(--glow-dark);
+      }
+
+      .light-mode .theme-toggle {
+        box-shadow: var(--glow-light);
+      }
+
+      .validation-message {
+        color: var(--error);
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        display: none;
+      }
+
+      /* Medal styles for results */
+      .medal {
+        font-size: 1.5rem;
+        margin-right: 0.5rem;
+      }
     </style>
   </head>
-  <body>
+  <body class="light-mode">
+    <button class="theme-toggle" id="theme-toggle">🌓</button>
     <div class="container">
       <header>
         <h1>Tech Career Compass</h1>
@@ -270,6 +501,9 @@
         </div>
 
         <div id="question-container"></div>
+        <div class="validation-message" id="validation-message">
+          Please select an option before proceeding.
+        </div>
 
         <div class="buttons">
           <button id="prev-btn" class="secondary" disabled>Previous</button>
@@ -278,7 +512,7 @@
       </div>
 
       <div class="card results" id="results-container">
-        <h2>Your Career Matches</h2>
+        <h2>Your Top 3 Career Matches</h2>
         <div id="results-content"></div>
         <button id="restart-btn" class="primary restart-btn">Start Over</button>
       </div>
@@ -290,27 +524,24 @@
         {
           id: 'problemSolving',
           question: 'How much do you enjoy solving complex logical problems?',
-          type: 'slider',
+          type: 'rating',
           min: 1,
-          max: 10,
-          default: 5
+          max: 10
         },
         {
           id: 'mathematics',
           question:
             'Rate your interest in mathematics and statistical analysis:',
-          type: 'slider',
+          type: 'rating',
           min: 1,
-          max: 10,
-          default: 5
+          max: 10
         },
         {
           id: 'creativity',
           question: 'How important is creative expression in your work?',
-          type: 'slider',
+          type: 'rating',
           min: 1,
-          max: 10,
-          default: 5
+          max: 10
         },
         {
           id: 'teamwork',
@@ -328,52 +559,46 @@
         {
           id: 'programming',
           question: 'How much do you enjoy writing code and creating software?',
-          type: 'slider',
+          type: 'rating',
           min: 1,
-          max: 10,
-          default: 5
+          max: 10
         },
         {
           id: 'design',
           question: 'Rate your interest in visual design and user experience:',
-          type: 'slider',
+          type: 'rating',
           min: 1,
-          max: 10,
-          default: 5
+          max: 10
         },
         {
           id: 'security',
           question:
             'How interested are you in cybersecurity and protecting systems?',
-          type: 'slider',
+          type: 'rating',
           min: 1,
-          max: 10,
-          default: 5
+          max: 10
         },
         {
           id: 'data',
           question: 'How much do you enjoy analyzing data to extract insights?',
-          type: 'slider',
+          type: 'rating',
           min: 1,
-          max: 10,
-          default: 5
+          max: 10
         },
         {
           id: 'hardware',
           question:
             'Rate your interest in computer hardware and infrastructure:',
-          type: 'slider',
+          type: 'rating',
           min: 1,
-          max: 10,
-          default: 5
+          max: 10
         },
         {
           id: 'leadership',
           question: 'How interested are you in leading projects or teams?',
-          type: 'slider',
+          type: 'rating',
           min: 1,
-          max: 10,
-          default: 5
+          max: 10
         },
         {
           id: 'learningStyle',
@@ -407,18 +632,18 @@
         }
       ]
 
-      // Career paths data with matching logic
+      // Career paths data with normalized weights matching logic
       const careerPaths = [
         {
           title: 'Software Developer',
           description: 'Design, build and maintain software applications',
           degrees: ['Software Engineering', 'Computer Science'],
           match: (answers) => {
-            let score = 0
-            score += answers.programming * 2
-            score += answers.problemSolving * 1.5
-            score += answers.mathematics * 0.5
-            return Math.min(100, Math.round(score / 4))
+            const score =
+              answers.programming * 4 +
+              answers.problemSolving * 4 +
+              answers.mathematics * 2
+            return Math.min(100, Math.round(score))
           },
           skills: ['Programming', 'Problem-solving', 'Software design'],
           details:
@@ -427,13 +652,11 @@
         {
           title: 'UX/UI Designer',
           description: 'Create intuitive and appealing user interfaces',
-          degrees: ['Software Engineering', 'Computer Science'],
+          degrees: ['Human-Computer Interaction', 'Graphic Design'],
           match: (answers) => {
-            let score = 0
-            score += answers.design * 2.5
-            score += answers.creativity * 2
-            score += answers.programming * 0.3
-            return Math.min(100, Math.round(score / 4.8))
+            const score =
+              answers.design * 5 + answers.creativity * 4 + answers.teamwork * 1
+            return Math.min(100, Math.round(score))
           },
           skills: ['Visual design', 'User research', 'Prototyping'],
           details:
@@ -443,13 +666,13 @@
           title: 'Data Scientist',
           description:
             'Extract insights from complex datasets using statistical methods',
-          degrees: ['Data Science', 'Computer Science'],
+          degrees: ['Data Science', 'Computer Science', 'Statistics'],
           match: (answers) => {
-            let score = 0
-            score += answers.data * 2.5
-            score += answers.mathematics * 2
-            score += answers.programming * 0.5
-            return Math.min(100, Math.round(score / 5))
+            const score =
+              answers.data * 5 +
+              answers.mathematics * 3 +
+              answers.programming * 2
+            return Math.min(100, Math.round(score))
           },
           skills: [
             'Statistical analysis',
@@ -464,11 +687,11 @@
           description: 'Design and implement computer networks',
           degrees: ['Computer Networking', 'Computer Science'],
           match: (answers) => {
-            let score = 0
-            score += answers.hardware * 2
-            score += answers.problemSolving * 1
-            score += answers.security * 1
-            return Math.min(100, Math.round(score / 4))
+            const score =
+              answers.hardware * 5 +
+              answers.problemSolving * 3 +
+              answers.security * 2
+            return Math.min(100, Math.round(score))
           },
           skills: ['Network design', 'Troubleshooting', 'System configuration'],
           details:
@@ -477,13 +700,13 @@
         {
           title: 'Cybersecurity Analyst',
           description: 'Protect systems and networks from security threats',
-          degrees: ['Computer Security', 'Computer Science'],
+          degrees: ['Cybersecurity', 'Computer Science'],
           match: (answers) => {
-            let score = 0
-            score += answers.security * 2.5
-            score += answers.problemSolving * 1
-            score += answers.hardware * 0.5
-            return Math.min(100, Math.round(score / 4))
+            const score =
+              answers.security * 6 +
+              answers.problemSolving * 3 +
+              answers.hardware * 1
+            return Math.min(100, Math.round(score))
           },
           skills: [
             'Security assessment',
@@ -496,15 +719,14 @@
         {
           title: 'IT Project Manager',
           description: 'Lead technology projects and teams',
-          degrees: ['Technology Management', 'Management Information Systems'],
+          degrees: ['Technology Management', 'Business Administration'],
           match: (answers) => {
-            let score = 0
-            score += answers.leadership * 2.5
-            score += answers.teamwork * 2
-            score +=
-              ((answers.programming + answers.data + answers.security) / 3) *
-              0.5
-            return Math.min(100, Math.round(score / 5))
+            const score =
+              answers.leadership * 5 +
+              answers.teamwork * 3 +
+              answers.programming * 1 +
+              answers.data * 1
+            return Math.min(100, Math.round(score))
           },
           skills: ['Project planning', 'Team leadership', 'Communication'],
           details:
@@ -513,13 +735,13 @@
         {
           title: 'Machine Learning Engineer',
           description: 'Build AI systems and intelligent applications',
-          degrees: ['Data Science', 'Computer Science'],
+          degrees: ['Computer Science', 'Artificial Intelligence'],
           match: (answers) => {
-            let score = 0
-            score += answers.programming * 1.5
-            score += answers.mathematics * 2
-            score += answers.data * 1.5
-            return Math.min(100, Math.round(score / 5))
+            const score =
+              answers.mathematics * 4 +
+              answers.programming * 3 +
+              answers.data * 3
+            return Math.min(100, Math.round(score))
           },
           skills: ['ML algorithms', 'Neural networks', 'Model optimization'],
           details:
@@ -531,14 +753,14 @@
           degrees: [
             'Software Engineering',
             'Computer Science',
-            'Computer Networking'
+            'Information Technology'
           ],
           match: (answers) => {
-            let score = 0
-            score += answers.programming * 1
-            score += answers.hardware * 1.5
-            score += answers.problemSolving * 1.5
-            return Math.min(100, Math.round(score / 4))
+            const score =
+              answers.problemSolving * 4 +
+              answers.hardware * 3 +
+              answers.programming * 3
+            return Math.min(100, Math.round(score))
           },
           skills: ['CI/CD pipelines', 'Cloud infrastructure', 'Automation'],
           details:
@@ -547,17 +769,11 @@
         {
           title: 'Database Administrator',
           description: 'Design and maintain database systems',
-          degrees: [
-            'Computer Science',
-            'Management Information Systems',
-            'Data Science'
-          ],
+          degrees: ['Computer Science', 'Information Systems', 'Data Science'],
           match: (answers) => {
-            let score = 0
-            score += answers.data * 2
-            score += answers.programming * 1
-            score += answers.security * 1
-            return Math.min(100, Math.round(score / 4))
+            const score =
+              answers.data * 5 + answers.security * 3 + answers.programming * 2
+            return Math.min(100, Math.round(score))
           },
           skills: ['Database design', 'Query optimization', 'Data integrity'],
           details:
@@ -566,13 +782,13 @@
         {
           title: 'Systems Analyst',
           description: 'Analyze and improve IT systems and processes',
-          degrees: ['Management Information Systems', 'Computer Science'],
+          degrees: ['Information Systems', 'Business Technology'],
           match: (answers) => {
-            let score = 0
-            score += answers.problemSolving * 2
-            score += answers.teamwork * 1
-            score += answers.data * 1
-            return Math.min(100, Math.round(score / 4))
+            const score =
+              answers.problemSolving * 5 +
+              answers.teamwork * 3 +
+              answers.data * 2
+            return Math.min(100, Math.round(score))
           },
           skills: [
             'Requirements analysis',
@@ -587,15 +803,15 @@
           description: 'Design cloud-based infrastructure and solutions',
           degrees: [
             'Computer Science',
-            'Software Engineering',
-            'Computer Networking'
+            'Cloud Computing',
+            'Information Technology'
           ],
           match: (answers) => {
-            let score = 0
-            score += answers.hardware * 1.5
-            score += answers.problemSolving * 1.5
-            score += answers.programming * 1
-            return Math.min(100, Math.round(score / 4))
+            const score =
+              answers.problemSolving * 4 +
+              answers.hardware * 3 +
+              answers.programming * 3
+            return Math.min(100, Math.round(score))
           },
           skills: ['Cloud platforms', 'Solution design', 'System integration'],
           details:
@@ -604,13 +820,15 @@
         {
           title: 'Business Intelligence Analyst',
           description: 'Transform data into actionable business insights',
-          degrees: ['Management Information Systems', 'Data Science'],
+          degrees: [
+            'Business Analytics',
+            'Data Science',
+            'Information Systems'
+          ],
           match: (answers) => {
-            let score = 0
-            score += answers.data * 2
-            score += answers.mathematics * 1
-            score += answers.teamwork * 1
-            return Math.min(100, Math.round(score / 4))
+            const score =
+              answers.data * 5 + answers.mathematics * 3 + answers.teamwork * 2
+            return Math.min(100, Math.round(score))
           },
           skills: ['Data analysis', 'Dashboard creation', 'Business acumen'],
           details:
@@ -631,9 +849,20 @@
       const resultsContainer = document.getElementById('results-container')
       const resultsContent = document.getElementById('results-content')
       const restartButton = document.getElementById('restart-btn')
+      const themeToggle = document.getElementById('theme-toggle')
+      const validationMessage = document.getElementById('validation-message')
 
       // Initialize the quiz
       function initQuiz() {
+        // Check for saved theme preference
+        if (localStorage.getItem('darkMode') === 'true') {
+          document.body.classList.add('dark-mode')
+          document.body.classList.remove('light-mode')
+        } else {
+          document.body.classList.add('light-mode')
+          document.body.classList.remove('dark-mode')
+        }
+
         renderQuestion(currentQuestionIndex)
         updateProgressBar()
         updateNavigationButtons()
@@ -641,6 +870,15 @@
         prevButton.addEventListener('click', goToPreviousQuestion)
         nextButton.addEventListener('click', goToNextQuestion)
         restartButton.addEventListener('click', restartQuiz)
+        themeToggle.addEventListener('click', toggleTheme)
+      }
+
+      // Toggle dark/light theme
+      function toggleTheme() {
+        document.body.classList.toggle('dark-mode')
+        document.body.classList.toggle('light-mode')
+        const isDarkMode = document.body.classList.contains('dark-mode')
+        localStorage.setItem('darkMode', isDarkMode)
       }
 
       // Render current question
@@ -652,20 +890,27 @@
                 <h2>${index + 1}. ${question.question}</h2>
             `
 
-        if (question.type === 'slider') {
-          const value =
-            userAnswers[question.id] !== undefined
-              ? userAnswers[question.id]
-              : question.default
+        if (question.type === 'rating') {
           html += `
-                <div class="slider-container">
-                    <input type="range" min="${question.min}" max="${question.max}" value="${value}" class="slider" id="${question.id}">
-                    <div style="display: flex; justify-content: space-between; margin-top: 0.5rem;">
+                <div class="rating-scale">
+                    <div class="rating-options">
+                        ${Array.from(
+                          { length: question.max - question.min + 1 },
+                          (_, i) => {
+                            const value = i + question.min
+                            const isChecked = userAnswers[question.id] === value
+                            return `
+                            <div class="rating-option">
+                                <input type="radio" id="${question.id}-${value}" name="${question.id}" value="${value}" ${isChecked ? 'checked' : ''}>
+                                <label for="${question.id}-${value}">${value}</label>
+                            </div>
+                          `
+                          }
+                        ).join('')}
+                    </div>
+                    <div class="rating-labels">
                         <span>Low</span>
                         <span>High</span>
-                    </div>
-                    <div style="text-align: center; margin-top: 0.5rem;">
-                        <strong>Selected: <span id="${question.id}-value">${value}</span></strong>
                     </div>
                 </div>
                 `
@@ -673,15 +918,14 @@
           html += `<div class="options">`
           question.options.forEach((option) => {
             const isSelected = userAnswers[question.id] === option.value
+
             html += `
-                    <div class="option ${
-                      isSelected ? 'selected' : ''
-                    }" data-question="${question.id}" data-value="${
-                      option.value
-                    }">
-                        ${option.text}
-                    </div>
-                    `
+                <label class="option ${isSelected ? 'selected' : ''}">
+                  <input type="radio" name="${question.id}" value="${option.value}" ${isSelected ? 'checked' : ''}>
+                  <span class="option-radio"></span>
+                  ${option.text}
+                </label>
+              `
           })
           html += `</div>`
         }
@@ -689,31 +933,57 @@
         html += `</div>`
         questionContainer.innerHTML = html
 
+        // Reset validation message
+        validationMessage.style.display = 'none'
+
         // Add event listeners for the current question
-        if (question.type === 'slider') {
-          const slider = document.getElementById(question.id)
-          const valueDisplay = document.getElementById(`${question.id}-value`)
+        if (question.type === 'rating') {
+          const radioButtons = document.querySelectorAll(
+            `input[name="${question.id}"]`
+          )
 
-          slider.addEventListener('input', function () {
-            valueDisplay.textContent = this.value
-            userAnswers[question.id] = parseInt(this.value)
-          })
-        } else if (question.type === 'options') {
-          const options = document.querySelectorAll('.option')
-          options.forEach((option) => {
-            option.addEventListener('click', function () {
-              // Remove selection from all options
-              options.forEach((opt) => opt.classList.remove('selected'))
-
-              // Add selection to clicked option
-              this.classList.add('selected')
-
-              // Save answer
-              const questionId = this.getAttribute('data-question')
-              const value = this.getAttribute('data-value')
-              userAnswers[questionId] = isNaN(value) ? value : parseInt(value)
+          radioButtons.forEach((radio) => {
+            radio.addEventListener('change', function () {
+              if (this.checked) {
+                userAnswers[question.id] = parseInt(this.value)
+              }
             })
           })
+
+          // Set default value if none selected
+          if (
+            userAnswers[question.id] === undefined &&
+            radioButtons.length > 0
+          ) {
+            radioButtons[Math.floor(radioButtons.length / 2)].click()
+          }
+        } else if (question.type === 'options') {
+          const radioButtons = document.querySelectorAll(
+            `input[name="${question.id}"]`
+          )
+
+          radioButtons.forEach((radio) => {
+            radio.addEventListener('change', function () {
+              if (this.checked) {
+                // Update selected class on options
+                document.querySelectorAll(`.option`).forEach((opt) => {
+                  opt.classList.remove('selected')
+                })
+                this.closest('.option').classList.add('selected')
+
+                // Save answer
+                userAnswers[question.id] = this.value
+              }
+            })
+          })
+
+          // Select first option by default if none selected
+          if (
+            userAnswers[question.id] === undefined &&
+            radioButtons.length > 0
+          ) {
+            radioButtons[0].click()
+          }
         }
       }
 
@@ -748,23 +1018,10 @@
       function goToNextQuestion() {
         const currentQuestion = questions[currentQuestionIndex]
 
-        // Make sure the current question is answered
+        // Validate that an answer has been selected
         if (userAnswers[currentQuestion.id] === undefined) {
-          // If not answered and it's a slider, use default value
-          if (currentQuestion.type === 'slider') {
-            userAnswers[currentQuestion.id] = currentQuestion.default
-          } else {
-            // For options, select the first option by default
-            const firstOption = currentQuestion.options[0]
-            userAnswers[currentQuestion.id] = firstOption.value
-
-            // Update UI to show selection
-            const options = document.querySelectorAll('.option')
-            if (options.length > 0) {
-              options.forEach((opt) => opt.classList.remove('selected'))
-              options[0].classList.add('selected')
-            }
-          }
+          validationMessage.style.display = 'block'
+          return
         }
 
         if (currentQuestionIndex < questions.length - 1) {
@@ -790,39 +1047,42 @@
           })
           .sort((a, b) => b.matchScore - a.matchScore)
 
-        // Generate HTML for results
+        // Get top 3 matches
+        const topMatches = matches.slice(0, 3)
+
+        // Log percentages to console
+        console.log('Career Match Percentages:')
+        topMatches.forEach((career, index) => {
+          console.log(`${index + 1}. ${career.title}: ${career.matchScore}%`)
+        })
+
+        // Generate HTML for detailed results
         let resultsHTML = ''
 
-        matches.forEach((career, index) => {
-          if (index < 5) {
-            // Show top 5 matches
-            resultsHTML += `
-                    <div class="career-match">
-                        <div class="match-percentage">${
-                          career.matchScore
-                        }%</div>
-                        <div class="match-info">
-                            <h3>${career.title}</h3>
-                            <p>${career.description}</p>
-                            <div class="match-details">
-                                <p><strong>Relevant degrees:</strong> ${career.degrees.join(
-                                  ', '
-                                )}</p>
-                                <p><strong>Key skills:</strong></p>
-                                <div>
-                                    ${career.skills
-                                      .map(
-                                        (skill) =>
-                                          `<span class="skill-tag">${skill}</span>`
-                                      )
-                                      .join('')}
-                                </div>
-                                <p>${career.details}</p>
-                            </div>
-                        </div>
-                    </div>
-                    `
-          }
+        topMatches.forEach((career, index) => {
+          resultsHTML += `
+            <div class="career-match">
+              <div class="match-info">
+                <h3><span class="medal">${
+                  index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'
+                }</span> ${career.title}</h3>
+                <p>${career.description}</p>
+                <div class="match-details">
+                  <p><strong>Match Score:</strong> ${career.matchScore}%</p>
+                  <p><strong>Relevant degrees:</strong> ${career.degrees.join(
+                    ', '
+                  )}</p>
+                  <p><strong>Key skills:</strong></p>
+                  <div>
+                    ${career.skills
+                      .map((skill) => `<span class="skill-tag">${skill}</span>`)
+                      .join('')}
+                  </div>
+                  <p>${career.details}</p>
+                </div>
+              </div>
+            </div>
+            `
         })
 
         resultsContent.innerHTML = resultsHTML
@@ -850,37 +1110,6 @@
 
       // Start the application
       document.addEventListener('DOMContentLoaded', initQuiz)
-
-      // TensorFlow.js implementation (optional enhancement)
-      /* 
-        // This would be added if you want to use a trained model instead of rule-based matching
-        async function loadAndRunModel() {
-            const model = await tf.loadLayersModel('model/model.json');
-            
-            // Convert user answers to tensor format
-            const userVector = tf.tensor2d([
-                [
-                    userAnswers.problemSolving / 10,
-                    userAnswers.mathematics / 10,
-                    userAnswers.creativity / 10,
-                    userAnswers.teamwork / 10,
-                    userAnswers.programming / 10,
-                    userAnswers.design / 10,
-                    userAnswers.security / 10,
-                    userAnswers.data / 10,
-                    userAnswers.hardware / 10,
-                    userAnswers.leadership / 10,
-                    // Convert categorical values to one-hot encoding...
-                ]
-            ]);
-            
-            // Run prediction
-            const prediction = model.predict(userVector);
-            const scores = prediction.dataSync();
-            
-            return scores;
-        }
-        */
     </script>
   </body>
 </html>
