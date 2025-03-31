@@ -219,13 +219,47 @@ git tag -a v1.0 -m "Version 1.0"  # Create annotated tag</code></pre>
       </section>
     </div>
 
-    <div class="filters">
+    {/* Regular filters for desktop */}
+    <div class="filters desktop-filters">
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn" data-filter="basic">Basic</button>
       <button class="filter-btn" data-filter="branch">Branch</button>
       <button class="filter-btn" data-filter="remote">Remote</button>
       <button class="filter-btn" data-filter="cleanup">Cleanup</button>
       <button class="filter-btn" data-filter="advanced">Advanced</button>
+    </div>
+
+    {/* Mobile app-like squircle navigation */}
+    <div class="mobile-filter-container">
+      <button class="mobile-filter-toggle">
+        <span class="toggle-icon">All</span>
+      </button>
+      <div class="mobile-filters">
+        <button
+          class="mobile-filter-btn active"
+          data-filter="all"
+          data-position="center">All</button
+        >
+        <button class="mobile-filter-btn" data-filter="basic" data-position="1"
+          >Basic</button
+        >
+        <button class="mobile-filter-btn" data-filter="branch" data-position="2"
+          >Branch</button
+        >
+        <button class="mobile-filter-btn" data-filter="remote" data-position="3"
+          >Remote</button
+        >
+        <button
+          class="mobile-filter-btn"
+          data-filter="cleanup"
+          data-position="4">Cleanup</button
+        >
+        <button
+          class="mobile-filter-btn"
+          data-filter="advanced"
+          data-position="5">Advanced</button
+        >
+      </div>
     </div>
   </div>
 </PageLayout>
@@ -422,44 +456,137 @@ git tag -a v1.0 -m "Version 1.0"  # Create annotated tag</code></pre>
     border-color: var(--primary-color);
   }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
+  /* Mobile squircle navigation */
+  .mobile-filter-container {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    width: 300px; /* Control overall container size */
+  }
+
+  .mobile-filter-toggle {
+    width: 65px;
+    height: 65px;
+    border-radius: 24px; /* Squircle shape */
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 101;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    text-align: center;
+  }
+
+  .mobile-filter-toggle .toggle-icon {
+    font-size: 0.9rem;
+    max-width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .mobile-filters {
+    position: absolute;
+    width: 100%;
+    height: 180px; /* Reduced height to ensure bottom positioning */
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .mobile-filter-btn {
+    position: absolute;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 10px 15px;
+    border-radius: 18px; /* Squircle shape */
+    background-color: var(--card-bg);
+    color: white;
+    border: none;
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(0);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Animation for app-like feel */
+  .mobile-filter-toggle.active {
+    background-color: var(--hover-color);
+    transform: translateX(-50%) scale(0.9);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .mobile-filter-toggle.active + .mobile-filters {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .mobile-filter-toggle.active + .mobile-filters .mobile-filter-btn {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Override previous mobile display styles */
+  @media (max-width: 768px) {
+    /* ...existing responsive styles... */
+
+    .mobile-filter-toggle {
+      transform: translateX(-50%);
     }
-    to {
-      opacity: 1;
+
+    .mobile-filter-toggle:active {
+      transform: translateX(-50%) scale(0.95);
+    }
+
+    /* Add padding to prevent content from being covered by the filters */
+    .github-cheatsheet {
+      padding-bottom: 100px;
     }
   }
 
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+  /* Safe area inset bottom for modern mobile browsers */
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .mobile-filter-container {
+      bottom: calc(20px + env(safe-area-inset-bottom));
     }
   }
 
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
+  /* Enhanced animation for app-like feel */
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(45, 164, 78, 0.7);
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+    70% {
+      box-shadow: 0 0 0 10px rgba(45, 164, 78, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(45, 164, 78, 0);
     }
   }
 
-  /* Animation for cards */
-  .command-card {
-    animation: fadeIn 0.5s ease-in-out;
-    animation-fill-mode: both;
-  }
-
-  /* Enhanced mobile responsiveness */
   @media (max-width: 768px) {
     .commands-grid {
       grid-template-columns: 1fr;
@@ -554,6 +681,20 @@ git tag -a v1.0 -m "Version 1.0"  # Create annotated tag</code></pre>
       padding: 0.6rem;
       white-space: pre-wrap;
     }
+
+    /* Show mobile bubble nav only on mobile */
+    .desktop-filters {
+      display: none;
+    }
+
+    .mobile-filter-container {
+      display: block;
+    }
+
+    /* Add bottom padding to content to avoid filters covering content */
+    .github-cheatsheet {
+      padding-bottom: 80px;
+    }
   }
 
   :root {
@@ -606,6 +747,38 @@ git tag -a v1.0 -m "Version 1.0"  # Create annotated tag</code></pre>
     .filters {
       padding-bottom: calc(0.8rem + env(safe-area-inset-bottom));
       bottom: 0;
+    }
+
+    .mobile-filter-container {
+      bottom: calc(20px + env(safe-area-inset-bottom));
+    }
+  }
+
+  /* Improved animation bubble layout for landscape orientation */
+  @media (max-width: 768px) and (orientation: landscape) {
+    .mobile-filters {
+      flex-direction: row;
+      padding-bottom: 0;
+      padding-right: 70px;
+      bottom: 50%;
+      transform: translate(-50%, 50%);
+    }
+
+    .mobile-filter-toggle:active {
+      transform: scale(0.95) translateX(-50%);
+    }
+  }
+
+  /* Enhanced animation for app-like feel */
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(45, 164, 78, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(45, 164, 78, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(45, 164, 78, 0);
     }
   }
 </style>
@@ -716,5 +889,241 @@ git tag -a v1.0 -m "Version 1.0"  # Create annotated tag</code></pre>
 
     // Initial scroll to active
     setTimeout(scrollToActive, 100)
+  })
+
+  // App-like squircle navigation for mobile with orbital positioning
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileToggle = document.querySelector('.mobile-filter-toggle')
+    const mobileFilterBtns = document.querySelectorAll('.mobile-filter-btn')
+    const regularFilterBtns = document.querySelectorAll('.filter-btn')
+    const commandSections = document.querySelectorAll('.command-section')
+
+    // Function to position filters in a fan layout at the bottom
+    function positionFilters(activeFilterPosition = 'center') {
+      const totalFilters = mobileFilterBtns.length
+      const bottomPadding = 75 // Space reserved for main button
+      const containerWidth = document.querySelector(
+        '.mobile-filter-container'
+      ).offsetWidth
+      const containerHeight =
+        document.querySelector('.mobile-filters').offsetHeight
+
+      // Reset any previous visibility changes
+      mobileFilterBtns.forEach((b) => {
+        b.style.opacity = '1'
+        b.style.display = 'flex'
+      })
+
+      // Collect buttons that need positioning (exclude active one if it should be centered)
+      const buttonsToPosition = [...mobileFilterBtns].filter((btn) => {
+        return btn.getAttribute('data-position') !== activeFilterPosition
+      })
+
+      // Find the button that should be centered (if any)
+      const centerButton = [...mobileFilterBtns].find((btn) => {
+        return btn.getAttribute('data-position') === activeFilterPosition
+      })
+
+      // If there's a center button, position it
+      if (centerButton) {
+        centerButton.style.bottom = '0'
+        centerButton.style.left = '50%'
+        centerButton.style.transform = 'translateX(-50%)'
+        centerButton.style.zIndex = '5'
+      }
+
+      // Position the other buttons in a fan layout
+      if (buttonsToPosition.length) {
+        // Calculate the total arc angle in radians (160 degrees in radians)
+        const arcAngle = 160 * (Math.PI / 180)
+        // Calculate angle between each button
+        const angleStep = arcAngle / (buttonsToPosition.length - 1 || 1)
+        // Start angle (-80 degrees in radians)
+        const startAngle = -80 * (Math.PI / 180)
+
+        // Radius - distance from center point
+        const radius = Math.min(containerWidth * 0.38, 130)
+
+        buttonsToPosition.forEach((btn, index) => {
+          // Calculate angle for this button
+          const angle = startAngle + index * angleStep
+
+          // Calculate position
+          const x = radius * Math.cos(angle)
+          const y = radius * Math.sin(angle) * -1 // Invert Y (negative goes up)
+
+          // Adjust text size based on content length for better readability
+          const textLength = btn.textContent.trim().length
+          btn.style.fontSize = textLength > 6 ? '0.75rem' : '0.8rem'
+
+          // Calculate optimal button width based on text content
+          const baseWidth = 40
+          const widthPerChar = 7
+          const minWidth = 40
+          const maxWidth = 80
+          const calculatedWidth = Math.min(
+            maxWidth,
+            Math.max(minWidth, baseWidth + textLength * widthPerChar)
+          )
+
+          btn.style.width = `${calculatedWidth}px`
+          btn.style.height = `${Math.min(calculatedWidth * 0.7, 45)}px`
+
+          // Set the position
+          btn.style.bottom = `${bottomPadding + y}px`
+          btn.style.left = `${containerWidth / 2 + x}px`
+          btn.style.transform = 'translate(-50%, 0)' // Center horizontally
+
+          // Add staggered animation delays
+          btn.style.transitionDelay = `${0.03 * index}s`
+        })
+      }
+    }
+
+    // Toggle mobile filter menu with improved positioning
+    mobileToggle.addEventListener('click', () => {
+      const isActive = mobileToggle.classList.contains('active')
+
+      if (!isActive) {
+        // Find active filter position before opening
+        const activeBtn = document.querySelector('.mobile-filter-btn.active')
+        const activePosition = activeBtn
+          ? activeBtn.getAttribute('data-position')
+          : 'center'
+
+        // Position filters before showing them
+        positionFilters(activePosition)
+
+        // Add pulse animation when opened
+        mobileToggle.style.animation = 'pulse 1s'
+        setTimeout(() => {
+          mobileToggle.style.animation = ''
+        }, 1000)
+      }
+
+      // Toggle active state after positioning is calculated
+      mobileToggle.classList.toggle('active')
+    })
+
+    // Close mobile filters when clicking outside
+    document.addEventListener('click', (event) => {
+      const isClickInsideFilterContainer = event.target.closest(
+        '.mobile-filter-container'
+      )
+
+      if (
+        !isClickInsideFilterContainer &&
+        mobileToggle.classList.contains('active')
+      ) {
+        mobileToggle.classList.remove('active')
+      }
+    })
+
+    // Apply filter when mobile filter button is clicked
+    mobileFilterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        // Skip if already active
+        if (btn.classList.contains('active')) {
+          mobileToggle.classList.remove('active')
+          return
+        }
+
+        // Get the button position for animation
+        const btnPosition = btn.getAttribute('data-position')
+
+        // Update mobile UI
+        mobileFilterBtns.forEach((b) => b.classList.remove('active'))
+        btn.classList.add('active')
+
+        // Update desktop UI for consistency
+        const filter = btn.getAttribute('data-filter')
+        regularFilterBtns.forEach((b) => {
+          if (b.getAttribute('data-filter') === filter) {
+            b.classList.add('active')
+          } else {
+            b.classList.remove('active')
+          }
+        })
+
+        // Apply the filter
+        commandSections.forEach((section) => {
+          if (
+            filter === 'all' ||
+            section.getAttribute('data-category') === filter
+          ) {
+            section.style.display = 'block'
+            // Add animation to each card
+            const cards = section.querySelectorAll('.command-card')
+            cards.forEach((card, index) => {
+              card.style.animationDelay = `${index * 0.05}s`
+            })
+          } else {
+            section.style.display = 'none'
+          }
+        })
+
+        // Update toggle button text to reflect current filter
+        document.querySelector('.toggle-icon').textContent = btn.textContent
+
+        // Auto close the menu after selection
+        setTimeout(() => {
+          mobileToggle.classList.remove('active')
+        }, 500)
+
+        // Reposition for next opening
+        setTimeout(() => {
+          positionFilters(btnPosition)
+        }, 600)
+      })
+    })
+
+    // Keep mobile and desktop filters in sync
+    regularFilterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter')
+
+        // Update mobile UI
+        mobileFilterBtns.forEach((b) => {
+          if (b.getAttribute('data-filter') === filter) {
+            b.classList.add('active')
+            // Prepare position for next toggle
+            positionFilters(b.getAttribute('data-position'))
+          } else {
+            b.classList.remove('active')
+          }
+        })
+
+        // Update toggle button text
+        document.querySelector('.toggle-icon').textContent = btn.textContent
+      })
+    })
+
+    // Set initial toggle text and prepare positions
+    const activeFilter = document.querySelector('.filter-btn.active')
+    if (activeFilter) {
+      document.querySelector('.toggle-icon').textContent =
+        activeFilter.textContent
+
+      // Find and prepare the matching mobile filter
+      mobileFilterBtns.forEach((btn) => {
+        if (
+          btn.getAttribute('data-filter') ===
+          activeFilter.getAttribute('data-filter')
+        ) {
+          btn.classList.add('active')
+          positionFilters(btn.getAttribute('data-position'))
+        }
+      })
+    } else {
+      positionFilters('center')
+    }
+
+    // Initial setup of button sizes based on content
+    mobileFilterBtns.forEach((btn) => {
+      const textLength = btn.textContent.trim().length
+      const baseSize = 40
+      const addedWidth = Math.min(textLength * 8, 60)
+      btn.style.width = `${baseSize + addedWidth}px`
+    })
   })
 </script>
