@@ -1,0 +1,720 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro'
+---
+
+<PageLayout
+  frontmatter={{
+    title: 'GitHub Commands Cheat Sheet',
+    description: 'A comprehensive guide to Git and GitHub commands',
+    scrollProgress: true,
+    scrollToTop: true,
+    activeHeaderLink: 'github-cheats'
+  }}
+>
+  <div class="github-cheatsheet">
+    <div class="header">
+      <h1 class="title">GitHub Commands Cheat Sheet</h1>
+      <p class="subtitle">A comprehensive guide to Git and GitHub commands</p>
+    </div>
+
+    <div class="search-container">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search for commands..."
+      />
+    </div>
+
+    <div class="commands-container">
+      <section class="command-section" data-category="setup">
+        <h2 class="section-title">Setup & Configuration</h2>
+        <div class="commands-grid">
+          <div class="command-card">
+            <h3>git config</h3>
+            <p>Configure Git user information and preferences</p>
+            <pre><code>git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"</code></pre>
+          </div>
+          <div class="command-card">
+            <h3>git init</h3>
+            <p>Initialize a new Git repository</p>
+            <pre><code>git init</code></pre>
+          </div>
+          <div class="command-card">
+            <h3>git clone</h3>
+            <p>Clone a repository from remote source</p>
+            <pre><code>git clone https://github.com/username/repository.git</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="command-section" data-category="basic">
+        <h2 class="section-title">Basic Commands</h2>
+        <div class="commands-grid">
+          <div class="command-card">
+            <h3>git status</h3>
+            <p>Show the working tree status</p>
+            <pre><code>git status</code></pre>
+          </div>
+          <div class="command-card">
+            <h3>git add</h3>
+            <p>Add file(s) to staging area</p>
+            <pre><code>git add filename     # Add specific file
+git add .          # Add all files</code></pre>
+          </div>
+          <div class="command-card">
+            <h3>git commit</h3>
+            <p>Record changes to the repository</p>
+            <pre><code>git commit -m "Commit message"</code></pre>
+          </div>
+          <div class="command-card">
+            <h3>git push</h3>
+            <p>Update remote refs along with objects</p>
+            <pre><code>git push origin branch-name</code></pre>
+          </div>
+          <div class="command-card">
+            <h3>git pull</h3>
+            <p>Fetch and integrate with another repository or branch</p>
+            <pre><code>git pull origin branch-name</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="command-section" data-category="branch">
+        <h2 class="section-title">Branch Operations</h2>
+        <div class="commands-grid">
+          <div class="command-card">
+            <h3>git branch</h3>
+            <p>List, create, or delete branches</p>
+            <pre><code>git branch                    # List branches
+git branch branch-name         # Create branch
+git branch -d branch-name      # Delete branch</code></pre>
+          </div>
+          <div class="command-card">
+            <h3>git checkout</h3>
+            <p>Switch branches or restore working tree files</p>
+            <pre><code>git checkout branch-name
+git checkout -b new-branch     # Create and switch</code></pre>
+          </div>
+          <div class="command-card">
+            <h3>git merge</h3>
+            <p>Join two or more development histories together</p>
+            <pre><code>git merge branch-name</code></pre>
+          </div>
+          <div class="command-card">
+            <h3>git rebase</h3>
+            <p>Reapply commits on top of another base</p>
+            <pre><code>git rebase branch-name</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="command-section" data-category="remote">
+        <h2 class="section-title">Remote Operations</h2>
+        <div class="commands-grid">
+          <div class="command-card">
+            <h3>git remote</h3>
+            <p>Manage set of tracked repositories</p>
+            <pre><code>git remote -v                          # List remotes
+git remote add name url                # Add remote
+git remote remove name                 # Remove remote</code></pre>
+          </div>
+          <div class="command-card">
+            <h3>git fetch</h3>
+            <p>Download objects and refs from remote</p>
+            <pre><code>git fetch origin</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="command-section" data-category="history">
+        <h2 class="section-title">History & Comparison</h2>
+        <div class="commands-grid">
+          <div class="command-card">
+            <h3>git log</h3>
+            <p>Show commit logs</p>
+            <pre><code>git log
+git log --oneline                   # Compact view
+git log --graph                     # Graphical view</code></pre>
+          </div>
+          <div class="command-card">
+            <h3>git diff</h3>
+            <p>Show changes between commits, commit and working tree, etc</p>
+            <pre><code>git diff                    # Working vs staged
+git diff --staged            # Staged vs last commit</code></pre>
+          </div>
+          <div class="command-card">
+            <h3>git show</h3>
+            <p>Show various types of objects</p>
+            <pre><code>git show commit-hash</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="command-section" data-category="stash">
+        <h2 class="section-title">Stashing</h2>
+        <div class="commands-grid">
+          <div class="command-card">
+            <h3>git stash</h3>
+            <p>Stash changes in a dirty working directory</p>
+            <pre><code>git stash                   # Stash changes
+git stash list               # List stashes
+git stash apply              # Apply stash
+git stash drop               # Remove stash
+git stash pop                # Apply and remove stash</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="command-section" data-category="cleanup">
+        <h2 class="section-title">Cache & Cleanup</h2>
+        <div class="commands-grid">
+          <div class="command-card">
+            <h3>Clear Git Cache</h3>
+            <p>Remove cached files from the index</p>
+            <pre><code>git rm -r --cached .        # Clear entire cache
+git rm --cached filename    # Clear specific file</code></pre>
+          </div>
+          <div class="command-card">
+            <h3>Reset Cached Credentials</h3>
+            <p>Clear stored credentials</p>
+            <pre><code>git config --global --unset credential.helper</code></pre>
+          </div>
+          <div class="command-card">
+            <h3>Prune and Cleanup</h3>
+            <p>Clean up unnecessary files and optimize local repository</p>
+            <pre><code>git gc                      # Garbage collection
+git prune                   # Remove unreachable objects
+git fsck                    # Check repository integrity</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="command-section" data-category="advanced">
+        <h2 class="section-title">Advanced Operations</h2>
+        <div class="commands-grid">
+          <div class="command-card">
+            <h3>git reset</h3>
+            <p>Reset current HEAD to specified state</p>
+            <pre><code>git reset --soft HEAD~1     # Undo last commit, keep changes
+git reset --hard HEAD~1     # Undo last commit, discard changes</code></pre>
+          </div>
+          <div class="command-card">
+            <h3>git revert</h3>
+            <p>Create new commit that undoes changes</p>
+            <pre><code>git revert commit-hash</code></pre>
+          </div>
+          <div class="command-card">
+            <h3>git cherry-pick</h3>
+            <p>Apply changes from specific commits</p>
+            <pre><code>git cherry-pick commit-hash</code></pre>
+          </div>
+          <div class="command-card">
+            <h3>git tag</h3>
+            <p>Create, list, delete or verify tags</p>
+            <pre><code>git tag                     # List tags
+git tag -a v1.0 -m "Version 1.0"  # Create annotated tag</code></pre>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="basic">Basic</button>
+      <button class="filter-btn" data-filter="branch">Branch</button>
+      <button class="filter-btn" data-filter="remote">Remote</button>
+      <button class="filter-btn" data-filter="cleanup">Cleanup</button>
+      <button class="filter-btn" data-filter="advanced">Advanced</button>
+    </div>
+  </div>
+</PageLayout>
+
+<style>
+  :root {
+    --primary-color: #2da44e;
+    --secondary-color: #0d1117;
+    --text-color: #24292f;
+    --card-bg: #ffffff;
+    --card-border: #d0d7de;
+    --section-bg: #f6f8fa;
+    --code-bg: #f6f8fa;
+    --hover-color: #2c974b;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --primary-color: #3fb950;
+      --secondary-color: #010409;
+      --text-color: #c9d1d9;
+      --card-bg: #0d1117;
+      --card-border: #30363d;
+      --section-bg: #161b22;
+      --code-bg: #161b22;
+      --hover-color: #46c55a;
+    }
+  }
+
+  .github-cheatsheet {
+    width: 100%;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+    animation: fadeIn 0.8s ease-in-out;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    opacity: 0.8;
+  }
+
+  .search-container {
+    margin-bottom: 2rem;
+    animation: slideDown 0.5s ease-in-out;
+    width: 100%;
+  }
+
+  #search-input {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+  }
+
+  #search-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(45, 164, 78, 0.2);
+    outline: none;
+  }
+
+  .command-section {
+    margin-bottom: 3rem;
+    background-color: var(--section-bg);
+    border-radius: 10px;
+    padding: 1.5rem;
+    animation: fadeIn 0.8s ease-in-out;
+  }
+
+  .section-title {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    position: relative;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background-color: var (--primary-color);
+  }
+
+  .commands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .command-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 1.2rem;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .command-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+  }
+
+  .command-card h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  .command-card p {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    flex-grow: 1;
+    opacity: 0.9;
+  }
+
+  .command-card pre {
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+  }
+
+  .command-card code {
+    background-color: var(--code-bg);
+    padding: 0.8rem;
+    border-radius: 6px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    display: block;
+    overflow-x: auto;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0 3rem;
+    position: sticky;
+    bottom: 20px;
+    background-color: var(--card-bg);
+    padding: 1rem;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    animation: slideUp 0.5s ease-in-out;
+  }
+
+  .filter-btn {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: #ffffff; /* Changed to white as requested */
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .filter-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+  }
+
+  .filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Animation for cards */
+  .command-card {
+    animation: fadeIn 0.5s ease-in-out;
+    animation-fill-mode: both;
+  }
+
+  /* Enhanced mobile responsiveness */
+  @media (max-width: 768px) {
+    .commands-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .filters {
+      flex-direction: row;
+      overflow-x: auto;
+      justify-content: flex-start;
+      padding: 0.8rem 1.2rem;
+      border-radius: 16px;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* For Firefox */
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 500px;
+      backdrop-filter: blur(8px);
+      background-color: rgba(var(--card-bg-rgb, 255, 255, 255), 0.85);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      margin: 0;
+      z-index: 100;
+    }
+
+    .filters::before,
+    .filters::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 24px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .filters::before {
+      left: 0;
+      background: linear-gradient(to right, var(--card-bg), transparent);
+    }
+
+    .filters::after {
+      right: 0;
+      background: linear-gradient(to left, var(--card-bg), transparent);
+    }
+
+    .filter-btn {
+      flex: 0 0 auto;
+      padding: 0.6rem 1rem;
+      font-size: 0.9rem;
+      margin-right: 0.5rem;
+      border-radius: 50px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      min-width: 4.5rem;
+      text-align: center;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      border: none;
+      transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
+      will-change: transform;
+    }
+
+    .filter-btn:active {
+      transform: scale(0.95);
+    }
+
+    .filter-btn.active {
+      background-color: var(--primary-color);
+      color: white;
+      box-shadow: 0 3px 10px rgba(45, 164, 78, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .title {
+      font-size: 1.8rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+    }
+
+    .command-card {
+      padding: 1rem;
+    }
+
+    .command-card code {
+      font-size: 0.8rem;
+      padding: 0.6rem;
+      white-space: pre-wrap;
+    }
+  }
+
+  :root {
+    --card-bg-rgb: 255, 255, 255;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --card-bg-rgb: 13, 17, 23;
+    }
+  }
+
+  /* Extra small devices */
+  @media (max-width: 480px) {
+    .header {
+      margin-bottom: 1.5rem;
+    }
+
+    .title {
+      font-size: 1.5rem;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+    }
+
+    .command-section {
+      padding: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 0.8rem;
+      font-size: 0.8rem;
+      min-width: 4rem;
+    }
+
+    .filters {
+      width: 95%;
+      padding: 0.7rem 1rem;
+      bottom: 15px;
+    }
+  }
+
+  /* Safe area inset bottom for modern mobile browsers */
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .filters {
+      padding-bottom: calc(0.8rem + env(safe-area-inset-bottom));
+      bottom: 0;
+    }
+  }
+</style>
+
+<script>
+  // Search functionality
+  const searchInput = document.getElementById('search-input')
+  const commandCards = document.querySelectorAll('.command-card')
+
+  searchInput.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase()
+
+    commandCards.forEach((card) => {
+      const commandText = card.textContent.toLowerCase()
+      if (commandText.includes(searchTerm)) {
+        card.style.display = 'block'
+      } else {
+        card.style.display = 'none'
+      }
+    })
+  })
+
+  // Filter functionality
+  const filterButtons = document.querySelectorAll('.filter-btn')
+  const commandSections = document.querySelectorAll('.command-section')
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      // Remove active class from all buttons
+      filterButtons.forEach((btn) => btn.classList.remove('active'))
+
+      // Add active class to current button
+      button.classList.add('active')
+
+      const filter = button.getAttribute('data-filter')
+
+      // Show/hide sections based on filter
+      commandSections.forEach((section) => {
+        if (
+          filter === 'all' ||
+          section.getAttribute('data-category') === filter
+        ) {
+          section.style.display = 'block'
+          // Add animation to each card
+          const cards = section.querySelectorAll('.command-card')
+          cards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.05}s`
+          })
+        } else {
+          section.style.display = 'none'
+        }
+      })
+    })
+  })
+
+  // Add stagger animation to cards on load
+  document.addEventListener('DOMContentLoaded', () => {
+    commandCards.forEach((card, index) => {
+      card.style.animationDelay = `${index * 0.05}s`
+    })
+  })
+
+  // Enhanced mobile filters experience
+  document.addEventListener('DOMContentLoaded', () => {
+    const filtersContainer = document.querySelector('.filters')
+    const filterButtons = document.querySelectorAll('.filter-btn')
+
+    // Add touch feedback
+    filterButtons.forEach((btn) => {
+      btn.addEventListener(
+        'touchstart',
+        () => {
+          btn.style.transform = 'scale(0.95)'
+        },
+        { passive: true }
+      )
+
+      btn.addEventListener(
+        'touchend',
+        () => {
+          btn.style.transform = btn.classList.contains('active')
+            ? 'translateY(-2px)'
+            : ''
+        },
+        { passive: true }
+      )
+    })
+
+    // Auto-scroll to active filter
+    const scrollToActive = () => {
+      const activeButton = document.querySelector('.filter-btn.active')
+      if (activeButton && filtersContainer) {
+        const containerWidth = filtersContainer.offsetWidth
+        const buttonLeft = activeButton.offsetLeft
+        const buttonWidth = activeButton.offsetWidth
+
+        filtersContainer.scrollLeft =
+          buttonLeft - containerWidth / 2 + buttonWidth / 2
+      }
+    }
+
+    // Scroll to active button when filter changes
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        setTimeout(scrollToActive, 10)
+      })
+    })
+
+    // Initial scroll to active
+    setTimeout(scrollToActive, 100)
+  })
+</script>
