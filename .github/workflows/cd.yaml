@@ -17,6 +17,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies (non-strict)
+        run: pnpm install --no-frozen-lockfile
+
       - name: Install, build, and upload site
         uses: withastro/action@v3
         with:
