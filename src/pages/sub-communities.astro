@@ -30,35 +30,134 @@ import PageLayout from '@/layouts/PageLayout.astro'
     </div>
 
     <div class="communities-container">
-      <section class="community-section" data-batch="22">
-        <h2 class="section-title">ASE 22 Batch Community</h2>
-        <div class="community-content">
-          <div class="community-image">
-            <img
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-              alt="ASE 22 Batch Community"
-            />
+      <section class="community-section video-section" data-batch="22">
+        <div class="video-background">
+          <video autoplay muted loop playsinline class="zoom-effect">
+            <source src="/uno.mp4" type="video/mp4" />
+          </video>
+          <div class="overlay"></div>
+        </div>
+        <div class="video-content">
+          <h2 class="section-title">ASE 22 Batch Community</h2>
+          <p class="video-text">
+            The pioneering batch of ASE NSBM with extensive industry experience
+            and mentorship opportunities. Connect with seniors working on
+            cutting-edge projects and gain valuable insights into the software
+            engineering industry.
+          </p>
+          <div class="stats light">
+            <div class="stat">
+              <span class="number">5</span>
+              <span class="label">Top Positions</span>
+            </div>
+            <div class="stat">
+              <span class="number">15+</span>
+              <span class="label">Applied</span>
+            </div>
+            <div class="stat">
+              <span class="number">1</span>
+              <span class="label">Selected</span>
+            </div>
           </div>
+          <a
+            href="https://forms.google.com/ase24batch"
+            class="apply-button light"
+            target="_blank"
+          >
+            Apply Now
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      <section class="community-section" data-batch="23">
+        <h2 class="section-title">ASE 23 Batch Community</h2>
+        <div class="community-content">
           <div class="community-info">
             <h3>Senior Batch</h3>
             <p>
-              The pioneering batch of ASE NSBM with extensive industry
-              experience and mentorship opportunities. Connect with seniors
-              working on cutting-edge projects and gain valuable insights into
-              the software engineering industry.
+              A dynamic group of software engineering enthusiasts currently
+              exploring advanced programming concepts and collaborative
+              development practices. Join this community to participate in
+              hackathons, coding competitions, and innovative tech projects.
             </p>
             <div class="stats">
               <div class="stat">
-                <span class="number">100+</span>
-                <span class="label">Members</span>
+                <span class="number">5</span>
+                <span class="label">Top Positions</span>
               </div>
               <div class="stat">
-                <span class="number">20+</span>
-                <span class="label">Projects</span>
+                <span class="number">18+</span>
+                <span class="label">Applied</span>
               </div>
               <div class="stat">
-                <span class="number">15+</span>
-                <span class="label">Events</span>
+                <span class="number">2</span>
+                <span class="label">Selected</span>
+              </div>
+            </div>
+            <a
+              href="https://forms.google.com/ase23batch"
+              class="apply-button"
+              target="_blank"
+            >
+              Apply to Join
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z"
+                ></path>
+              </svg>
+            </a>
+          </div>
+          <div class="community-image">
+            <img src="/sub3.jpg" alt="ASE 23 Batch Community" />
+          </div>
+        </div>
+      </section>
+
+      <section class="community-section" data-batch="24">
+        <h2 class="section-title">ASE 24 Batch Community</h2>
+        <div class="community-content">
+          <div class="community-image">
+            <img src="/sub2.jpg" />
+          </div>
+          <div class="community-info">
+            <h3>Junior Batch</h3>
+            <p>
+              The enthusiastic sophomore batch exploring the foundations of
+              software engineering with fresh perspectives and innovative ideas.
+              Join this vibrant community to collaborate on exciting projects
+              and build your network.
+            </p>
+            <div class="stats">
+              <div class="stat">
+                <span class="number">5</span>
+                <span class="label">Top Positions</span>
+              </div>
+              <div class="stat">
+                <span class="number">10+</span>
+                <span class="label">Applied</span>
+              </div>
+              <div class="stat">
+                <span class="number">1</span>
+                <span class="label">Selected</span>
               </div>
             </div>
             <a
@@ -84,119 +183,11 @@ import PageLayout from '@/layouts/PageLayout.astro'
         </div>
       </section>
 
-      <section class="community-section" data-batch="23">
-        <h2 class="section-title">ASE 23 Batch Community</h2>
-        <div class="community-content">
-          <div class="community-info">
-            <h3>Junior Batch</h3>
-            <p>
-              A dynamic group of software engineering enthusiasts currently
-              exploring advanced programming concepts and collaborative
-              development practices. Join this community to participate in
-              hackathons, coding competitions, and innovative tech projects.
-            </p>
-            <div class="stats">
-              <div class="stat">
-                <span class="number">120+</span>
-                <span class="label">Members</span>
-              </div>
-              <div class="stat">
-                <span class="number">18+</span>
-                <span class="label">Projects</span>
-              </div>
-              <div class="stat">
-                <span class="number">12+</span>
-                <span class="label">Events</span>
-              </div>
-            </div>
-            <a
-              href="https://forms.google.com/ase23batch"
-              class="apply-button"
-              target="_blank"
-            >
-              Apply to Join
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z"
-                ></path>
-              </svg>
-            </a>
-          </div>
-          <div class="community-image">
-            <img
-              src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-              alt="ASE 23 Batch Community"
-            />
-          </div>
-        </div>
-      </section>
-
-      <section class="community-section video-section" data-batch="24">
-        <div class="video-background">
-          <video autoplay muted loop playsinline class="zoom-effect">
-            <source src="/uno.mp4" type="video/mp4" />
-          </video>
-          <div class="overlay"></div>
-        </div>
-        <div class="video-content">
-          <h2 class="section-title">ASE 24 Batch Community</h2>
-          <p class="video-text">
-            The enthusiastic sophomore batch exploring the foundations of
-            software engineering with fresh perspectives and innovative ideas.
-            Join this vibrant community to collaborate on exciting projects and
-            build your network.
-          </p>
-          <div class="stats light">
-            <div class="stat">
-              <span class="number">135+</span>
-              <span class="label">Members</span>
-            </div>
-            <div class="stat">
-              <span class="number">10+</span>
-              <span class="label">Projects</span>
-            </div>
-            <div class="stat">
-              <span class="number">8+</span>
-              <span class="label">Events</span>
-            </div>
-          </div>
-          <a
-            href="https://forms.google.com/ase24batch"
-            class="apply-button light"
-            target="_blank"
-          >
-            Apply to Join
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z"
-              ></path>
-            </svg>
-          </a>
-        </div>
-      </section>
-
       <section class="community-section" data-batch="25">
         <h2 class="section-title">ASE 25 Batch Community</h2>
         <div class="community-content">
           <div class="community-image">
-            <img
-              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-              alt="ASE 25 Batch Community"
-            />
+            <img src="/sub1.jpg" />
           </div>
           <div class="community-info">
             <h3>Freshman Batch</h3>
@@ -208,16 +199,16 @@ import PageLayout from '@/layouts/PageLayout.astro'
             </p>
             <div class="stats">
               <div class="stat">
-                <span class="number">150+</span>
-                <span class="label">Members</span>
+                <span class="number">5</span>
+                <span class="label">Top Positions</span>
               </div>
               <div class="stat">
-                <span class="number">5+</span>
-                <span class="label">Projects</span>
+                <span class="number">9+</span>
+                <span class="label">Applied</span>
               </div>
               <div class="stat">
-                <span class="number">3+</span>
-                <span class="label">Events</span>
+                <span class="number">0</span>
+                <span class="label">Selected</span>
               </div>
             </div>
             <a
@@ -542,14 +533,28 @@ import PageLayout from '@/layouts/PageLayout.astro'
     line-height: 1.7;
   }
 
-  .stats.light .number,
+  .stats.light {
+    display: flex;
+    justify-content: space-around;
+    margin: 1.5rem 0;
+    gap: 2rem; /* Increased gap between stat elements */
+  }
+
+  .stats.light .number {
+    font-size: 2rem;
+  }
+
   .stats.light .label {
-    color: white;
+    font-size: 1rem;
+    margin-top: 0.3rem;
   }
 
   .apply-button.light {
     background-color: white;
     color: var(--primary-color);
+    align-self: center; /* Center the button horizontally */
+    margin-left: auto; /* These two margin properties ensure proper centering */
+    margin-right: auto;
   }
 
   .apply-button.light:hover {
