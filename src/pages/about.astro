@@ -2,7 +2,6 @@
 import PageLayout from '@/layouts/PageLayout.astro'
 import { Image } from 'astro:assets'
 import logo from '@/assets/logo.svg'
-import config from '@/theme.config'
 
 // You'll need to create or import these images
 // These are placeholders - replace with actual image imports
@@ -1169,12 +1168,6 @@ const frontmatter = {
 
 <script>
   function scrollToSection() {
-    const section = document.querySelector('.about-section') // Replace with the section you want to scroll to
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
   function initializeAnimations() {
     const sections = document.querySelectorAll('.fade-in-section')
 
@@ -1211,12 +1204,12 @@ const frontmatter = {
       }
     })
 
-    // Add click event listeners to dots
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        currentIndex = index
-        updateSlider()
-      })
+    const testimonials = Array.from(document.querySelectorAll('.testimonial-card')) as HTMLElement[]
+    testimonials.forEach((card, index) => {
+      if (index !== 0) {
+        card.style.display = 'none'
+      }
+    })
     })
 
     function updateSlider() {
@@ -1284,3 +1277,5 @@ const frontmatter = {
     if (interval) clearInterval(interval)
   })
 </script>
+    // Clear testimonial interval
+    // No reliable way to access interval from DOM, so skip clearing here
