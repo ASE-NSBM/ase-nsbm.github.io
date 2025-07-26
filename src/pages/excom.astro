@@ -486,7 +486,8 @@ const members = [
   }
 ]
 
-// No need to initialize activeFilter as it's not used
+// Initialize the active filter
+let activeFilter = 'All Members'
 ---
 
 <!-- Rest of the component's HTML -->
@@ -911,15 +912,13 @@ const members = [
         const team = button.getAttribute('data-team')
 
         // Show all cards if "All Members" is selected
-        // Show all cards if "All Members" is selected
         if (team === 'All Members') {
           memberCards.forEach((card) => {
-            const el = card as HTMLElement
-            el.style.display = ''
+            card.style.display = ''
             // Reset animations
-            el.style.animation = 'none'
+            card.style.animation = 'none'
             setTimeout(() => {
-              el.style.animation = ''
+              card.style.animation = ''
             }, 10)
           })
           return
@@ -928,19 +927,19 @@ const members = [
         // Filter cards based on selected team
         memberCards.forEach((card) => {
           const teams = card.getAttribute('data-teams')
-          const el = card as HTMLElement
 
-          if (teams && team && teams.includes(team)) {
-            el.style.display = ''
+          if (teams && teams.includes(team)) {
+            card.style.display = ''
             // Reset animations for visible cards
-            el.style.animation = 'none'
+            card.style.animation = 'none'
             setTimeout(() => {
-              el.style.animation = ''
+              card.style.animation = ''
             }, 10)
           } else {
-            el.style.display = 'none'
+            card.style.display = 'none'
           }
         })
+      })
     })
   }
 
