@@ -4,5 +4,5 @@
   </a>
 </p>
 
-<h1>Official Website Repository of ASE NSBM</h1>
+<h1 style="align:center;">Official Website Repository of ASE NSBM</h1>
 
