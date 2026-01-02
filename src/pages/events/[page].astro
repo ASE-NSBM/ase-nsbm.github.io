@@ -29,7 +29,6 @@ const frontmatter: PageLayoutProps['frontmatter'] = {
     {frontmatter.title}
     <span>{` (page ${page.currentPage})`}</span>
   </h1>
-  <h2>Test</h2>
   <ProjectsList projects={page.data} />
 
   <Pagination slot="bottom" page={page} />
