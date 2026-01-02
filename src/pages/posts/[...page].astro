@@ -19,9 +19,9 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>
 const { page } = Astro.props
 
 const frontmatter: PageLayoutProps['frontmatter'] = {
-  title: 'Events',
-  activeHeaderLink: 'Events',
-  canonicalURL: new URL('/events/1', Astro.site).toString()
+  title: 'Blog',
+  activeHeaderLink: 'Blog',
+  canonicalURL: new URL('/posts/1', Astro.site).toString()
 }
 ---
 

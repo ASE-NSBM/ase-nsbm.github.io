@@ -10,7 +10,8 @@ export default defineThemeConfig({
   navbarItems: [
     { label: 'About', href: '/about/' },
     { label: 'Team', href: '/team/' },
-    { label: 'Events', href: '/posts/' },
+    { label: 'Events', href: '/events/' },
+    { label: 'Blog', href: '/posts/' },
     { label: 'Timeline', href: '/timeline/' }
     // { label: 'Excom', href: '/excom/' }
     // {
