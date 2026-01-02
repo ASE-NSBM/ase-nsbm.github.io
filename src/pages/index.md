@@ -1,8 +1,10 @@
 ---
 layout: '@/layouts/LandingLayout.astro'
-title: ASE NSBM
+title: ASE NSBM - The Best Computing Club at NSBM
 background: true
 logo: true
+description: The Association of Software Engineering (ASE) is the premier computing club at NSBM Green University. We are a community of student developers, driving innovation and excellence in software engineering.
+keywords: ASE, ASE NSBM, Software Engineering NSBM, NSBM Related clubs, NSBM Best club, Computing NSBM, Association of Software Engineering, Student Club, NSBM Green University
 ---
 
 We're a vibrant [team](/team/) driving Software innovation.  

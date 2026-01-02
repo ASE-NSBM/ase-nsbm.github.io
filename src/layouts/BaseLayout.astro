@@ -7,6 +7,7 @@ import ibmPlexBold from '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-700
 import '@fontsource/ibm-plex-sans/latin.css'
 
 import ModeManager from '@/components/mode/ModeManager.astro'
+import JsonLd from '@/components/JsonLd.astro'
 import CopyCodeButtonsPlugin from '@/plugins/CopyCodeButtonsPlugin.astro'
 import MediumZoomPlugin from '@/plugins/MediumZoomPlugin.astro'
 import config from '@/theme.config'
@@ -29,6 +30,7 @@ export interface Props {
     canonicalURL: string
     openGraphImage: string | ImageMetadata
     publishedDate: Date
+    keywords: string
   }>
 }
 
@@ -39,7 +41,8 @@ const {
     description = config.description,
     canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
     openGraphImage = config.openGraphImage || '/ogImage.png',
-    publishedDate
+    publishedDate,
+    keywords = 'NSBM, Association of Software Engineering, ASE, ASE NSBM, Software Engineering NSBM, NSBM Related clubs, NSBM Best club, Computing NSBM'
   }
 } = Astro.props
 
@@ -66,6 +69,7 @@ const openGraphImageUrl = new URL(resolveImageUrl(openGraphImage), Astro.site)
     <meta name="title" content={titleWithSuffix} />
     <meta name="description" content={description} />
     <meta name="author" content={author} />
+    <meta name="keywords" content={keywords} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link
       rel="alternate"
@@ -107,6 +111,7 @@ const openGraphImageUrl = new URL(resolveImageUrl(openGraphImage), Astro.site)
     }
     <ModeManager />
     <ClientRouter />
+    <JsonLd />
   </head>
   <body>
     <div transition:animate="slide">

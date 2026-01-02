@@ -9,6 +9,7 @@ import config from './src/theme.config'
 
 export default defineConfig({
   site: 'https://asensbm.live',
+  prefetch: true,
   integrations: [mdx(), sitemap()],
 
   markdown: {

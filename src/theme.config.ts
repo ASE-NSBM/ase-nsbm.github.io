@@ -1,11 +1,11 @@
 import { defineThemeConfig } from './types'
 
 export default defineThemeConfig({
-  site: 'https://ase-nsbm.github.io/',
-  title: 'Association of' + ' ' + ' Software Engineering',
+  site: 'https://asensbm.live/',
+  title: 'Association of Software Engineering',
   titleParts: ['Association of', 'Software Engineering'], // Added for components that need to split the title
   description:
-    'The official Web of the Association of Software Engineering, NSBM Green University Town',
+    'The official website of the Association of Software Engineering (ASE) at NSBM Green University. Discover our events, clubs, and computing community. Best club for Software Engineering at NSBM.',
   author: 'ASENSBM',
   navbarItems: [
     { label: 'About', href: '/about/' },
