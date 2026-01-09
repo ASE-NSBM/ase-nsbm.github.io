@@ -15,7 +15,7 @@ const posts = defineCollection({
       openGraphImage: image().optional(),
       tags: z.array(z.string()).default([]),
       showToC: z.boolean().optional().default(true),
-      previewImage: image().optional()
+      previewImage: z.string().optional()
     })
 })
 
@@ -31,7 +31,7 @@ const projects = defineCollection({
       startDate: z.date(),
       endDate: z.date().optional().nullable(),
       tags: z.array(z.string()).default([]),
-      previewImage: image().optional()
+      previewImage: z.string().optional()
     })
 })
 

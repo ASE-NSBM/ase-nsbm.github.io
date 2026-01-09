@@ -63,8 +63,8 @@ export default defineThemeConfig({
   modeToggle: true,
   colorScheme: 'scheme-aurora',
   openGraphImage: undefined,
-  postsPerPage: 4,
-  projectsPerPage: 3,
+  postsPerPage: 9999,
+  projectsPerPage: 5,
   scrollProgress: false,
   scrollToTop: true,
   tagIcons: {

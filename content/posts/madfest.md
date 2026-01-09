@@ -5,9 +5,10 @@ publishedDate: 2025-03-01
 tags:
   - Mobile Development
   - Innovation
+previewImage: '/events/MadFest.jpg'
 ---
 
-![MadFest](/madfest.jpg)
+![MadFest](/events/MadFest.jpg)
 
 # MadFest 2024 - Mobile Application Exhibition 📱🎉
 

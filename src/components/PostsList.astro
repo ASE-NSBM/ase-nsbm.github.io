@@ -1,6 +1,6 @@
 ---
 import PostPreview from '@/components/PostPreview.astro'
-import Separator from '@/components/layout/Separator.astro'
+
 import { sortPosts } from '@/util/posts'
 import type { CollectionEntry } from 'astro:content'
 
@@ -13,12 +13,11 @@ const { posts } = Astro.props
 posts.sort(sortPosts)
 ---
 
-<ul class="list-none p-0">
+<ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-8 list-none p-0">
   {
-    posts.map((post, index) => (
+    posts.map((post) => (
       <li class="pl-0">
         <PostPreview {post} />
-        {index !== posts.length - 1 && <Separator class="mt-6 mb-6" />}
       </li>
     ))
   }

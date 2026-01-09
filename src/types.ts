@@ -36,6 +36,7 @@ export type ColorScheme = (typeof ColorSchemes)[number]
 export interface ThemeConfig {
   site: string
   title: string
+  titleParts?: string[]
   description: string
   author: string
   navbarItems: HeaderItem[]

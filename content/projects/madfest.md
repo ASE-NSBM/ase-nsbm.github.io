@@ -1,17 +1,18 @@
 ---
-title: MatFest 2024 - Mobile Application Exhibition
+title: MadFest 2024 - Mobile Application Exhibition
 startDate: 2024-06-15
 endDate: 2024-06-15
+previewImage: '/events/MadFest.jpg'
 tags:
   - Mobile Development
   - Innovation
 ---
 
-# MatFest 2024 - Mobile Application Exhibition 📱🎉
+# MadFest 2024 - Mobile Application Exhibition 📱🎉
 
 ## Overview
 
-MatFest 2024 is a **Mobile Application Development Exhibition** organized by the **Association of Software Engineering at NSBM Green University**. The event provides a platform for students to **showcase their mobile app innovations**.
+MadFest 2024 is a **Mobile Application Development Exhibition** organized by the **Association of Software Engineering at NSBM Green University**. The event provides a platform for students to **showcase their mobile app innovations**.
 
 ## Event Details
 
@@ -37,4 +38,4 @@ Students must:
 ## Social Media
 
 Follow us for the latest updates:  
-📌 **#MatFest2024 #NSBMGreenUniversity #SoftwareEngineering #MobileInnovation**
+📌 **#MadFest2024 #NSBMGreenUniversity #SoftwareEngineering #MobileInnovation**

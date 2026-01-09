@@ -820,7 +820,7 @@ const subCommitteeMembers = {
           </div>
 
           <!-- Static Leadership Grid -->
-          <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div class="grid grid-cols-1 gap-8 md:grid-cols-2 max-w-5xl mx-auto">
             {
               topBoardLeadership.map((member) => (
                 <div class="team-card leadership-card group">
@@ -833,7 +833,7 @@ const subCommitteeMembers = {
                     <img
                       src={member.image}
                       alt={member.name}
-                      class="h-96 w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      class="h-[500px] w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                     <div class="absolute right-4 bottom-4 left-4 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">

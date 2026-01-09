@@ -2,6 +2,7 @@
 title: GreenEXE 2.0 - The Ultimate App Development Challenge
 startDate: 2024-09-10
 endDate: 2024-09-10
+previewImage: '/events/GreenEXE2.0.jpg'
 tags:
   - Software Engineering
   - Competition

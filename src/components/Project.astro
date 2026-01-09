@@ -17,12 +17,21 @@ const { Content } = await render(project)
 <div class="mb-8 flex flex-col gap-4 md:mb-4 md:flex-row md:gap-8">
   {
     data.previewImage && (
-      <Image
-        src={data.previewImage}
-        height={208}
-        alt={`${data.title} preview`}
-        class="mt-auto mb-auto max-h-52 w-fit rounded-sm object-contain md:max-h-32 md:w-auto"
-      />
+      typeof data.previewImage === 'string' ? (
+        <img
+          src={data.previewImage}
+          alt={`${data.title} preview`}
+          loading="lazy"
+          class="h-56 w-full rounded-lg object-cover shadow-sm transition-transform duration-500 hover:scale-105 md:h-48 md:w-72 flex-shrink-0"
+        />
+      ) : (
+        <Image
+          src={data.previewImage}
+          alt={`${data.title} preview`}
+          loading="lazy"
+          class="h-56 w-full rounded-lg object-cover shadow-sm transition-transform duration-500 hover:scale-105 md:h-48 md:w-72 flex-shrink-0"
+        />
+      )
     )
   }
   <div class="flex h-fit w-full flex-col">
