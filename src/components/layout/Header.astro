@@ -22,18 +22,19 @@ export const isNavItem = (item: HeaderItemType): item is NavItemType =>
   Object.hasOwn(item, 'href')
 ---
 
-<header>
-  <a href="#main" class="absolute -top-full left-8 px-2 py-2 focus:top-8"
-    >Skip to main content</a
-  >
-  <div class="flex justify-between py-4 sm:py-8">
-    <a href="/" class="text-accent flex gap-2 text-2xl font-semibold">
+<header class="sticky top-0 z-50 glass smooth-transition">
+  <div class="mx-auto w-full max-w-[95%] md:max-w-7xl">
+    <a href="#main" class="absolute -top-full left-8 px-2 py-2 focus:top-8"
+      >Skip to main content</a
+    >
+    <div class="flex justify-between py-4 sm:py-8">
+    <a href="/" class="text-accent flex gap-2 text-2xl font-semibold hover-lift">
       <Image alt="ASE Logo" src={logo} height={45} loading="eager" />
       <span class="flex flex-col text-xl">
-        <span class="text-blue-800 dark:text-blue-700"
+        <span class="text-gradient-blue font-bold"
           >{config.titleParts[0]}</span
         >
-        <span>{config.titleParts[1]}</span>
+        <span class="font-semibold">{config.titleParts[1]}</span>
       </span>
     </a>
     <nav class="hidden flex-col justify-end sm:flex">
@@ -56,7 +57,7 @@ export const isNavItem = (item: HeaderItemType): item is NavItemType =>
           ))
         }
         <li class="text-2xl">
-          <a href="/search/" class="flex items-center" aria-label="Search">
+          <a href="/search/" class="flex items-center hover-glow" aria-label="Search">
             <span class="clickable iconify tabler--search"></span>
           </a>
         </li>
@@ -72,30 +73,32 @@ export const isNavItem = (item: HeaderItemType): item is NavItemType =>
       </a>
       <MobileNavToggle />
     </div>
-  </div>
-  <Separator />
-  <div id="mobile-nav" class="hidden">
-    <nav class="flex-col justify-end py-6">
-      <ul class="flex flex-col items-center gap-2">
-        {
-          config.navbarItems.map((item) => (
-            <li class="flex flex-col justify-center">
-              {isNavItem(item) ? (
-                <HeaderItem
-                  {item}
-                  isActive={
-                    activeHeaderLink === item.label ||
-                    activeHeaderLink === item.href
-                  }
-                />
-              ) : (
-                <Dropdown {item} {activeHeaderLink} />
-              )}
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
     <Separator />
+    <div id="mobile-nav" class="hidden">
+      <div class="mx-auto w-full max-w-[95%] md:max-w-7xl">
+        <nav class="flex-col justify-end py-6">
+          <ul class="flex flex-col items-center gap-2">
+            {
+              config.navbarItems.map((item) => (
+                <li class="flex flex-col justify-center">
+                  {isNavItem(item) ? (
+                    <HeaderItem
+                      {item}
+                      isActive={
+                        activeHeaderLink === item.label ||
+                        activeHeaderLink === item.href
+                      }
+                    />
+                  ) : (
+                    <Dropdown {item} {activeHeaderLink} />
+                  )}
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </div>
+      <Separator />
+    </div>
   </div>
 </header>

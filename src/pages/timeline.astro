@@ -205,8 +205,8 @@ const today = new Date()
 ---
 
 <PageLayout {frontmatter}>
-  <div class="timeline-hero">
-    <h1 class="timeline-title">Legacy & Future</h1>
+  <div class="timeline-hero scroll-reveal">
+    <h1 class="timeline-title text-gradient">Legacy & Future</h1>
     <p class="timeline-subtitle">
       A curated showcase of our journey, milestones, and upcoming adventures.
     </p>
@@ -237,7 +237,7 @@ const today = new Date()
         // Let's keep strict grid for cleanliness.
         return (
           <div 
-            class={`grid-card ${isPast ? 'past' : 'future'}`} 
+            class={`grid-card glass hover-lift scroll-reveal-up ${isPast ? 'past' : 'future'}`} 
             data-year={event.exactDate.getFullYear()}
             data-month={event.exactDate.getMonth()}
             style={`animation-delay: ${index * 50}ms`}

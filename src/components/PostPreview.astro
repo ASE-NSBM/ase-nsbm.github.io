@@ -12,24 +12,26 @@ export interface Props {
 const { id, data } = Astro.props.post
 ---
 
-<div class="flex flex-col gap-4 border border-black/10 dark:border-white/20 rounded-xl p-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors duration-300">
+<div class="flex flex-col gap-4 glass rounded-xl p-4 hover-lift scroll-reveal-up smooth-transition">
   {
     data.previewImage && (
-      typeof data.previewImage === 'string' ? (
-        <img
-          src={data.previewImage}
-          alt={`${data.title} preview`}
-          loading="lazy"
-          class="h-56 w-full rounded-lg object-cover shadow-sm transition-transform duration-500 hover:scale-105 md:h-36 md:w-56 flex-shrink-0"
-        />
-      ) : (
-        <Image
-          src={data.previewImage}
-          alt={`${data.title} preview`}
-          loading="lazy"
-          class="h-56 w-full rounded-lg object-cover shadow-sm transition-transform duration-500 hover:scale-105 md:h-36 md:w-56 flex-shrink-0"
-        />
-      )
+      <div class="hover-zoom rounded-lg overflow-hidden">
+        {typeof data.previewImage === 'string' ? (
+          <img
+            src={data.previewImage}
+            alt={`${data.title} preview`}
+            loading="lazy"
+            class="h-56 w-full rounded-lg object-cover shadow-sm md:h-36 md:w-56 flex-shrink-0"
+          />
+        ) : (
+          <Image
+            src={data.previewImage}
+            alt={`${data.title} preview`}
+            loading="lazy"
+            class="h-56 w-full rounded-lg object-cover shadow-sm md:h-36 md:w-56 flex-shrink-0"
+          />
+        )}
+      </div>
     )
   }
   <div class="flex w-full flex-col gap-2">
