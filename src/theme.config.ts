@@ -32,23 +32,23 @@ export default defineThemeConfig({
     },
     {
       icon: 'tabler--brand-instagram',
-      href: 'https://www.instagram.com/sesa.nsbm/',
-      label: 'instagram'
+      href: 'https://www.instagram.com/ase.nsbm/',
+      label: 'Instagram'
     },
     {
       icon: 'tabler--brand-linkedin',
-      href: 'https://www.linkedin.com/company/sesansbm/ ',
-      label: 'Github'
+      href: 'https://www.linkedin.com/company/asensbm',
+      label: 'LinkedIn'
     },
     {
       icon: 'tabler--brand-facebook',
-      href: 'https://www.facebook.com/scse.nsbm',
+      href: 'https://www.facebook.com/ase.nsbm',
       label: 'Facebook'
     },
     {
       icon: 'tabler--brand-tiktok',
-      href: 'https://www.tiktok.com/@sesa.nsbm',
-      label: 'tiktok'
+      href: 'https://www.tiktok.com/@ase.nsbm',
+      label: 'TikTok'
     },
     {
       icon: 'tabler--brand-x',
