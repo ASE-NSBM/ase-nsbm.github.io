@@ -2,6 +2,22 @@
 import Icons from '@/components/Icons.astro'
 import PageLayout from '@/layouts/PageLayout.astro'
 
+interface TeamMember {
+  id: number | string
+  name: string
+  position: string
+  level?: string
+  hierarchy?: number
+  image: string
+  linkedin?: string
+  instagram?: string
+  facebook?: string
+  github?: string
+  personalMail?: string
+  bio?: string
+  teams?: string[]
+}
+
 const frontmatter = {
   title: 'Our Team | Association of Software Engineering - NSBM',
   description:
@@ -10,7 +26,7 @@ const frontmatter = {
   searchable: true
 }
 
-const teamMembers = [
+const teamMembers: TeamMember[] = [
   {
     id: 1,
     name: 'Darren Victoria',
@@ -274,13 +290,15 @@ const teamMembers = [
   }
 ]
 
-const topBoardLeadership = teamMembers.filter((member) => member.hierarchy <= 2)
+const topBoardLeadership = teamMembers.filter(
+  (member) => (member.hierarchy || 0) <= 2
+)
 
 const functionalMembers = teamMembers
   .filter(
     (member) =>
-      member.hierarchy >= 3 &&
-      member.hierarchy <= 11 &&
+      (member.hierarchy || 0) >= 3 &&
+      (member.hierarchy || 0) <= 11 &&
       (member.position.toLowerCase().includes('secretary') ||
         member.position.toLowerCase().includes('treasurer') ||
         member.position.toLowerCase().includes('organizer') ||
@@ -292,11 +310,11 @@ const functionalMembers = teamMembers
         member.position.toLowerCase().includes('co-chief') ||
         member.position.toLowerCase().includes('assistant'))
   )
-  .sort((a, b) => a.hierarchy - b.hierarchy)
+  .sort((a, b) => (a.hierarchy || 0) - (b.hierarchy || 0))
 
 const executiveMembers = teamMembers.filter(
   (member) =>
-    member.hierarchy >= 3 &&
+    (member.hierarchy || 0) >= 3 &&
     (member.position.toLowerCase().includes('executive member') ||
       member.position.toLowerCase().includes('executive committee member') ||
       member.position.toLowerCase().includes('member') ||
@@ -315,7 +333,7 @@ const executiveMembers = teamMembers.filter(
 )
 
 // Sub Committee Members (cleaned)
-const powerTeam = [
+const powerTeam: TeamMember[] = [
   {
     id: 'pt1',
     name: 'Senuri Perera',
@@ -375,14 +393,18 @@ const powerTeam = [
   }
 ]
 
-const subCommitteeMembers = {
+const subCommitteeMembers: Record<
+  string,
+  { leads: TeamMember[]; volunteers: TeamMember[] }
+> = {
   batch22: {
     leads: [
       {
         id: 'b22l1',
         name: 'Maheeshi Fonseka',
         position: 'Subcommittee Lead',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/_maheeshiii_',
         linkedin: 'https://www.linkedin.com/in/maheeshi-fonseka-36871a1a9'
       },
@@ -390,7 +412,8 @@ const subCommitteeMembers = {
         id: 'b22l2',
         name: 'Tharindi Dinesha',
         position: 'Secretary Lead',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/tharindi_dinesha',
         linkedin: 'https://www.linkedin.com/in/tharindi-dinesha-936883212'
       },
@@ -398,7 +421,8 @@ const subCommitteeMembers = {
         id: 'b22l3',
         name: 'Akila Perera',
         position: 'PR Lead',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         linkedin: 'https://www.linkedin.com/mwlite/in/akila-perera-43a830245'
       },
       {
@@ -431,14 +455,16 @@ const subCommitteeMembers = {
         id: 'b22v3',
         name: 'Dulaj Perera',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/dulaj.perera'
       },
       {
         id: 'b22v4',
         name: 'Thisara Karunanayake',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/thisara_karunanayake',
         linkedin: 'https://www.linkedin.com/in/thisara-karunanayake-554444277'
       },
@@ -446,7 +472,8 @@ const subCommitteeMembers = {
         id: 'b22v5',
         name: 'Nishara Wijethilake',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/nishara_wijethilake',
         linkedin: 'https://www.linkedin.com/in/nishara-wijethilake-5bb4a2230'
       },
@@ -454,7 +481,8 @@ const subCommitteeMembers = {
         id: 'b22v6',
         name: 'Kavya Ranaweera',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/kavya__ranaweera',
         linkedin: 'https://www.linkedin.com/in/kavya-ranaweera-b11a9b251'
       }
@@ -540,21 +568,24 @@ const subCommitteeMembers = {
         id: 'b23v5',
         name: 'Danindu Nethmina',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/daninduk999'
       },
       {
         id: 'b23v7',
         name: 'Bawantha Namal',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/bawantha_malka_'
       },
       {
         id: 'b23v8',
         name: 'Methuna Jayaweera',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/methuna_jayaweera',
         linkedin: 'https://www.linkedin.com/in/methuna-jayaweera-14a050268'
       },
@@ -562,7 +593,8 @@ const subCommitteeMembers = {
         id: 'b23v9',
         name: 'Amandi Arshika',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/amandi_arshika_',
         linkedin: 'https://www.linkedin.com/in/amandi-arshika-2ab1862b8'
       },
@@ -570,7 +602,8 @@ const subCommitteeMembers = {
         id: 'b23v10',
         name: 'Sethma Indeewari',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/sethma_indeewari',
         linkedin: 'https://www.linkedin.com/in/sethma-indeewari-95a20b268'
       },
@@ -578,15 +611,18 @@ const subCommitteeMembers = {
         id: 'b23v11',
         name: 'Randima Rangana',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/randima_rangana',
-        linkedin: 'https://www.linkedin.com/in/randima-rangana-abeykoon-b90411263'
+        linkedin:
+          'https://www.linkedin.com/in/randima-rangana-abeykoon-b90411263'
       },
       {
         id: 'b23v12',
         name: 'Rishan Ekanayake',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/rishan_12_',
         linkedin: 'https://www.linkedin.com/in/rishan-ekanayake-3b1011268'
       },
@@ -594,7 +630,8 @@ const subCommitteeMembers = {
         id: 'b23v13',
         name: 'Vishwa Mihiran',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/vishwa_mihiran',
         linkedin: 'https://www.linkedin.com/in/vishwa-mihiran-77a9b5268'
       },
@@ -602,7 +639,8 @@ const subCommitteeMembers = {
         id: 'b23v14',
         name: 'Senith Tennakoon',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/senith_ten',
         linkedin: 'https://www.linkedin.com/in/senith-tennakoon-06b0b3268'
       },
@@ -610,7 +648,8 @@ const subCommitteeMembers = {
         id: 'b23v15',
         name: 'Sachinthani Liyanage',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/sachinthani_04',
         linkedin: 'https://www.linkedin.com/in/sachinthani-liyanage-844a00268'
       }
@@ -622,7 +661,8 @@ const subCommitteeMembers = {
         id: 'b24l1',
         name: 'Ashvini Sathya',
         position: 'Subcommittee Lead',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/ashvini_sathya',
         linkedin: 'https://www.linkedin.com/in/ashvini-sathya-a3b652252'
       },
@@ -640,7 +680,8 @@ const subCommitteeMembers = {
         position: 'PR Lead',
         image: '/ASE_Circle/subcommittee/oshan.jpg',
         instagram: 'https://www.instagram.com/osh.n.offcl',
-        linkedin: 'https://lk.linkedin.com/in/oshan-manidu-jayawardhana-306b40268'
+        linkedin:
+          'https://lk.linkedin.com/in/oshan-manidu-jayawardhana-306b40268'
       },
       {
         id: 'b24l4',
@@ -672,7 +713,8 @@ const subCommitteeMembers = {
         id: 'b24v3',
         name: 'Danindu Nanayakkara',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/danindu_nanayakara',
         linkedin: 'http://linkedin.com/in/danindu'
       },
@@ -696,7 +738,8 @@ const subCommitteeMembers = {
         id: 'b24v6',
         name: 'Sineth Hasintha',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/sineth_3',
         linkedin: 'https://www.linkedin.com/in/sineth-hasintha-273500303'
       },
@@ -704,7 +747,8 @@ const subCommitteeMembers = {
         id: 'b24v7',
         name: 'Ranudi Ravindya',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/ranudi_ravindya',
         linkedin: 'https://www.linkedin.com/in/ranudi-ravindya-81a4b9287'
       },
@@ -712,7 +756,8 @@ const subCommitteeMembers = {
         id: 'b24v8',
         name: 'Vidura Sandaruwan',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/_.vidd_',
         linkedin: 'https://www.linkedin.com/in/vidura-sandaruwan-41b728287'
       },
@@ -720,7 +765,8 @@ const subCommitteeMembers = {
         id: 'b24v9',
         name: 'Hasitha Prameeth',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'https://www.instagram.com/hasitha._prameeth',
         linkedin: 'https://www.linkedin.com/in/hasitha-prameeth-1b8a5b287'
       },
@@ -740,7 +786,8 @@ const subCommitteeMembers = {
         id: 'b25l1',
         name: 'A.L.C.S. Hirushan',
         position: 'Subcommittee Lead',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'www.instagram.com/novahirushan',
         linkedin: 'http://linkedin.com/in/novahirushan'
       },
@@ -765,7 +812,8 @@ const subCommitteeMembers = {
         id: 'b25v1',
         name: 'Ahamed Juraiz',
         position: 'Volunteer',
-        image: 'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
+        image:
+          'https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg',
         instagram: 'www.instagram.com/ahamed.juraiz',
         linkedin: 'http://linkedin.com/in/ahamedjuraiz'
       }
@@ -1178,61 +1226,62 @@ const subCommitteeMembers = {
           <div class="sliding-container">
             <div class="sliding-wrapper" id="batch22Slider">
               {
-                [
-                  ...subCommitteeMembers.batch22.leads,
-                  ...subCommitteeMembers.batch22.volunteers
-                ].map((member) => (
-                  <div class="slide-card sub-committee-member-card orange-member group">
-                    <div class="absolute top-4 left-4 z-10">
-                      <span class="rounded-full bg-orange-600 px-3 py-1 text-xs font-semibold text-white shadow-lg">
-                        22 BATCH
-                      </span>
-                    </div>
-                    <div class="relative overflow-hidden">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                      <div class="absolute right-4 bottom-4 left-4 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <p class="text-xs leading-relaxed">
-                          Specialized in {member.position}
+                subCommitteeMembers.batch22 &&
+                  [
+                    ...subCommitteeMembers.batch22.leads,
+                    ...subCommitteeMembers.batch22.volunteers
+                  ].map((member) => (
+                    <div class="slide-card sub-committee-member-card orange-member group">
+                      <div class="absolute top-4 left-4 z-10">
+                        <span class="rounded-full bg-orange-600 px-3 py-1 text-xs font-semibold text-white shadow-lg">
+                          22 BATCH
+                        </span>
+                      </div>
+                      <div class="relative overflow-hidden">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                        <div class="absolute right-4 bottom-4 left-4 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                          <p class="text-xs leading-relaxed">
+                            Specialized in {member.position}
+                          </p>
+                        </div>
+                      </div>
+                      <div class="p-4">
+                        <h5 class="mb-1 text-lg font-bold text-gray-900 dark:text-white">
+                          {member.name}
+                        </h5>
+                        <p class="mb-3 text-sm font-medium text-orange-600 dark:text-orange-400">
+                          {member.position}
                         </p>
+                        <div class="flex justify-center gap-2">
+                          {member.linkedin && (
+                            <a
+                              href={member.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="social-link-small linkedin"
+                              aria-label={`${member.name}'s LinkedIn`}
+                            >
+                              <Icons name="linkedin" />
+                            </a>
+                          )}
+                          {member.personalMail && (
+                            <a
+                              href={`mailto:${member.personalMail}`}
+                              class="social-link-small email"
+                              aria-label={`Email ${member.name}`}
+                            >
+                              <Icons name="mail" />
+                            </a>
+                          )}
+                        </div>
                       </div>
                     </div>
-                    <div class="p-4">
-                      <h5 class="mb-1 text-lg font-bold text-gray-900 dark:text-white">
-                        {member.name}
-                      </h5>
-                      <p class="mb-3 text-sm font-medium text-orange-600 dark:text-orange-400">
-                        {member.position}
-                      </p>
-                      <div class="flex justify-center gap-2">
-                        {member.linkedin && (
-                          <a
-                            href={member.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="social-link-small linkedin"
-                            aria-label={`${member.name}'s LinkedIn`}
-                          >
-                            <Icons name="linkedin" />
-                          </a>
-                        )}
-                        {member.personalMail && (
-                          <a
-                            href={`mailto:${member.personalMail}`}
-                            class="social-link-small email"
-                            aria-label={`Email ${member.name}`}
-                          >
-                            <Icons name="mail" />
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))
+                  ))
               }
             </div>
 
@@ -1261,61 +1310,62 @@ const subCommitteeMembers = {
           <div class="sliding-container">
             <div class="sliding-wrapper" id="batch23Slider">
               {
-                [
-                  ...subCommitteeMembers.batch23.leads,
-                  ...subCommitteeMembers.batch23.volunteers
-                ].map((member) => (
-                  <div class="slide-card sub-committee-member-card red-member group">
-                    <div class="absolute top-4 left-4 z-10">
-                      <span class="rounded-full bg-red-600 px-3 py-1 text-xs font-semibold text-white shadow-lg">
-                        23 BATCH
-                      </span>
-                    </div>
-                    <div class="relative overflow-hidden">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                      <div class="absolute right-4 bottom-4 left-4 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <p class="text-xs leading-relaxed">
-                          Specialized in {member.position}
+                subCommitteeMembers.batch23 &&
+                  [
+                    ...subCommitteeMembers.batch23.leads,
+                    ...subCommitteeMembers.batch23.volunteers
+                  ].map((member) => (
+                    <div class="slide-card sub-committee-member-card red-member group">
+                      <div class="absolute top-4 left-4 z-10">
+                        <span class="rounded-full bg-red-600 px-3 py-1 text-xs font-semibold text-white shadow-lg">
+                          23 BATCH
+                        </span>
+                      </div>
+                      <div class="relative overflow-hidden">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                        <div class="absolute right-4 bottom-4 left-4 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                          <p class="text-xs leading-relaxed">
+                            Specialized in {member.position}
+                          </p>
+                        </div>
+                      </div>
+                      <div class="p-4">
+                        <h5 class="mb-1 text-lg font-bold text-gray-900 dark:text-white">
+                          {member.name}
+                        </h5>
+                        <p class="mb-3 text-sm font-medium text-red-600 dark:text-red-400">
+                          {member.position}
                         </p>
+                        <div class="flex justify-center gap-2">
+                          {member.linkedin && (
+                            <a
+                              href={member.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="social-link-small linkedin"
+                              aria-label={`${member.name}'s LinkedIn`}
+                            >
+                              <Icons name="linkedin" />
+                            </a>
+                          )}
+                          {member.personalMail && (
+                            <a
+                              href={`mailto:${member.personalMail}`}
+                              class="social-link-small email"
+                              aria-label={`Email ${member.name}`}
+                            >
+                              <Icons name="mail" />
+                            </a>
+                          )}
+                        </div>
                       </div>
                     </div>
-                    <div class="p-4">
-                      <h5 class="mb-1 text-lg font-bold text-gray-900 dark:text-white">
-                        {member.name}
-                      </h5>
-                      <p class="mb-3 text-sm font-medium text-red-600 dark:text-red-400">
-                        {member.position}
-                      </p>
-                      <div class="flex justify-center gap-2">
-                        {member.linkedin && (
-                          <a
-                            href={member.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="social-link-small linkedin"
-                            aria-label={`${member.name}'s LinkedIn`}
-                          >
-                            <Icons name="linkedin" />
-                          </a>
-                        )}
-                        {member.personalMail && (
-                          <a
-                            href={`mailto:${member.personalMail}`}
-                            class="social-link-small email"
-                            aria-label={`Email ${member.name}`}
-                          >
-                            <Icons name="mail" />
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))
+                  ))
               }
             </div>
 
@@ -1346,61 +1396,62 @@ const subCommitteeMembers = {
           <div class="sliding-container">
             <div class="sliding-wrapper" id="batch24Slider">
               {
-                [
-                  ...subCommitteeMembers.batch24.leads,
-                  ...subCommitteeMembers.batch24.volunteers
-                ].map((member) => (
-                  <div class="slide-card sub-committee-member-card pink-member group">
-                    <div class="absolute top-4 left-4 z-10">
-                      <span class="rounded-full bg-pink-600 px-3 py-1 text-xs font-semibold text-white shadow-lg">
-                        24 BATCH
-                      </span>
-                    </div>
-                    <div class="relative overflow-hidden">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                      <div class="absolute right-4 bottom-4 left-4 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <p class="text-xs leading-relaxed">
-                          Specialized in {member.position}
+                subCommitteeMembers.batch24 &&
+                  [
+                    ...subCommitteeMembers.batch24.leads,
+                    ...subCommitteeMembers.batch24.volunteers
+                  ].map((member) => (
+                    <div class="slide-card sub-committee-member-card pink-member group">
+                      <div class="absolute top-4 left-4 z-10">
+                        <span class="rounded-full bg-pink-600 px-3 py-1 text-xs font-semibold text-white shadow-lg">
+                          24 BATCH
+                        </span>
+                      </div>
+                      <div class="relative overflow-hidden">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                        <div class="absolute right-4 bottom-4 left-4 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                          <p class="text-xs leading-relaxed">
+                            Specialized in {member.position}
+                          </p>
+                        </div>
+                      </div>
+                      <div class="p-4">
+                        <h5 class="mb-1 text-lg font-bold text-gray-900 dark:text-white">
+                          {member.name}
+                        </h5>
+                        <p class="mb-3 text-sm font-medium text-pink-600 dark:text-pink-400">
+                          {member.position}
                         </p>
+                        <div class="flex justify-center gap-2">
+                          {member.linkedin && (
+                            <a
+                              href={member.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="social-link-small linkedin"
+                              aria-label={`${member.name}'s LinkedIn`}
+                            >
+                              <Icons name="linkedin" />
+                            </a>
+                          )}
+                          {member.personalMail && (
+                            <a
+                              href={`mailto:${member.personalMail}`}
+                              class="social-link-small email"
+                              aria-label={`Email ${member.name}`}
+                            >
+                              <Icons name="mail" />
+                            </a>
+                          )}
+                        </div>
                       </div>
                     </div>
-                    <div class="p-4">
-                      <h5 class="mb-1 text-lg font-bold text-gray-900 dark:text-white">
-                        {member.name}
-                      </h5>
-                      <p class="mb-3 text-sm font-medium text-pink-600 dark:text-pink-400">
-                        {member.position}
-                      </p>
-                      <div class="flex justify-center gap-2">
-                        {member.linkedin && (
-                          <a
-                            href={member.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="social-link-small linkedin"
-                            aria-label={`${member.name}'s LinkedIn`}
-                          >
-                            <Icons name="linkedin" />
-                          </a>
-                        )}
-                        {member.personalMail && (
-                          <a
-                            href={`mailto:${member.personalMail}`}
-                            class="social-link-small email"
-                            aria-label={`Email ${member.name}`}
-                          >
-                            <Icons name="mail" />
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))
+                  ))
               }
             </div>
 
@@ -1431,61 +1482,62 @@ const subCommitteeMembers = {
           <div class="sliding-container">
             <div class="sliding-wrapper" id="batch25Slider">
               {
-                [
-                  ...subCommitteeMembers.batch25.leads,
-                  ...subCommitteeMembers.batch25.volunteers
-                ].map((member) => (
-                  <div class="slide-card sub-committee-member-card purple-member group">
-                    <div class="absolute top-4 left-4 z-10">
-                      <span class="rounded-full bg-purple-600 px-3 py-1 text-xs font-semibold text-white shadow-lg">
-                        25 BATCH
-                      </span>
-                    </div>
-                    <div class="relative overflow-hidden">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                      <div class="absolute right-4 bottom-4 left-4 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <p class="text-xs leading-relaxed">
-                          Specialized in {member.position}
+                subCommitteeMembers.batch25 &&
+                  [
+                    ...subCommitteeMembers.batch25.leads,
+                    ...subCommitteeMembers.batch25.volunteers
+                  ].map((member) => (
+                    <div class="slide-card sub-committee-member-card purple-member group">
+                      <div class="absolute top-4 left-4 z-10">
+                        <span class="rounded-full bg-purple-600 px-3 py-1 text-xs font-semibold text-white shadow-lg">
+                          25 BATCH
+                        </span>
+                      </div>
+                      <div class="relative overflow-hidden">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          class="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                        <div class="absolute right-4 bottom-4 left-4 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                          <p class="text-xs leading-relaxed">
+                            Specialized in {member.position}
+                          </p>
+                        </div>
+                      </div>
+                      <div class="p-4">
+                        <h5 class="mb-1 text-lg font-bold text-gray-900 dark:text-white">
+                          {member.name}
+                        </h5>
+                        <p class="mb-3 text-sm font-medium text-purple-600 dark:text-purple-400">
+                          {member.position}
                         </p>
+                        <div class="flex justify-center gap-2">
+                          {member.linkedin && (
+                            <a
+                              href={member.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="social-link-small linkedin"
+                              aria-label={`${member.name}'s LinkedIn`}
+                            >
+                              <Icons name="linkedin" />
+                            </a>
+                          )}
+                          {member.personalMail && (
+                            <a
+                              href={`mailto:${member.personalMail}`}
+                              class="social-link-small email"
+                              aria-label={`Email ${member.name}`}
+                            >
+                              <Icons name="mail" />
+                            </a>
+                          )}
+                        </div>
                       </div>
                     </div>
-                    <div class="p-4">
-                      <h5 class="mb-1 text-lg font-bold text-gray-900 dark:text-white">
-                        {member.name}
-                      </h5>
-                      <p class="mb-3 text-sm font-medium text-purple-600 dark:text-purple-400">
-                        {member.position}
-                      </p>
-                      <div class="flex justify-center gap-2">
-                        {member.linkedin && (
-                          <a
-                            href={member.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="social-link-small linkedin"
-                            aria-label={`${member.name}'s LinkedIn`}
-                          >
-                            <Icons name="linkedin" />
-                          </a>
-                        )}
-                        {member.personalMail && (
-                          <a
-                            href={`mailto:${member.personalMail}`}
-                            class="social-link-small email"
-                            aria-label={`Email ${member.name}`}
-                          >
-                            <Icons name="mail" />
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))
+                  ))
               }
             </div>
 
@@ -2157,7 +2209,10 @@ const subCommitteeMembers = {
       initializeSliderWithProgressBar(id, progressBarId)
     })
 
-    function initializeSliderWithProgressBar(sliderId, progressBarId) {
+    function initializeSliderWithProgressBar(
+      sliderId: string,
+      progressBarId: string
+    ) {
       const slider = document.getElementById(sliderId)
       const progressBar = document.getElementById(progressBarId)
       const slidingContainer = slider?.parentElement
@@ -2170,7 +2225,11 @@ const subCommitteeMembers = {
       const slideWidth = 280 + 24 // card width + gap
 
       // Create progress dots
-      function createProgressDots(container, total, active) {
+      function createProgressDots(
+        container: HTMLElement,
+        total: number,
+        active: number
+      ) {
         container.innerHTML = ''
         for (let i = 0; i < total; i++) {
           const dot = document.createElement('div')
@@ -2181,7 +2240,7 @@ const subCommitteeMembers = {
       }
 
       // Update progress dots
-      function updateProgressDots(container, active) {
+      function updateProgressDots(container: HTMLElement, active: number) {
         const dots = container.querySelectorAll('.progress-dot')
         dots.forEach((dot, index) => {
           dot.classList.toggle('active', index === active)
@@ -2189,19 +2248,21 @@ const subCommitteeMembers = {
       }
 
       // Go to specific slide with scroll sync
-      function goToSlide(slideIndex) {
+      function goToSlide(slideIndex: number) {
+        if (!slider) return
         currentSlide = Math.max(0, Math.min(slideIndex, totalSlides - 1))
         const translateX = -currentSlide * slideWidth
         slider.style.transform = `translateX(${translateX}px)`
-        updateProgressDots(progressBar, currentSlide)
+        if (progressBar) updateProgressDots(progressBar, currentSlide)
 
         // Sync horizontal scroll position
         const scrollPosition = currentSlide * slideWidth
-        slidingContainer.scrollLeft = scrollPosition
+        if (slidingContainer) slidingContainer.scrollLeft = scrollPosition
       }
 
       // Handle manual horizontal scroll
       function handleScroll() {
+        if (!slidingContainer) return
         const scrollLeft = slidingContainer.scrollLeft
         const newSlide = Math.round(scrollLeft / slideWidth)
 
@@ -2211,7 +2272,7 @@ const subCommitteeMembers = {
           newSlide < totalSlides
         ) {
           currentSlide = newSlide
-          updateProgressDots(progressBar, currentSlide)
+          if (progressBar) updateProgressDots(progressBar, currentSlide)
         }
       }
 
@@ -2223,7 +2284,7 @@ const subCommitteeMembers = {
       slidingContainer.addEventListener('scroll', handleScroll)
 
       // Handle window resize
-      let resizeTimeout
+      let resizeTimeout: ReturnType<typeof setTimeout>
       window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout)
         resizeTimeout = setTimeout(() => {
@@ -2235,17 +2296,17 @@ const subCommitteeMembers = {
       let startX = 0
       let isDragging = false
 
-      slider.addEventListener('touchstart', (e) => {
+      slider.addEventListener('touchstart', (e: TouchEvent) => {
         startX = e.touches[0].clientX
         isDragging = true
       })
 
-      slider.addEventListener('touchmove', (e) => {
+      slider.addEventListener('touchmove', (e: TouchEvent) => {
         if (!isDragging) return
         e.preventDefault()
       })
 
-      slider.addEventListener('touchend', (e) => {
+      slider.addEventListener('touchend', (e: TouchEvent) => {
         if (!isDragging) return
         isDragging = false
 

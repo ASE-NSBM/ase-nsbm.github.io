@@ -148,7 +148,9 @@ function parseStyleProps(style: string): Record<string, string> {
 
   propArr.forEach((prop) => {
     const [key, val] = prop.split(':')
-    propMap[key] = val
+    if (key && val) {
+      propMap[key] = val
+    }
   })
 
   return propMap

@@ -736,15 +736,19 @@ const eventClasses = {
 
         // Show/hide events based on filter
         timelineEvents.forEach((event) => {
-          if (filter === 'all' || event.getAttribute('data-type') === filter) {
-            event.style.display = ''
+          const element = event as HTMLElement
+          if (
+            filter === 'all' ||
+            element.getAttribute('data-type') === filter
+          ) {
+            element.style.display = ''
             setTimeout(() => {
-              event.style.opacity = '1'
+              element.style.opacity = '1'
             }, 100)
           } else {
-            event.style.opacity = '0'
+            element.style.opacity = '0'
             setTimeout(() => {
-              event.style.display = 'none'
+              element.style.display = 'none'
             }, 500)
           }
         })

@@ -5,7 +5,6 @@ publishedDate: 2025-03-01
 tags:
   - Software Engineering
   - Competition
-
 ---
 
 ![GreenEXE 2.0](/greenexe.png)

@@ -2,7 +2,6 @@
 import PageLayout from '@/layouts/PageLayout.astro'
 import { Image } from 'astro:assets'
 import logo from '@/assets/logo.svg'
-import config from '@/theme.config'
 
 // You'll need to create or import these images
 // These are placeholders - replace with actual image imports
@@ -1168,13 +1167,6 @@ const frontmatter = {
 </style>
 
 <script>
-  function scrollToSection() {
-    const section = document.querySelector('.about-section') // Replace with the section you want to scroll to
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
   function initializeAnimations() {
     const sections = document.querySelectorAll('.fade-in-section')
 
@@ -1207,7 +1199,7 @@ const frontmatter = {
     const testimonials = document.querySelectorAll('.testimonial-card')
     testimonials.forEach((card, index) => {
       if (index !== 0) {
-        card.style.display = 'none'
+        ;(card as HTMLElement).style.display = 'none'
       }
     })
 
@@ -1222,12 +1214,13 @@ const frontmatter = {
     function updateSlider() {
       // Hide all testimonials
       testimonials.forEach((card) => {
-        card.style.display = 'none'
+        ;(card as HTMLElement).style.display = 'none'
       })
 
       // Show current testimonial
-      testimonials[currentIndex].style.display = 'block'
-      testimonials[currentIndex].style.animation = 'fadeInUp 0.6s forwards'
+      const current = testimonials[currentIndex] as HTMLElement
+      current.style.display = 'block'
+      current.style.animation = 'fadeInUp 0.6s forwards'
 
       // Update active dot
       dots.forEach((dot, index) => {
@@ -1280,7 +1273,11 @@ const frontmatter = {
     })
 
     // Clear testimonial interval
-    const interval = document.querySelector('.testimonial-container')?._interval
-    if (interval) clearInterval(interval)
+    const container = document.querySelector(
+      '.testimonial-container'
+    ) as HTMLElement & { _interval?: number }
+    if (container && container._interval) {
+      clearInterval(container._interval)
+    }
   })
 </script>

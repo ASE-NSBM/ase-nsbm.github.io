@@ -136,7 +136,7 @@ import PageLayout from '@/layouts/PageLayout.astro'
         <h2 class="section-title">ASE 24 Batch Community</h2>
         <div class="community-content">
           <div class="community-image">
-            <img src="/sub2.jpg" />
+            <img src="/sub2.jpg" alt="ASE 24 Batch Community" />
           </div>
           <div class="community-info">
             <h3>Junior Batch</h3>
@@ -187,7 +187,7 @@ import PageLayout from '@/layouts/PageLayout.astro'
         <h2 class="section-title">ASE 25 Batch Community</h2>
         <div class="community-content">
           <div class="community-image">
-            <img src="/sub1.jpg" />
+            <img src="/sub1.jpg" alt="ASE 25 Batch Community" />
           </div>
           <div class="community-info">
             <h3>Freshman Batch</h3>
@@ -862,21 +862,27 @@ import PageLayout from '@/layouts/PageLayout.astro'
 
 <script>
   // Search functionality
-  const searchInput = document.getElementById('search-input')
+  const searchInput = document.getElementById(
+    'search-input'
+  ) as HTMLInputElement | null
   const communitySections = document.querySelectorAll('.community-section')
 
-  searchInput.addEventListener('input', (e) => {
-    const searchTerm = e.target.value.toLowerCase()
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const target = e.target as HTMLInputElement
+      const searchTerm = target.value.toLowerCase()
 
-    communitySections.forEach((section) => {
-      const sectionText = section.textContent.toLowerCase()
-      if (sectionText.includes(searchTerm)) {
-        section.style.display = 'block'
-      } else {
-        section.style.display = 'none'
-      }
+      communitySections.forEach((section) => {
+        const element = section as HTMLElement
+        const sectionText = (element.textContent || '').toLowerCase()
+        if (sectionText.includes(searchTerm)) {
+          element.style.display = 'block'
+        } else {
+          element.style.display = 'none'
+        }
+      })
     })
-  })
+  }
 
   // Filter functionality
   const filterButtons = document.querySelectorAll('.filter-btn')
@@ -893,10 +899,11 @@ import PageLayout from '@/layouts/PageLayout.astro'
 
       // Show/hide sections based on filter
       communitySections.forEach((section) => {
-        if (filter === 'all' || section.getAttribute('data-batch') === filter) {
-          section.style.display = 'block'
+        const element = section as HTMLElement
+        if (filter === 'all' || element.getAttribute('data-batch') === filter) {
+          element.style.display = 'block'
         } else {
-          section.style.display = 'none'
+          element.style.display = 'none'
         }
       })
     })
@@ -910,18 +917,18 @@ import PageLayout from '@/layouts/PageLayout.astro'
 
     // Function to position filters in a fan layout
     function positionFilters(activeFilterPosition = 'center') {
-      const totalFilters = mobileFilterBtns.length
       const bottomPadding = 75
-      const containerWidth = document.querySelector(
+      const containerElement = document.querySelector(
         '.mobile-filter-container'
-      ).offsetWidth
-      const containerHeight =
-        document.querySelector('.mobile-filters').offsetHeight
+      ) as HTMLElement | null
+      if (!containerElement) return
+      const containerWidth = containerElement.offsetWidth
 
       // Reset any previous visibility changes
       mobileFilterBtns.forEach((b) => {
-        b.style.opacity = '1'
-        b.style.display = 'flex'
+        const element = b as HTMLElement
+        element.style.opacity = '1'
+        element.style.display = 'flex'
       })
 
       // Collect buttons that need positioning (exclude active one if it should be centered)
@@ -936,10 +943,11 @@ import PageLayout from '@/layouts/PageLayout.astro'
 
       // If there's a center button, position it
       if (centerButton) {
-        centerButton.style.bottom = '0'
-        centerButton.style.left = '50%'
-        centerButton.style.transform = 'translateX(-50%)'
-        centerButton.style.zIndex = '5'
+        const element = centerButton as HTMLElement
+        element.style.bottom = '0'
+        element.style.left = '50%'
+        element.style.transform = 'translateX(-50%)'
+        element.style.zIndex = '5'
       }
 
       // Position the other buttons in a fan layout
@@ -991,38 +999,44 @@ import PageLayout from '@/layouts/PageLayout.astro'
     }
 
     // Toggle mobile filter menu
-    mobileToggle.addEventListener('click', () => {
-      const isActive = mobileToggle.classList.contains('active')
+    if (mobileToggle) {
+      mobileToggle.addEventListener('click', () => {
+        const isActive = mobileToggle.classList.contains('active')
 
-      if (!isActive) {
-        // Find active filter position before opening
-        const activeBtn = document.querySelector('.mobile-filter-btn.active')
-        const activePosition = activeBtn
-          ? activeBtn.getAttribute('data-position')
-          : 'center'
+        if (!isActive) {
+          // Find active filter position before opening
+          const activeBtn = document.querySelector('.mobile-filter-btn.active')
+          const activePosition = activeBtn
+            ? activeBtn.getAttribute('data-position') || 'center'
+            : 'center'
 
-        // Position filters before showing them
-        positionFilters(activePosition)
+          // Position filters before showing them
+          positionFilters(activePosition)
 
-        // Add pulse animation when opened
-        mobileToggle.style.animation = 'pulse 1s'
-        setTimeout(() => {
-          mobileToggle.style.animation = ''
-        }, 1000)
-      }
+          // Add pulse animation when opened
+          const element = mobileToggle as HTMLElement
+          element.style.animation = 'pulse 1s'
+          setTimeout(() => {
+            element.style.animation = ''
+          }, 1000)
+        }
 
-      // Toggle active state
-      mobileToggle.classList.toggle('active')
-    })
+        // Toggle active state
+        mobileToggle.classList.toggle('active')
+      })
+    }
 
     // Close mobile filters when clicking outside
     document.addEventListener('click', (event) => {
-      const isClickInsideFilterContainer = event.target.closest(
+      const target = event.target as HTMLElement
+      if (!target) return
+      const isClickInsideFilterContainer = target.closest(
         '.mobile-filter-container'
       )
 
       if (
         !isClickInsideFilterContainer &&
+        mobileToggle &&
         mobileToggle.classList.contains('active')
       ) {
         mobileToggle.classList.remove('active')

@@ -46,7 +46,7 @@
 This repository may include but is not limited to:
 
 - **Frontend**: Astro Framework, JavaScript, React, TailwindCSS
-- **Deployment**: GitHub Pages 
+- **Deployment**: GitHub Pages
 - **Design Tools**: Figma
 
 ---
