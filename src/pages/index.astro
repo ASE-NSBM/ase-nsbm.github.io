@@ -1,0 +1,329 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro'
+import { Image } from 'astro:assets'
+import logo from '@/assets/logo.svg'
+import FooterItem from '@/components/layout/FooterItem.astro'
+import Separator from '@/components/layout/Separator.astro'
+import ModeToggle from '@/components/mode/ModeToggle.astro'
+import config from '@/theme.config'
+
+const frontmatter = {
+  title: 'ASE NSBM | Association of Software Engineering',
+  description: 'The premier student body for software engineering innovation at NSBM.',
+  activeHeaderLink: 'Home',
+  fullWidth: true
+}
+---
+
+<PageLayout {frontmatter}>
+  <!-- Canvas Background -->
+  <canvas id="physicsCanvas" class="fixed inset-0 w-full h-full pointer-events-none -z-10 bg-slate-50 dark:bg-black transition-colors duration-500"></canvas>
+
+  <div class="mx-auto flex min-h-[100svh] w-full max-w-[90%] flex-col justify-between md:max-w-3xl relative z-10">
+    <div id="content-container" class="mt-16 px-4 sm:mt-36 sm:px-12 pointer-events-auto bg-slate-50/80 dark:bg-black/50 backdrop-blur-sm rounded-3xl p-6 border border-slate-200 dark:border-white/10 shadow-xl transition-colors duration-500">
+      <main id="main">
+        <!-- Hero Section Restored -->
+        <section class="flex flex-col items-start justify-center gap-6 sm:gap-8 mb-8 md:mb-12">
+          <div class="flex items-center gap-4 sm:gap-6">
+             <Image src={logo} alt="ASE Logo" class="w-20 h-20 sm:w-28 sm:h-28 rounded-2xl shadow-lg" />
+             <div>
+                <span class="glow-blue assoc-text block text-left text-3xl leading-none font-bold text-blue-600 sm:text-4xl">
+                  Association of
+                </span>
+                <span class="block text-2xl leading-tight font-semibold text-green-500 sm:text-4xl mt-1">
+                  Software Engineering - NSBM
+                </span>
+             </div>
+          </div>
+        </section>
+
+        <!-- Content with Animated Links -->
+        <div id="animated-links" class="text-3xl font-semibold tracking-tight text-slate-700/80 sm:text-4xl sm:leading-[46px] dark:text-slate-300/80">
+          <p class="mb-8">
+            We're a vibrant <a href="/team">team</a> driving Software innovation.
+          </p>
+          <p class="mb-8">
+            Our history is short but rich, which you can learn <a href="/about">About Us</a>. Our <a href="/events">Events</a> have shaped talent, and brought hidden skills to life.
+          </p>
+          <p>
+            Explore our future <a href="/timeline">Timeline</a>. Ready to grow and innovate? <a href="/intake">Join Us</a> today!
+          </p>
+        </div>
+      </main>
+
+      <!-- Restored Footer -->
+      <footer class="mt-12">
+        <Separator />
+        <div class="flex justify-between gap-2 py-4 text-3xl sm:py-8 sm:text-5xl">
+          {config.footerItems.map((item) => <FooterItem {item} />)}
+          <div class="grow"></div>
+          {config.modeToggle && <ModeToggle />}
+        </div>
+        <!-- Links List -->
+        <div class="sm:text-sm text-xs flex flex-wrap justify-center gap-4 py-4 sm:py-8 font-mono text-slate-500 dark:text-slate-400">
+          <a href="/team/" class="hover:text-blue-500 transition-colors">/Our Team</a>
+          <a href="/about/" class="hover:text-blue-500 transition-colors">/About Us</a>
+          <a href="/events/" class="hover:text-blue-500 transition-colors">/Events</a>
+          <a href="/timeline/" class="hover:text-blue-500 transition-colors">/Timeline</a>
+          <a href="/intake/" class="hover:text-blue-500 transition-colors">/Join Us</a>
+          <a href="/terms/" class="hover:text-blue-500 transition-colors">/Terms</a>
+        </div>
+      </footer>
+    </div>
+    
+    <!-- Hint -->
+    <div class="text-center pb-10 text-slate-400 dark:text-white/30 text-sm font-mono animate-pulse pointer-events-none mt-8">
+       [ Click background to compile ]
+    </div>
+  </div>
+</PageLayout>
+
+<script>
+  // Physics Engine Configuration
+  const CONFIG = {
+    particleCount: 50,
+    gravity: 0.5,
+    mouseRepulsionRadius: 200,
+    mouseRepulsionForce: 2,
+    contentRepulsionForce: 1.5, // Force to push away from text
+    contentPadding: 20, // Extra space around text
+    friction: 0.98,
+    tokens: [
+      '{ }', '=>', 'import', 'return', 'class', 'super()', 
+      'this.', '0', '1', 'void', 'null', 'npm', 
+      '</>', 'ASE', 'git', 'await', 'try', 'catch'
+    ],
+    colors: {
+      light: ['#2563eb', '#16a34a', '#059669', '#3b82f6', '#0f172a'], 
+      dark: ['#60a5fa', '#4ade80', '#34d399', '#39ff14', '#ffffff']
+    }
+  }
+
+  class Particle {
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    text: string;
+    size: number;
+    color: string;
+    rotation: number;
+    rotationSpeed: number;
+    isFalling: boolean;
+
+    constructor(w: number, h: number, isDark: boolean) {
+      this.reset(w, h, isDark);
+    }
+
+    reset(w: number, h: number, isDark: boolean) {
+      this.x = Math.random() * w;
+      this.y = Math.random() * h;
+      this.vx = (Math.random() - 0.5) * 1; 
+      this.vy = (Math.random() - 0.5) * 1;
+      this.text = CONFIG.tokens[Math.floor(Math.random() * CONFIG.tokens.length)];
+      this.size = 14 + Math.random() * 20; 
+      
+      const palette = isDark ? CONFIG.colors.dark : CONFIG.colors.light;
+      this.color = palette[Math.floor(Math.random() * palette.length)];
+      
+      this.rotation = Math.random() * Math.PI * 2;
+      this.rotationSpeed = (Math.random() - 0.5) * 0.05;
+      this.isFalling = false;
+    }
+
+    update(mouse: { x: number, y: number }, width: number, height: number, gravityEnabled: boolean, contentRect: DOMRect | null) {
+      if (gravityEnabled) {
+        this.vy += CONFIG.gravity;
+        this.y += this.vy;
+        this.x += this.vx;
+        
+        if (this.y + this.size > height) {
+          this.y = height - this.size;
+          this.vy *= -0.6; 
+          this.vx *= 0.9;  
+          if (Math.abs(this.vy) < 0.5) this.vy = 0;
+        }
+
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+
+      } else {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Mouse Repulsion
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < CONFIG.mouseRepulsionRadius) {
+          const force = (CONFIG.mouseRepulsionRadius - dist) / CONFIG.mouseRepulsionRadius;
+          const mx = dx / dist;
+          const my = dy / dist;
+          
+          this.vx += mx * force * CONFIG.mouseRepulsionForce;
+          this.vy += my * force * CONFIG.mouseRepulsionForce;
+        }
+
+        // Content Repulsion (Text Vicinity Check)
+        if (contentRect) {
+          // Check if particle is inside content box (with padding)
+          const pad = CONFIG.contentPadding;
+          const left = contentRect.left - pad;
+          const right = contentRect.right + pad;
+          const top = contentRect.top - pad;
+          const bottom = contentRect.bottom + pad;
+
+          if (this.x > left && this.x < right && this.y > top && this.y < bottom) {
+            // Find closest edge to push out to
+            const distLeft = Math.abs(this.x - left);
+            const distRight = Math.abs(this.x - right);
+            const distTop = Math.abs(this.y - top);
+            const distBottom = Math.abs(this.y - bottom);
+
+            const minDist = Math.min(distLeft, distRight, distTop, distBottom);
+
+            const pushForce = CONFIG.contentRepulsionForce;
+
+            if (minDist === distLeft) this.vx -= pushForce;
+            else if (minDist === distRight) this.vx += pushForce;
+            else if (minDist === distTop) this.vy -= pushForce;
+            else if (minDist === distBottom) this.vy += pushForce;
+          }
+        }
+
+        this.vx *= CONFIG.friction;
+        this.vy *= CONFIG.friction;
+
+        if (this.x < -50) this.x = width + 50;
+        if (this.x > width + 50) this.x = -50;
+        if (this.y < -50) this.y = height + 50;
+        if (this.y > height + 50) this.y = -50;
+      }
+
+      this.rotation += this.rotationSpeed;
+    }
+
+    draw(ctx: CanvasRenderingContext2D) {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.rotation);
+      ctx.fillStyle = this.color;
+      ctx.font = `bold ${this.size}px monospace`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(this.text, 0, 0);
+      ctx.restore();
+    }
+  }
+
+  const canvas = document.getElementById('physicsCanvas') as HTMLCanvasElement;
+  const contentContainer = document.getElementById('content-container');
+  const ctx = canvas.getContext('2d');
+  let particles: Particle[] = [];
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  let mouse = { x: -1000, y: -1000 };
+  let gravityEnabled = false;
+  let isDark = document.documentElement.classList.contains('dark');
+  let contentRect: DOMRect | null = null;
+
+  function init() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+    isDark = document.documentElement.classList.contains('dark');
+    
+    // Update content rect
+    if (contentContainer) {
+      contentRect = contentContainer.getBoundingClientRect();
+    }
+
+    particles = [];
+    for (let i = 0; i < CONFIG.particleCount; i++) {
+        // Try to spawn outside content rect if possible
+        let p = new Particle(width, height, isDark);
+        // Attempt to move it out if it spawns inside, strictly 1 try to avoid infinite loop
+        if (contentRect && 
+            p.x > contentRect.left && p.x < contentRect.right && 
+            p.y > contentRect.top && p.y < contentRect.bottom) {
+             p.x = Math.random() > 0.5 ? 0 : width; // Spawn at edge instead
+        }
+        particles.push(p);
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+
+    // Update rect in case of resize/scroll (though scroll might not change fixed pos relative to viewport, but good to be safe)
+    if (contentContainer) {
+       contentRect = contentContainer.getBoundingClientRect();
+    }
+
+    particles.forEach(p => {
+      p.update(mouse, width, height, gravityEnabled, contentRect);
+      p.draw(ctx);
+    });
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', init);
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+  
+  document.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a')) return;
+    // Don't trigger if clicking inside the content box either (user selection text etc)
+    if ((e.target as HTMLElement).closest('#content-container')) return;
+
+    gravityEnabled = !gravityEnabled;
+    gravityEnabled ? particles.forEach(p => { p.vy -= Math.random() * 10; p.vx += (Math.random() - 0.5) * 10; p.isFalling = true; }) 
+                   : particles.forEach(p => { p.vy = (Math.random() - 0.5) * 2; p.vx = (Math.random() - 0.5) * 2; p.isFalling = false; });
+  });
+
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'class') {
+        isDark = document.documentElement.classList.contains('dark');
+        particles.forEach(p => {
+           const palette = isDark ? CONFIG.colors.dark : CONFIG.colors.light;
+           p.color = palette[Math.floor(Math.random() * palette.length)];
+        });
+      }
+    });
+  });
+  observer.observe(document.documentElement, { attributes: true });
+
+  init();
+  animate();
+</script>
+
+<style>
+  /* Styles for the Animated Links (copied from LandingLayout) */
+  #animated-links a {
+    color: rgb(var(--accent)); /* Uses theme accent */
+    background-image: linear-gradient(
+      transparent calc(85% - 5px),
+      rgba(var(--accent), 0.35) 5px
+    );
+    background-size: 0 100%;
+    background-repeat: no-repeat;
+    display: inline;
+    transition: 0.5s cubic-bezier(0.65, -0.05, 0.25, 1);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #animated-links a:hover {
+    background-size: 100% 100%;
+  }
+
+  /* Ensure text is readable over canvas */
+  #animated-links {
+    position: relative;
+    z-index: 20;
+  }
+</style>
