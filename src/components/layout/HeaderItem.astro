@@ -18,14 +18,16 @@ const {
 
 <a
   href={href}
-  class={`flex items-center gap-1 whitespace-nowrap ${
-    isActive ? 'text-accent/100' : 'clickable'
+  class={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium ${
+    isActive 
+      ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' 
+      : 'text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white'
   }`}
   target={isAbsolute(href) ? '_blank' : '_self'}
   {role}
 >
-  {icon && <span class={`iconify text-xl ${icon}`} />}
-  <span class={isActive ? `underline` : ''}>
+  {icon && <span class={`iconify text-lg ${icon}`} />}
+  <span>
     {label}
   </span>
 </a>

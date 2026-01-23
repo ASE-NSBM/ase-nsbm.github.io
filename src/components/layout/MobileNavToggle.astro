@@ -1,48 +1,71 @@
 <mobile-nav-toggle>
   <button
-    class="flex items-center"
+    class="relative z-50 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors"
     title="Toggle mobile nav"
     aria-label="closed"
   >
-    <span
-      aria-hidden="true"
-      id="mobile-nav-icon"
-      class="clickable iconify tabler--menu-2"></span>
+    <div class="flex flex-col gap-1.5 w-5 transition-all duration-300 transform" id="hamburger-icon">
+        <span class="w-full h-0.5 bg-slate-800 dark:bg-white rounded-full transition-all duration-300 origin-center"></span>
+        <span class="w-full h-0.5 bg-slate-800 dark:bg-white rounded-full transition-all duration-300 origin-center"></span>
+    </div>
   </button>
 </mobile-nav-toggle>
 
 <script>
   class MobileNavToggle extends HTMLElement {
     connectedCallback() {
-      const iconOpen = 'tabler--x'
-      const iconClosed = 'tabler--menu-2'
-
       const nav = document.querySelector('#mobile-nav')
-      const icon = this.querySelector('#mobile-nav-icon')
       const button = this.querySelector('button')
+      const hamburger = this.querySelector('#hamburger-icon')
+      if (!nav || !button || !hamburger) return
 
-      if (!nav || !icon || !button) return
+      const spans = hamburger.querySelectorAll('span')
 
-      const navIsOpen = () => !nav.classList.contains('hidden')
+      const isOpen = () => nav.getAttribute('data-state') === 'open'
 
-      const close = () => {
-        nav.classList.add('hidden')
-        icon.classList.replace(iconOpen, iconClosed)
-        button.setAttribute('aria-label', 'closed')
+      const toggle = () => {
+        const open = isOpen()
+        if (open) {
+          // Close
+          nav.setAttribute('data-state', 'closed')
+          nav.classList.remove('translate-x-0')
+          nav.classList.add('translate-x-full')
+          
+          document.body.style.overflow = ''
+          
+          // Animate hamburger to lines
+          spans[0].classList.remove('rotate-45', 'translate-y-2')
+          spans[1].classList.remove('-rotate-45', '-translate-y-2')
+          hamburger.classList.remove('gap-0')
+          hamburger.classList.add('gap-1.5')
+          
+          button.setAttribute('aria-label', 'closed')
+        } else {
+          // Open
+          nav.setAttribute('data-state', 'open')
+          nav.classList.remove('translate-x-full')
+          nav.classList.add('translate-x-0')
+          
+          document.body.style.overflow = 'hidden'
+          
+          // Animate hamburger to X
+          hamburger.classList.remove('gap-1.5')
+          hamburger.classList.add('gap-0')
+          spans[0].classList.add('rotate-45', 'translate-y-0.5')
+          spans[1].classList.add('-rotate-45', '-translate-y-0.5')
+          
+          button.setAttribute('aria-label', 'open')
+        }
       }
 
-      const open = () => {
-        nav.classList.remove('hidden')
-        icon.classList.replace(iconClosed, iconOpen)
-        button.setAttribute('aria-label', 'open')
-      }
-
-      const handleToggle = () => {
-        if (navIsOpen()) close()
-        else open()
-      }
-
-      button.addEventListener('click', handleToggle)
+      button.addEventListener('click', toggle)
+      
+      // Close on link click
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (isOpen()) toggle()
+        })
+      })
     }
   }
 

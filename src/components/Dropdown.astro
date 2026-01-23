@@ -31,18 +31,18 @@ const menuId = generateItemId(`${label}-menu`)
     aria-controls={menuId}
     aria-expanded="false"
     class:list={[
-      'flex cursor-pointer items-center gap-1 whitespace-nowrap',
-      { 'text-accent/100': isActive },
-      { clickable: !isActive }
+      'flex cursor-pointer items-center gap-1 px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium',
+      { 'bg-blue-600 text-white shadow-md shadow-blue-500/20': isActive },
+      { 'text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white': !isActive }
     ]}
   >
-    {icon && <span class={`iconify text-xl ${icon}`} />}
-    <span class:list={[{ underline: isActive }]}>
+    {icon && <span class={`iconify text-lg ${icon}`} />}
+    <span>
       {label}
     </span>
     <span
       aria-hidden="true"
-      class="iconify tabler--chevron-down text-xl transition-transform duration-500"
+      class="iconify tabler--chevron-down text-sm transition-transform duration-300"
     ></span>
   </button>
 
@@ -50,7 +50,7 @@ const menuId = generateItemId(`${label}-menu`)
     id={menuId}
     role="menu"
     aria-labelledby={buttonId}
-    class="border-accent/25 bg-accent-bg absolute right-0 z-10 mt-4 hidden origin-top-right flex-col gap-2 rounded-sm border p-4 shadow-sm shadow-black"
+    class="absolute right-0 z-10 mt-4 hidden origin-top-right flex-col gap-1 rounded-2xl border border-slate-200/50 dark:border-white/10 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl p-2 shadow-xl ring-1 ring-black/5 dark:ring-white/5 min-w-[200px]"
   >
     {
       children.map((item) => (
