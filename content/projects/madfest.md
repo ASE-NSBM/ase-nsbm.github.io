@@ -2,7 +2,7 @@
 title: MadFest 2024 - Mobile Application Exhibition
 startDate: 2024-06-15
 endDate: 2024-06-15
-previewImage: '/events/MadFest.jpg'
+previewImage: '/events/MadFest.webp'
 tags:
   - Mobile Development
   - Innovation

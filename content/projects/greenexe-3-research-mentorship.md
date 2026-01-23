@@ -5,7 +5,7 @@ tags:
   - "Mentorship"
   - "Research"
   - "GreenEXE"
-previewImage: "/events/GreenEXE3.0ResearchMentorship.png"
+previewImage: "/events/GreenEXE3.0ResearchMentorship.webp"
 ---
 
 # GreenEXE 3.0 – Research Mentorship

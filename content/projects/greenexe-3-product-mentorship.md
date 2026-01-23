@@ -5,7 +5,7 @@ tags:
   - "Mentorship"
   - "Product"
   - "GreenEXE"
-previewImage: "/events/GreenEXE3.0ProductMentorship.png"
+previewImage: "/events/GreenEXE3.0ProductMentorship.webp"
 ---
 
 # GreenEXE 3.0 – Product Mentorship

@@ -1,0 +1,467 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+---
+
+<Layout frontmatter={{ title: "Terms and Conditions" }}>
+    <main class="bg-black min-h-screen p-8 md:p-16 font-mono text-[#00ff00]">
+        <style>
+            .terminal-text {
+                text-shadow: 0 0 5px #00ff00;
+            }
+            .scanline {
+                width: 100%;
+                height: 100px;
+                z-index: 10;
+                background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0, 255, 0, 0.2) 50%, rgba(0,0,0,0) 100%);
+                opacity: 0.1;
+                position: absolute;
+                bottom: 100%;
+                animation: scanline 10s linear infinite;
+                pointer-events: none;
+            }
+            @keyframes scanline {
+                0% { bottom: 100%; }
+                100% { bottom: -100px; }
+            }
+            ::-webkit-scrollbar {
+                width: 10px;
+            }
+            ::-webkit-scrollbar-track {
+                background: #000; 
+            }
+            ::-webkit-scrollbar-thumb {
+                background: #003300; 
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: #00ff00; 
+            }
+        </style>
+
+        <div class="fixed inset-0 pointer-events-none scanline"></div>
+
+        <div class="max-w-4xl mx-auto terminal-text relative z-20">
+            <h1 class="text-4xl md:text-6xl font-bold mb-8 uppercase border-b-2 border-[#00ff00] pb-4 animate-pulse">
+                > Terms & Conditions_
+            </h1>
+
+            <section class="mb-12 space-y-6">
+                <h2 class="text-3xl font-bold mb-4 decoration-wavy underline">CONSTITUTION AND GOVERNANCE FRAMEWORK</h2>
+                <h3 class="text-2xl mb-2">Association of Software Engineering (ASE)</h3>
+                
+                <div class="space-y-6 opacity-90 text-xl leading-relaxed">
+                    <h4 class="text-2xl font-bold mt-10">PREAMBLE</h4>
+                    <p>The Association of Software Engineering (ASE) is established as the official student professional body representing Software Engineering undergraduates of NSBM Green University. This Constitution serves as the supreme governing document of ASE and is intended to ensure continuity, accountability, professionalism, inclusivity, and long-term institutional stability beyond individual boards or members.</p>
+                    <p>This Constitution is intentionally descriptive and explanatory to avoid ambiguity, prevent misuse of authority, and provide clear guidance for future leadership.</p>
+
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE I – GENERAL PROVISIONS</h4>
+                    <p>1.1 The Association shall be known as the Association of Software Engineering (ASE).</p>
+                    <p>1.2 ASE shall function under the Faculty of Computing, NSBM Green University, and shall at all times comply with university statutes, policies, and codes of conduct.</p>
+                    <p>1.3 This Constitution shall be binding on all ASE members, subcommittees, committees, boards, and office bearers.</p>
+                    <p>1.4 Where interpretation is required, such interpretation shall prioritize the objectives, values, and academic integrity of ASE.</p>
+
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE II – VISION, MISSION, AND OBJECTIVES</h4>
+                    <p><strong>2.1 Vision</strong><br/>To cultivate a generation of competent, ethical, and industry-ready software engineers through leadership, innovation, and professional excellence.</p>
+                    <p><strong>2.2 Mission</strong><br/>To bridge academia and industry by delivering high-quality technical initiatives, leadership opportunities, and professional exposure while maintaining strong ethical and academic standards.</p>
+                    <p><strong>2.3 Objectives</strong></p>
+                    <ul class="list-disc pl-5">
+                        <li>Promote software engineering knowledge and best practices</li>
+                        <li>Facilitate continuous industry engagement</li>
+                        <li>Develop leadership, teamwork, and responsibility</li>
+                        <li>Ensure inclusivity, transparency, and professionalism</li>
+                    </ul>
+
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE III – MEMBERSHIP</h4>
+                    <p>3.1 Membership shall be open to all registered Software Engineering undergraduates of NSBM Green University.</p>
+                    <p>3.2 Membership Categories:</p>
+                    <ul class="list-disc pl-5">
+                        <li>General Members/Volunteers</li>
+                        <li>Subcommittee Members</li>
+                        <li>Board Members</li>
+                    </ul>
+                    <p>3.3 All members shall adhere to ASE’s Code of Conduct and this Constitution.</p>
+                    <p>3.4 Membership may be suspended or terminated for violations of this Constitution or university regulations.</p>
+
+                     <h4 class="text-2xl font-bold mt-10">ARTICLE IV – GOVERNING STRUCTURE</h4>
+                    <p>4.1 ASE shall be governed by a Board of Officials, supported by functional committees and subcommittees.</p>
+                    <p>4.2 Academic oversight shall be provided by lecturers and Faculty-in-Charge appointed by the university.</p>
+                    <p>4.3 Authority flows from the Board, subject to faculty supervision and this Constitution.</p>
+
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE V – BOARD OF OFFICIALS (COMPOSITION)</h4>
+                    <p>The Board of Officials shall consist of two tiers:</p>
+                    <p><strong>A. Executive Board</strong></p>
+                    <ul class="list-disc pl-5">
+                        <li>President</li>
+                        <li>Vice President - Events & Wellbeing</li>
+                        <li>Vice President - Marketing</li>
+                        <li>Secretary</li>
+                        <li>Vice Secretary</li>
+                        <li>Treasurer</li>
+                        <li>Vice Treasurer</li>
+                    </ul>
+                    <p><strong>B. Functional Board</strong></p>
+                    <ul class="list-disc pl-5">
+                         <li>Chief Organizer</li>
+                        <li>Co-Chief Organizer</li>
+                        <li>Chief of Technical Affairs</li>
+                        <li>Chief Designer</li>
+                        <li>Assistant Chief Designer</li>
+                        <li>Chief Media Creator</li>
+                        <li>Chief Editor</li>
+                    </ul>
+                    <p>Each role shall have defined authority, responsibility, and accountability as detailed in Annex I.</p>
+
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE VI – BOARD TERM, SELECTION CYCLE, AND PROBATION</h4>
+                    <p>6.1 The official term of the Board shall run from March to March of the following year.</p>
+                    <p>6.2 Due to university graduation timelines:</p>
+                     <ul class="list-disc pl-5">
+                        <li>Applications and selection shall occur in January</li>
+                        <li>The selected board shall undergo a probationary period until March</li>
+                    </ul>
+                    <p>6.3 During probation, the incoming board shall operate under the supervision of the outgoing board, without full autonomous authority.</p>
+                    <p>6.4 Full authority shall be conferred only upon successful completion of probation and formal Badging & Inauguration Ceremony in March.</p>
+
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE VII – BOARD TRANSFER & TRAINING INITIATIVE</h4>
+                    <p>7.1 ASE shall conduct a mandatory Board Transfer Initiative to ensure continuity and institutional memory.</p>
+                    <p>7.2 This initiative shall include:</p>
+                    <ul class="list-disc pl-5">
+                        <li>Shadowing outgoing board members</li>
+                        <li>Hands-on operational training</li>
+                        <li>Performance inspection and evaluation</li>
+                    </ul>
+                    <p>7.3 Failure to demonstrate competency, commitment, or ethical conduct during probation may result in reassignment or removal with faculty concurrence.</p>
+
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE VIII – ELIGIBILITY & EXPERIENCE REQUIREMENTS</h4>
+                    <p>8.1 Board applicants must be active ASE members in good standing.</p>
+                    <p>8.2 Applicants must demonstrate prior involvement in ASE activities, committees, or subcommittees.</p>
+                    <p>8.3 Leadership capability, reliability, professionalism, and discipline shall be core evaluation criteria.</p>
+
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE IX – MINIMUM EVENT REQUIREMENT (STRICT POLICY)</h4>
+                    <p>9.1 ASE shall conduct a minimum of six (6) officially documented events per board term; this plan can be provided for discussion during the probationary period.</p>
+                    <p>9.2 Events may include technical workshops, industry sessions, competitions, academic initiatives, or professional development programs.</p>
+                    <p>9.3 Each event must be formally documented with proposals, approvals, budgets, and post-event reports.</p>
+                    <p>9.4 Failure to meet the minimum event requirement shall require written justification to faculty authorities and may impact board evaluation.</p>
+
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE X – NO-REPEAT POLICY</h4>
+                    <p>10.1 No board member shall hold the same board position for consecutive terms.</p>
+                    <p>10.2 Previous board members may apply for different positions, subject to eligibility.</p>
+                    <p>10.3 This policy exists to promote leadership rotation, fairness, and long-term organizational health.</p>
+
+                     <h4 class="text-2xl font-bold mt-10">ARTICLE XI – APPLICATION & SELECTION PROCESS</h4>
+                    <p>11.1 A formal call for applications shall be issued annually.</p>
+                    <p>11.2 Selection may include application screening, interviews, and evaluations.</p>
+                    <p>11.3 Final appointments shall require faculty concurrence.</p>
+
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE XII – DUTIES, ACCOUNTABILITY & ATTENDANCE</h4>
+                    <p>12.1 Board members shall execute duties with diligence, professionalism, and accountability.</p>
+                    <p>12.2 Attendance at meetings, events, and official activities is required.</p>
+                    <p>12.3 Negligence, inactivity, or misconduct constitutes grounds for disciplinary action.</p>
+
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE XIII – SUBCOMMITTEE STRUCTURE (LOWER BATCHES)</h4>
+                    <p>13.1 Subcommittees shall primarily consist of junior undergraduates.</p>
+                    <p>13.2 Selection shall be based on interest, commitment, and basic skill competency; this can be done unanimously by professionals in the top board and those of the sole hierarchy only upon completion would report to the faculty and get it approved.</p>
+                    <p>13.3 Subcommittees function as leadership grooming and skill development platforms.</p>
+                    <p>13.4 Subcommittees can contain students of any degree program since it is more of fostering an open culture.</p>
+                    
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE XIV – PROGRESSION PATH</h4>
+                    <p>14.1 ASE shall maintain a performance-based progression path: Subcommittee → Committee → Board</p>
+                    <p>14.2 Advancement is not automatic and requires evaluation at times based on consideration there may be interference to directly apply and join the board based on configuration.</p>
+
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE XV – FINANCIAL GOVERNANCE</h4>
+                    <p>15.1 ASE finances shall be transparent, auditable, and properly documented.</p>
+                    <p>15.2 All financial decisions require approval through defined authority structures.</p>
+
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE XVI – NO MEMBER MONEY COLLECTION POLICY</h4>
+                    <p>16.1 ASE shall not collect money from members under any circumstances.</p>
+                    <p>16.2 Exceptions require written approval from faculty and university authorities.</p>
+                    <p>16.3 This policy ensures inclusivity and prevents financial burden.</p>
+
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE XVII – SPONSORSHIP & FUNDING</h4>
+                    <p>17.1 ASE activities shall be funded through sponsorships, university allocations, and approved partnerships.</p>
+                    <p>17.2 Sponsors must align with ASE’s academic and ethical values.</p>
+
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE XVIII – NO STALL POLICY (TECH CLUB PRINCIPLE)</h4>
+                    <p>18.1 ASE shall not organize standalone food, merchandise, or sales stalls.</p>
+                    <p>18.2 Engagement shall focus on technical showcases, demonstrations, and exhibitions with those events creating a major forefront; sub side stalls can be allowed but are prohibited as the main motive.</p>
+
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE XIX – CODE OF CONDUCT & ETHICS</h4>
+                    <p>19.1 All members shall uphold professionalism, respect, and inclusivity.</p>
+                    <p>19.2 Harassment, discrimination, or misconduct is strictly prohibited.</p>
+
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE XX – DISCIPLINARY PROCEDURES</h4>
+                    <p>20.1 Violations shall be investigated formally with due process.</p>
+                    <p>20.2 Penalties may include warnings, suspension, removal, or reporting to university authorities.</p>
+
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE XXI – AMENDMENTS & INTERPRETATION</h4>
+                    <p>21.1 Amendments require board approval and faculty endorsement.</p>
+                    <p>21.2 Interpretations shall prioritize ASE’s objectives and institutional integrity.</p>
+
+                    <h4 class="text-2xl font-bold mt-10">ARTICLE XXII – RATIFICATION</h4>
+                    <p>22.1 This Constitution shall take effect upon formal approval.</p>
+                    <p>22.2 Ratified by:</p>
+                    <ul class="list-none pl-0 space-y-2">
+                        <li>President, ASE - Darren Victoria</li>
+                        <li>Vice President , ASE - Raminda Dulmin</li>
+                        <li>Mistress-in-Charge - Ms.Nimesha Hewawasm</li>
+                        <li>Head of Department - Mr.Naji Saravanapavan</li>
+                        <li>Dean of the Faculty - Dr.Rasika Ranaweera</li>
+                     </ul>
+
+                    <div class="border-t border-[#00ff00] my-12 pt-8">
+                         <h2 class="text-2xl font-bold mb-4 decoration-wavy underline">ANNEX I – BOARD ROLES & RESPONSIBILITIES</h2>
+                         <p>This Annex defines the authority, responsibilities, and accountability of each Board position of the Association of Software Engineering (ASE).</p>
+                         
+                         <h3 class="text-xl font-bold mt-8 mb-4 border-b border-[#00ff00] inline-block">A. EXECUTIVE BOARD</h3>
+                         
+                         <h4 class="text-lg font-bold mt-6 text-[#ccffcc]">1. President</h4>
+                         <p class="italic mb-2">The President is the chief executive authority of ASE and holds ultimate responsibility for governance, strategic direction, and institutional integrity.</p>
+                         <p class="font-bold">Responsibilities:</p>
+                         <ul class="list-disc pl-5 mb-2">
+                             <li>Provide overall leadership, vision, and strategic direction for ASE</li>
+                             <li>Represent ASE in all official engagements with the university, faculty, industry partners, and external organizations</li>
+                             <li>Preside over board meetings and ensure effective decision-making</li>
+                             <li>Ensure compliance with the Constitution, university regulations, and faculty guidance</li>
+                             <li>Oversee and coordinate the work of all Executive and Functional Board members</li>
+                             <li>Act as the final operational authority, subject to faculty oversight</li>
+                         </ul>
+                         <p class="font-bold">Accountability:</p>
+                         <p>Accountable to the Faculty-in-Charge and the ASE membership for the overall performance, discipline, and reputation of the Association.</p>
+
+                         <h4 class="text-lg font-bold mt-6 text-[#ccffcc]">2. Vice President – Events & Wellbeing</h4>
+                         <p class="italic mb-2">The Vice President – Events & Wellbeing oversees event delivery while safeguarding member engagement, workload balance, and wellbeing.</p>
+                         <p class="font-bold">Responsibilities:</p>
+                         <ul class="list-disc pl-5 mb-2">
+                             <li>Oversee planning, coordination, and execution quality of all ASE events</li>
+                             <li>Ensure events align with ASE’s academic and professional objectives</li>
+                             <li>Monitor board and member workload to prevent burnout</li>
+                             <li>Act as a mediator in internal conflicts when required</li>
+                             <li>Assume presidential duties when formally delegated</li>
+                         </ul>
+                         <p class="font-bold">Accountability:</p>
+                         <p>Accountable to the President for event standards and member wellbeing.</p>
+                         
+                         <h4 class="text-lg font-bold mt-6 text-[#ccffcc]">3. Vice President – Marketing</h4>
+                         <p class="italic mb-2">The Vice President – Marketing is responsible for branding, outreach, and public visibility of ASE.</p>
+                         <p class="font-bold">Responsibilities:</p>
+                         <ul class="list-disc pl-5 mb-2">
+                            <li>Develop and oversee ASE’s marketing and communication strategy</li>
+                            <li>Ensure consistent branding across all platforms and materials</li>
+                            <li>Coordinate promotional campaigns for events and initiatives</li>
+                            <li>Supervise Design, Media, and Editorial functions</li>
+                            <li>Manage external communications and public perception</li>
+                         </ul>
+                         <p class="font-bold">Accountability:</p>
+                         <p>Accountable to the President for brand integrity and outreach effectiveness.</p>
+
+                         <h4 class="text-lg font-bold mt-6 text-[#ccffcc]">4. Secretary</h4>
+                         <p class="italic mb-2">The Secretary is the chief administrative and documentation authority of ASE.</p>
+                         <p class="font-bold">Responsibilities:</p>
+                         <ul class="list-disc pl-5 mb-2">
+                             <li>Maintain official records, minutes, approvals, and correspondence</li>
+                             <li>Ensure proper documentation of meetings, events, and decisions</li>
+                             <li>Manage constitutional records and official communications</li>
+                             <li>Coordinate internal administrative processes</li>
+                         </ul>
+                         <p class="font-bold">Accountability:</p>
+                         <p>Accountable to the President for accuracy, completeness, and integrity of records.</p>
+                         
+                         <h4 class="text-lg font-bold mt-6 text-[#ccffcc]">5. Vice Secretary</h4>
+                         <p class="italic mb-2">The Vice Secretary supports the Secretary and ensures administrative continuity.</p>
+                         <p class="font-bold">Responsibilities:</p>
+                         <ul class="list-disc pl-5 mb-2">
+                             <li>Assist in documentation and record-keeping</li>
+                             <li>Support member coordination and internal communications</li>
+                             <li>Assume secretarial duties in the absence of the Secretary</li>
+                         </ul>
+                         <p class="font-bold">Accountability:</p>
+                         <p>Accountable to the Secretary.</p>
+
+                         <h4 class="text-lg font-bold mt-6 text-[#ccffcc]">6. Treasurer</h4>
+                         <p class="italic mb-2">The Treasurer is the chief financial authority of ASE.</p>
+                         <p class="font-bold">Responsibilities:</p>
+                         <ul class="list-disc pl-5 mb-2">
+                             <li>Plan, manage, and monitor all financial activities</li>
+                             <li>Ensure strict compliance with the no-member-money-collection policy</li>
+                             <li>Maintain transparent and auditable financial records</li>
+                             <li>Manage sponsorship funds and approved expenditures</li>
+                             <li>Prepare financial summaries when required</li>
+                         </ul>
+                         <p class="font-bold">Accountability:</p>
+                         <p>Accountable to the President and Faculty-in-Charge for financial integrity and transparency.</p>
+                         
+                         <h4 class="text-lg font-bold mt-6 text-[#ccffcc]">7. Vice Treasurer</h4>
+                         <p class="italic mb-2">The Vice Treasurer supports financial operations and continuity.</p>
+                         <p class="font-bold">Responsibilities:</p>
+                         <ul class="list-disc pl-5 mb-2">
+                             <li>Assist in budget tracking and financial documentation</li>
+                             <li>Support sponsorship coordination and expense monitoring</li>
+                             <li>Assume treasurer duties when required</li>
+                         </ul>
+                         <p class="font-bold">Accountability:</p>
+                         <p>Accountable to the Treasurer.</p>
+                         
+                         <h3 class="text-xl font-bold mt-8 mb-4 border-b border-[#00ff00] inline-block">B. FUNCTIONAL BOARD</h3>
+                         
+                         <h4 class="text-2xl font-bold mt-6 text-[#ccffcc]">8. Chief Organizer</h4>
+                         <p class="italic mb-2">The Chief Organizer leads the operational execution of ASE events and initiatives.</p>
+                         <p class="font-bold">Responsibilities:</p>
+                         <ul class="list-disc pl-5 mb-2">
+                             <li>Coordinate logistics, timelines, and operational planning</li>
+                             <li>Ensure smooth execution of all approved events</li>
+                             <li>Supervise organizing teams and volunteers</li>
+                         </ul>
+                         <p class="font-bold">Accountability:</p>
+                         <p>Accountable to the Vice President – Events & Wellbeing.</p>
+                         
+                         <h4 class="text-2xl font-bold mt-6 text-[#ccffcc]">9. Co-Chief Organizer</h4>
+                         <p class="italic mb-2">The Co-Chief Organizer supports and complements the Chief Organizer.</p>
+                         <p class="font-bold">Responsibilities:</p>
+                         <ul class="list-disc pl-5 mb-2">
+                             <li>Manage parallel events or operational segments</li>
+                             <li>Coordinate volunteers and on-ground teams</li>
+                             <li>Support contingency planning and operational readiness</li>
+                         </ul>
+                         <p class="font-bold">Accountability:</p>
+                         <p>Accountable to the Chief Organizer.</p>
+                         
+                         <h4 class="text-2xl font-bold mt-6 text-[#ccffcc]">10. Chief of Technical Affairs</h4>
+                         <p class="italic mb-2">The Chief of Technical Affairs oversees all technical initiatives of ASE.</p>
+                         <p class="font-bold">Responsibilities:</p>
+                         <ul class="list-disc pl-5 mb-2">
+                             <li>Lead technical planning for workshops, hackathons, and projects</li>
+                             <li>Ensure technical relevance, quality, and academic alignment</li>
+                             <li>Mentor technical teams and subcommittees</li>
+                         </ul>
+                         <p class="font-bold">Accountability:</p>
+                         <p>Accountable to the President and Vice President – Events & Wellbeing.</p>
+
+                         <h4 class="text-2xl font-bold mt-6 text-[#ccffcc]">11. Chief Designer</h4>
+                         <p class="italic mb-2">The Chief Designer leads ASE’s creative direction and visual identity.</p>
+                         <p class="font-bold">Responsibilities:</p>
+                         <ul class="list-disc pl-5 mb-2">
+                             <li>Define and maintain ASE’s design standards and branding</li>
+                             <li>Oversee all creative outputs and visual assets</li>
+                             <li>Coordinate with Marketing and Media teams</li>
+                         </ul>
+                         <p class="font-bold">Accountability:</p>
+                         <p>Accountable to the Vice President – Marketing.</p>
+                         
+                         <h4 class="text-2xl font-bold mt-6 text-[#ccffcc]">12. Assistant Chief Designer</h4>
+                         <p class="italic mb-2">The Assistant Chief Designer supports creative execution and continuity.</p>
+                         <p class="font-bold">Responsibilities:</p>
+                         <ul class="list-disc pl-5 mb-2">
+                             <li>Assist in design production and creative development</li>
+                             <li>Handle delegated design responsibilities</li>
+                             <li>Ensure design timelines and quality standards are met</li>
+                         </ul>
+                         <p class="font-bold">Accountability:</p>
+                         <p>Accountable to the Chief Designer.</p>
+                         
+                         <h4 class="text-2xl font-bold mt-6 text-[#ccffcc]">13. Chief Media Creator</h4>
+                         <p class="italic mb-2">The Chief Media Creator leads all media production and coverage.</p>
+                         <p class="font-bold">Responsibilities:</p>
+                         <ul class="list-disc pl-5 mb-2">
+                             <li>Oversee photography, videography, and digital media production</li>
+                             <li>Ensure professional media coverage of ASE activities</li>
+                             <li>Maintain and archive ASE media assets</li>
+                         </ul>
+                         <p class="font-bold">Accountability:</p>
+                         <p>Accountable to the Vice President – Marketing.</p>
+
+                         <h4 class="text-2xl font-bold mt-6 text-[#ccffcc]">14. Chief Editor</h4>
+                         <p class="italic mb-2">The Chief Editor ensures quality, clarity, and consistency of written content.</p>
+                         <p class="font-bold">Responsibilities:</p>
+                         <ul class="list-disc pl-5 mb-2">
+                             <li>Oversee editorial standards for all ASE publications</li>
+                             <li>Review and approve official written communications</li>
+                             <li>Maintain professionalism and consistency in language</li>
+                         </ul>
+                         <p class="font-bold">Accountability:</p>
+                         <p>Accountable to the Secretary and Vice President – Marketing.</p>
+
+                    </div>
+
+                    <div class="border-t border-[#00ff00] my-12 pt-8">
+                        <h2 class="text-2xl font-bold mb-4 decoration-wavy underline">ANNEX II – EVENT DOCUMENTATION STANDARDS</h2>
+                        <p>This Annex establishes the mandatory standards for planning, approving, executing, and documenting all official events conducted by the Association of Software Engineering (ASE). These standards exist to ensure quality, accountability, transparency, and continuity.</p>
+
+                        <h4 class="text-2xl font-bold mt-6 text-[#ccffcc]">1. Definition of an Official ASE Event</h4>
+                        <p>An official ASE event is any activity conducted under the ASE name, brand, or authority, including but not limited to:</p>
+                        <ul class="list-disc pl-5 mb-2">
+                            <li>Technical workshops and seminars</li>
+                            <li>Industry visits or exposure events</li>
+                            <li>Competitions and hackathons</li>
+                            <li>Academic or professional development initiatives</li>
+                        </ul>
+                        <p>All official events shall comply with this Annex.</p>
+
+                        <h4 class="text-2xl font-bold mt-6 text-[#ccffcc]">2. Minimum Event Requirement</h4>
+                        <ul class="list-disc pl-5 mb-2">
+                            <li>ASE shall conduct a minimum of six (6) officially documented events per board term.</li>
+                            <li>Each event must be approved and recorded as per this Annex.</li>
+                            <li>Failure to meet this requirement shall require written justification to faculty authorities.</li>
+                        </ul>
+
+                        <h4 class="text-2xl font-bold mt-6 text-[#ccffcc]">3. Event Proposal Requirements</h4>
+                        <p>Each event must be supported by a formal proposal prior to approval, including:</p>
+                        <ul class="list-disc pl-5 mb-2">
+                            <li>Event title, objective, and scope</li>
+                            <li>Target audience</li>
+                            <li>Date, time, and venue (or platform)</li>
+                            <li>Organizing team and responsible leads</li>
+                            <li>Preliminary budget and funding source</li>
+                            <li>Risk and contingency considerations</li>
+                        </ul>
+
+                        <h4 class="text-2xl font-bold mt-6 text-[#ccffcc]">4. Event Approval Process</h4>
+                        <ul class="list-disc pl-5 mb-2">
+                            <li>All event proposals must receive board-level approval.</li>
+                            <li>Events involving finances, sponsors, or external parties require faculty concurrence.</li>
+                            <li>No event may proceed without documented approval.</li>
+                        </ul>
+
+                        <h4 class="text-2xl font-bold mt-6 text-[#ccffcc]">5. Event Execution Standards</h4>
+                        <ul class="list-disc pl-5 mb-2">
+                            <li>Events shall be conducted in a professional, inclusive, and orderly manner.</li>
+                            <li>Assigned board and committee members must be present and accountable.</li>
+                            <li>ASE branding and conduct standards must be upheld at all times.</li>
+                        </ul>
+
+                        <h4 class="text-2xl font-bold mt-6 text-[#ccffcc]">6. Financial Compliance</h4>
+                        <ul class="list-disc pl-5 mb-2">
+                            <li>No money shall be collected from members for events.</li>
+                            <li>All event expenses must align with approved budgets.</li>
+                            <li>Sponsorship usage must follow financial governance policies.</li>
+                        </ul>
+
+                        <h4 class="text-2xl font-bold mt-6 text-[#ccffcc]">7. Post-Event Documentation</h4>
+                        <p>Within a reasonable period after completion, each event must produce:</p>
+                        <ul class="list-disc pl-5 mb-2">
+                            <li>Event summary and outcomes</li>
+                            <li>Attendance or participation records</li>
+                            <li>Financial summary (if applicable)</li>
+                            <li>Media and documentation archive</li>
+                        </ul>
+
+                        <h4 class="text-2xl font-bold mt-6 text-[#ccffcc]">8. Record Maintenance</h4>
+                        <ul class="list-disc pl-5 mb-2">
+                            <li>All event documents shall be archived by the Secretary.</li>
+                            <li>Records shall form part of ASE’s institutional memory and handover process.</li>
+                        </ul>
+
+                         <h4 class="text-2xl font-bold mt-6 text-[#ccffcc]">9. Review and Accountability</h4>
+                        <ul class="list-disc pl-5 mb-2">
+                            <li>Event quality and compliance may be reviewed by the Board and Faculty-in-Charge.</li>
+                            <li>Repeated failure to comply may result in corrective or disciplinary action.</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </section>
+             <div class="text-center mt-16 pb-8">
+                <a href="/" class="inline-block px-6 py-3 border border-[#00ff00] hover:bg-[#00ff00] hover:text-black transition-colors duration-300 uppercase tracking-widest font-bold">
+                    &lt; Back to Home
+                </a>
+            </div>
+        </div>
+    </main>
+</Layout>

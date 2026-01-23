@@ -12,7 +12,8 @@ export default defineThemeConfig({
     { label: 'Team', href: '/team/' },
     { label: 'Events', href: '/events/' },
     { label: 'Blog', href: '/posts/' },
-    { label: 'Timeline', href: '/timeline/' }
+    { label: 'Timeline', href: '/timeline/' },
+    { label: 'Join Us', href: '/intake/' }
     // { label: 'Excom', href: '/excom/' }
     // {
     //   label: 'Other pages',

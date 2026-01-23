@@ -5,7 +5,7 @@ tags:
   - "Competition"
   - "Grand Final"
   - "GreenEXE"
-previewImage: "/events/GreenEXE3.0GrandFinal.png"
+previewImage: "/events/GreenEXE3.0GrandFinal.webp"
 ---
 
 # GreenEXE 3.0 - Grand Finals

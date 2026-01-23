@@ -15,6 +15,7 @@ export type Props = BaseLayoutProps & {
     activeHeaderLink: string
     scrollToTop: boolean
     searchable: boolean
+    fullWidth: boolean
   }>
 }
 
@@ -24,7 +25,8 @@ const {
   scrollProgress = config.scrollProgress,
   scrollToTop = config.scrollToTop,
   activeHeaderLink,
-  searchable = false
+  searchable = false,
+  fullWidth = false
 } = frontmatter
 ---
 
@@ -32,7 +34,10 @@ const {
   <Header activeHeaderLink={activeHeaderLink} />
   
   <div
-    class="mx-auto flex min-h-[100svh] w-full max-w-[95%] flex-col justify-between md:max-w-7xl"
+    class:list={[
+      'mx-auto flex min-h-[100svh] w-full flex-col justify-between',
+      fullWidth ? '' : 'max-w-[95%] md:max-w-7xl'
+    ]}
   >
     <slot name="top" />
 
@@ -47,9 +52,17 @@ const {
       class="mt-6 sm:mt-12"
       data-pagefind-body={searchable ? true : undefined}
     >
-      <Prose class="mb-6 sm:mb-12">
-        <slot />
-      </Prose>
+      {
+        fullWidth ? (
+          <div class="mb-6 sm:mb-12">
+            <slot />
+          </div>
+        ) : (
+          <Prose class="mb-6 sm:mb-12">
+            <slot />
+          </Prose>
+        )
+      }
     </main>
     <slot name="bottom" />
     <Footer />

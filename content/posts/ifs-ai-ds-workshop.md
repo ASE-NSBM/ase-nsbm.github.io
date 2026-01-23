@@ -6,7 +6,7 @@ tags:
   - "Workshop"
   - "AI"
   - "Data Science"
-previewImage: "/events/IFSAI&DSWorkshop.jpg"
+previewImage: "/events/IFSAI&DSWorkshop.webp"
 ---
 
 # IFS AI & DS Workshop

@@ -5,7 +5,7 @@ description: "A formal recognition event organized to officially badge the newly
 tags:
   - "Ceremony"
   - "Leadership"
-previewImage: "/events/SubcommitteeBadging.png"
+previewImage: "/events/SubcommitteeBadging.webp"
 ---
 
 # Subcommittee Badging Ceremony 2025

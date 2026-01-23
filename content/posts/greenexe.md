@@ -5,11 +5,11 @@ publishedDate: 2025-03-01
 tags:
   - Software Engineering
   - Competition
-previewImage: '/events/GreenEXE2.0.jpg'
+previewImage: '/events/GreenEXE2.0.webp'
 
 ---
 
-![GreenEXE 2.0](/events/GreenEXE2.0.jpg)
+![GreenEXE 2.0](/events/GreenEXE2.0.webp)
 
 # GreenEXE 2.0 - The Ultimate App Development Challenge 🚀
 

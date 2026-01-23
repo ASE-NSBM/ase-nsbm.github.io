@@ -5,7 +5,7 @@ description: "The official appointment ceremony for the new ASE Board, empowerin
 tags:
   - "Ceremony"
   - "Leadership"
-previewImage: "/events/Inaugration25'.jpg"
+previewImage: "/events/Inaugration25'.webp"
 ---
 
 # Inauguration 25’

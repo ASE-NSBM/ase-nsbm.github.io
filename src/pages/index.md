@@ -10,6 +10,6 @@ keywords: ASE, ASE NSBM, Software Engineering NSBM, NSBM Related clubs, NSBM Bes
 We're a vibrant [team](/team/) driving Software innovation.  
 Our history is short but rich, which you can learn [About Us](/about/). Our [Events](/posts/) have shaped talent, and brought hidden skills to life.
 
-Explore our future [Timeline](/timeline/). Ready to grow and innovate? [Join Us](/sub-communities/) today!
+Explore our future [Timeline](/timeline/). Ready to grow and innovate? [Join Us](/intake/) today!
 
 <!-- [Join Us](/joinus/) -->

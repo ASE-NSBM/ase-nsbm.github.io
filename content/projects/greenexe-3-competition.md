@@ -4,7 +4,7 @@ startDate: 2025-09-28
 tags:
   - "Competition"
   - "GreenEXE"
-previewImage: "/events/GreenEXE3.0CompetitionRound.png"
+previewImage: "/events/GreenEXE3.0CompetitionRound.webp"
 ---
 
 # GreenEXE 3.0 – Competition Round

@@ -5,7 +5,7 @@ description: "A technical and creative session that immersed participants in the
 tags:
   - "Workshop"
   - "GameDev"
-previewImage: "/events/GameDevelopment.jpg"
+previewImage: "/events/GameDevelopment.webp"
 ---
 
 # Game Development Workshop

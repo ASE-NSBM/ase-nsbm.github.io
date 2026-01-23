@@ -4,7 +4,7 @@ startDate: 2025-04-15
 tags:
   - "Workshop"
   - "GameDev"
-previewImage: "/events/GameDevelopment.jpg"
+previewImage: "/events/GameDevelopment.webp"
 ---
 
 # Game Development Workshop

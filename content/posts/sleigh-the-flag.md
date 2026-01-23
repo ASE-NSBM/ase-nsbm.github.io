@@ -6,7 +6,7 @@ tags:
   - "CTF"
   - "Security"
   - "Competition"
-previewImage: "/events/SleightheFlag.jpg"
+previewImage: "/events/SleightheFlag.webp"
 ---
 
 # Sleigh the Flag Inter-University CTF

@@ -2,1285 +2,211 @@
 import PageLayout from '@/layouts/PageLayout.astro'
 import { Image } from 'astro:assets'
 import logo from '@/assets/logo.svg'
-import config from '@/theme.config'
 
-// You'll need to create or import these images
-// These are placeholders - replace with actual image imports
-const teamImage = '/joinus.png'
-
-// Create proper frontmatter for PageLayout
 const frontmatter = {
-  title: 'About | Association of Software Engineering',
-  description:
-    'Learn about the Association of Software Engineering at NSBM, our history, mission, and key events',
+  title: 'About Us | Association of Software Engineering',
+  description: 'Innovate. Collaborate. Excel. Learn about our mission, vision, and history.',
   activeHeaderLink: 'About',
-  searchable: true
+  searchable: true,
+  fullWidth: true
 }
+
+const timeline = [
+  {
+    year: '2024',
+    title: 'The Inception',
+    desc: 'Established as the Student Circle of Software Engineering under the Dept. of Software Engineering and Information Systems.',
+    icon: 'tabler--bulb'
+  },
+  {
+    year: '2024',
+    title: 'Foundations Laid',
+    desc: 'Organized inaugural events including GreenEXE 2.0 and MadFest, setting the standard for student-led initiatives.',
+    icon: 'tabler--flag'
+  },
+  {
+    year: '2025',
+    title: 'A New Era',
+    desc: 'Rebranded as the "Association of Software Engineering" (ASE) to reflect our expanding scope and influence within the university.',
+    icon: 'tabler--rocket'
+  }
+]
+
+// Join Us / Team placeholder image - ensure this exists or use a valid one from public
+// Using a placeholder from the previous file or a generic one if not found.
+// The previous file had '/joinus.webp', assuming it exists in public.
+const teamImage = '/joinus.webp' 
 ---
 
 <PageLayout {frontmatter}>
+  
   <!-- Hero Section -->
-  <div class="hero-container">
-    <div class="logo-container fade-in">
-      <Image
-        src={logo}
-        alt="ASE Logo"
-        width={200}
-        height={200}
-        class="logo-pulse"
-      />
+  <section class="relative min-h-[80vh] flex flex-col items-center justify-center overflow-hidden pt-20 pb-10 bg-slate-100 dark:bg-transparent transition-colors duration-500">
+    <!-- Animated Background -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-60 dark:opacity-100 transition-opacity duration-500">
+      <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[100px] animate-pulse-slow"></div>
+      <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-green-600/10 rounded-full blur-[100px] animate-pulse-slow delay-1000"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-white/5 to-transparent blur-3xl dark:opacity-100 opacity-0"></div>
     </div>
 
-    <h1 class="title slide-up">
-      <span class="text-accent">{'Association of'}</span>
-      <br />
-      <span class="text-neon-green">{'Software Engineering'}</span>
-    </h1>
-
-    <div class="subtitle slide-up-delay">
-      <div class="typing-text">Innovate. Collaborate. Excel.</div>
-    </div>
-
-    <!-- Add the "Read More" button -->
-    <button class="read-more-button" onclick="window.location.reload()">
-      Read More
-    </button>
-  </div>
-
-  <!-- About Section -->
-  <section class="content-section fade-in-section">
-    <h2 class="section-heading">About Us</h2>
-    <div class="about-content">
-      <div class="about-text">
-        <p>
-          The Association of Software Engineering at NSBM, formerly known as the
-          Student Circle of Software Engineering, was established in February
-          2024 under the guidance of the Department of Software Engineering and
-          Information Systems. The association was formed to foster a
-          collaborative environment where students following a discipline in
-          Software Engineering could enhance their skills, share knowledge, and
-          engage in various activities that complement their academic pursuits.
-        </p>
+    <div class="container relative z-10 mx-auto px-4 text-center">
+      <div class="mb-8 relative inline-block">
+         <!-- Glowing Logo Backdrop -->
+         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-blue-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
+         <Image src={logo} alt="ASE Logo" class="w-24 h-24 md:w-32 md:h-32 relative z-10 mb-8 mx-auto drop-shadow-2xl animate-fade-in-up" />
       </div>
-      <div class="about-image">
-        <div class="floating-icons-grid">
-          <span class="icon">{'<>'}</span>
-          <span class="icon">⚙️</span>
-          <span class="icon">🚀</span>
-          <span class="icon">🗄️</span>
-          <span class="icon">☁️</span>
-          <span class="icon">🤖</span>
-          <span class="icon">🖥️</span>
-          <span class="icon">🐛</span>
-          <span class="icon">🌐</span>
-          <span class="icon">🔒</span>
-          <span class="icon">💻</span>
-          <span class="icon">📊</span>
-          <span class="icon">🔗</span>
-          <span class="icon">🛠️</span>
-          <span class="icon">⛓️</span>
+
+      <div class="mb-12 relative inline-block">
+         <!-- Watermark Title -->
+         <h1 class="relative text-7xl md:text-9xl font-black tracking-tighter leading-none mb-2 animate-fade-in-up delay-100 select-none text-slate-200 dark:text-white dark:mix-blend-overlay dark:opacity-10 opacity-50">
+            TOGETHER
+         </h1>
+         <h1 class="relative text-5xl md:text-7xl font-black tracking-tighter leading-none -mt-8 md:-mt-16 mb-6 animate-fade-in-up delay-200 z-10 drop-shadow-2xl">
+            <span class="text-black dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-b dark:from-white dark:via-white dark:to-white/40">WE INNOVATE</span>
+         </h1>
+      </div>
+
+      <p class="text-xl md:text-2xl text-slate-600 dark:text-white/60 max-w-3xl mx-auto mb-12 leading-relaxed animate-fade-in-up delay-300 font-medium dark:font-light">
+        The Association of Software Engineering (ASE) is the premier student body for tech innovation at NSBM.
+      </p>
+
+      <div class="flex gap-4 justify-center animate-fade-in-up delay-300">
+        <a href="#mission" class="px-8 py-3 bg-black text-white dark:bg-white dark:text-black rounded-full font-bold hover:scale-105 transition-transform">
+          Our Mission
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision (Bento Grid) -->
+  <section id="mission" class="py-32 bg-white dark:bg-transparent transition-colors duration-500 relative">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        
+        <!-- Mission Card -->
+        <div class="group relative p-10 rounded-3xl bg-slate-50 border border-slate-200 dark:bg-white/5 dark:border-white/10 dark:backdrop-blur-sm overflow-hidden hover:shadow-xl dark:hover:shadow-blue-500/10 transition-all duration-300">
+          <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+            <span class="iconify tabler--target text-9xl text-blue-500"></span>
+          </div>
+          <div class="relative z-10">
+            <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6">
+              <span class="iconify tabler--target text-3xl text-blue-600 dark:text-blue-400"></span>
+            </div>
+            <h2 class="text-4xl font-black mb-6 text-black dark:text-white">Our Mission</h2>
+            <p class="text-lg text-slate-700 dark:text-white/70 leading-relaxed">
+              To empower software engineering students by providing opportunities for professional growth, networking, and skill development. We strive to bridge the gap between academia and industry.
+            </p>
+          </div>
         </div>
+
+        <!-- Vision Card -->
+        <div class="group relative p-10 rounded-3xl bg-slate-50 border border-slate-200 dark:bg-white/5 dark:border-white/10 dark:backdrop-blur-sm overflow-hidden hover:shadow-xl dark:hover:shadow-green-500/10 transition-all duration-300">
+          <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+            <span class="iconify tabler--eye text-9xl text-green-500"></span>
+          </div>
+          <div class="relative z-10">
+            <div class="w-14 h-14 rounded-2xl bg-green-500/10 flex items-center justify-center mb-6">
+              <span class="iconify tabler--eye text-3xl text-green-600 dark:text-green-400"></span>
+            </div>
+            <h2 class="text-4xl font-black mb-6 text-black dark:text-white">Our Vision</h2>
+            <p class="text-lg text-slate-700 dark:text-white/70 leading-relaxed">
+              To create a dynamic community where students can collaborate, innovate, and contribute meaningfully to the field of software engineering, defining the future of technology in Sri Lanka.
+            </p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
   <!-- Evolution Timeline -->
-  <section class="timeline-section fade-in-section">
-    <h2 class="section-heading">Evolution of the Association</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content slide-right">
-          <h3>February 2024</h3>
-          <p>
-            Established as the Student Circle of Software Engineering under the
-            Department of Software Engineering and Information Systems.
-          </p>
-        </div>
+  <section class="py-32 bg-slate-50 dark:bg-transparent transition-colors duration-500 relative overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 pointer-events-none">
+       <div class="absolute left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-slate-300 dark:via-white/20 to-transparent"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center mb-20">
+        <h2 class="text-4xl md:text-5xl font-black mb-6 text-black dark:text-white">The Evolution</h2>
+        <p class="text-lg text-slate-600 dark:text-white/50">Our journey from a circle to a movement.</p>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content slide-left">
-          <h3>2024</h3>
-          <p>
-            Organized inaugural events including GreenEXE 2.0 and MadFest,
-            establishing a foundation for future initiatives.
-          </p>
-        </div>
+
+      <div class="max-w-4xl mx-auto flex flex-col gap-12 relative z-10">
+        {timeline.map((item, index) => (
+          <div class={`flex flex-col md:flex-row items-center gap-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse md:text-right'} group`}>
+            
+            <!-- Content -->
+            <div class={`flex-1 text-center ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
+              <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300 rounded-full text-sm font-bold mb-3">{item.year}</span>
+              <h3 class="text-2xl font-bold text-black dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{item.title}</h3>
+              <p class="text-slate-600 dark:text-white/60">{item.desc}</p>
+            </div>
+
+            <!-- Center Dot -->
+            <div class="relative flex-none w-12 h-12 flex items-center justify-center">
+              <div class="absolute inset-0 bg-white dark:bg-black border-4 border-slate-200 dark:border-white/10 rounded-full group-hover:border-blue-500 transition-colors z-10"></div>
+              <span class={`iconify ${item.icon} text-lg text-slate-400 dark:text-white/40 relative z-20 group-hover:text-blue-500 transition-colors`}></span>
+            </div>
+
+            <!-- Spacer for alignment -->
+            <div class="hidden md:block flex-1"></div>
+          </div>
+        ))}
       </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content slide-right">
-          <h3>2025</h3>
-          <p>
-            New board election led to rebranding as the "Association of Software
-            Engineering" to reflect growth and expanding scope.
+    </div>
+  </section>
+
+  <!-- Community / Team CTA -->
+  <section class="py-32 bg-white dark:bg-transparent transition-colors duration-500">
+    <div class="container mx-auto px-4">
+      <div class="relative rounded-[3rem] overflow-hidden bg-slate-900 dark:bg-white/5 border border-slate-800 dark:border-white/10 flex flex-col lg:flex-row">
+        
+        <!-- Content Side -->
+        <div class="relative z-10 p-12 md:p-20 lg:w-1/2 flex flex-col justify-center">
+          <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Join the <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400">Community</span></h2>
+          <p class="text-lg text-white/70 mb-8 leading-relaxed">
+            Whether you're into coding, design, or leadership, ASE is your platform. Connect with 100+ active members and industry experts.
           </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="https://chat.whatsapp.com/HVcDnZ380tpAooloxgLS8F" target="_blank" class="px-6 py-3 bg-green-500 hover:bg-green-400 text-black font-bold rounded-xl transition-all flex items-center gap-2 text-sm md:text-base">
+              <span class="iconify tabler--brand-whatsapp text-xl"></span>
+              WhatsApp
+            </a>
+            <a href="/intake" class="px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl backdrop-blur-md border border-white/10 transition-all text-sm md:text-base">
+              Apply 2026
+            </a>
+          </div>
+        </div>
+
+        <!-- Image Side -->
+        <div class="relative lg:w-1/2 min-h-[300px] lg:min-h-full">
+           <img src={teamImage} alt="ASE Community" class="absolute inset-0 w-full h-full object-cover object-[50%_35%]" />
+           
+           <!-- Blending Gradients -->
+           <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-slate-900 dark:from-black/80 to-transparent lg:block hidden"></div>
+           <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-900 dark:from-black/80 to-transparent lg:hidden block"></div>
+           <!-- Overlay for dark mode blending fix -->
+           <div class="absolute inset-0 bg-blue-500/10 mix-blend-overlay"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Mission and Vision -->
-  <section class="mission-section fade-in-section">
-    <div class="mission-container">
-      <h2 class="section-heading">Our Mission and Vision</h2>
-      <div class="mission-cards">
-        <div class="mission-card">
-          <div class="card-icon mission-icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-target"
-            >
-              <circle cx="12" cy="12" r="10"></circle>
-              <circle cx="12" cy="12" r="6"></circle>
-              <circle cx="12" cy="12" r="2"></circle>
-            </svg>
-          </div>
-          <h3>Mission</h3>
-          <p>
-            To empower software engineering students by providing opportunities
-            for professional growth, networking, and skill development.
-          </p>
-        </div>
-        <div class="mission-card">
-          <div class="card-icon vision-icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-eye"
-            >
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-              <circle cx="12" cy="12" r="3"></circle>
-            </svg>
-          </div>
-          <h3>Vision</h3>
-          <p>
-            To create a dynamic community where students can collaborate,
-            innovate, and contribute meaningfully to the field of software
-            engineering.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="testimonials-section fade-in-section">
-    <h2 class="section-heading">What Our Members Say</h2>
-
-    <div class="testimonial-slider">
-      <div class="testimonial-container">
-        <!-- Testimonial 1 -->
-        <div class="testimonial-card">
-          <div class="quote-icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-message-circle"
-            >
-              <path
-                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
-              ></path>
-            </svg>
-          </div>
-          <p class="testimonial-text">
-            "Being the Media Coordinator for the SCSE at NSBM has been an
-            enriching experience. I've had the opportunity to craft engaging
-            content, manage media outreach, and promote initiatives that bring
-            our community together. This role has sharpened my skills in content
-            creation, event management, and digital strategy while fostering a
-            dynamic and collaborative environment. The circle is a hub for
-            growth, innovation, and networking—perfect for anyone passionate
-            about software engineering!"
-          </p>
-          <div class="testimonial-author">
-            <div class="author-avatar">SF</div>
-            <div class="author-info">
-              <h4>Senesh Fitzroy</h4>
-              <p>Former SCSE Media Coordinator</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Testimonial 2 -->
-        <div class="testimonial-card">
-          <div class="quote-icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-message-circle"
-            >
-              <path
-                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
-              ></path>
-            </svg>
-          </div>
-          <p class="testimonial-text">
-            "Being part of this circle gave me incredible hands-on experience in
-            group work and event planning. It was a great opportunity to have
-            while progressing in my academic journey.✒️"
-          </p>
-          <div class="testimonial-author">
-            <div class="author-avatar">RY</div>
-            <div class="author-info">
-              <h4>Ruwanthi Yashodara</h4>
-              <p>Former Executive Member</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Testimonial 3 -->
-        <div class="testimonial-card">
-          <div class="quote-icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-message-circle"
-            >
-              <path
-                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
-              ></path>
-            </svg>
-          </div>
-          <p class="testimonial-text">
-            "My time as the designer for the SCSE was an amazing journey of
-            teamwork and creativity. Working alongside talented and supportive
-            mates, I honed my design skills, tackled challenges, and grew both
-            professionally and personally. Grateful for the friendships and
-            experiences that made it truly special!"
-          </p>
-          <div class="testimonial-author">
-            <div class="author-avatar">SP</div>
-            <div class="author-info">
-              <h4>Senuki Perera</h4>
-              <p>Former SCSE Co-Designer</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Testimonial 4 -->
-        <div class="testimonial-card">
-          <div class="quote-icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-message-circle"
-            >
-              <path
-                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
-              ></path>
-            </svg>
-          </div>
-          <p class="testimonial-text">
-            "Being a co-designer of the SCSE was an enriching experience. I
-            gained teamwork, creativity, and leadership skills while working
-            with amazing teammates who made the journey truly memorable."
-          </p>
-          <div class="testimonial-author">
-            <div class="author-avatar">IW</div>
-            <div class="author-info">
-              <h4>Isira Wickramasinghe</h4>
-              <p>Former SCSE Co-Designer</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Testimonial 5 -->
-        <div class="testimonial-card">
-          <div class="quote-icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-message-circle"
-            >
-              <path
-                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
-              ></path>
-            </svg>
-          </div>
-          <p class="testimonial-text">
-            "Being part of the ASE helped me develop and build the leadership
-            skills that complement my technical abilities big time. It's more
-            than just a student association; it's a growth platform."
-          </p>
-          <div class="testimonial-author">
-            <div class="author-avatar">DV</div>
-            <div class="author-info">
-              <h4>Darren Victoria</h4>
-              <p>Former Vice President</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Navigation Dots -->
-      <div class="testimonial-nav">
-        <button class="nav-dot active" data-index="0"></button>
-        <button class="nav-dot" data-index="1"></button>
-        <button class="nav-dot" data-index="2"></button>
-        <button class="nav-dot" data-index="3"></button>
-        <button class="nav-dot" data-index="4"></button>
-      </div>
-    </div>
-  </section>
-
-  <style>
-    .card-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: #39ff14; /* Neon green color */
-      display: flex;
-      justify-content: center;
-    }
-  </style>
-
-  <!-- Team Section -->
-  <section class="team-section fade-in-section">
-    <h2 class="section-heading">Join Our Community</h2>
-    <div class="team-container">
-      <div class="team-image-container">
-        <img src={teamImage} alt="Team Working Together" class="team-image" />
-      </div>
-      <div class="team-text">
-        <p>
-          Be part of a thriving community of software engineers at NSBM. Whether
-          you're interested in coding, design, project management, or simply
-          want to connect with like-minded peers, the Association of Software
-          Engineering welcomes you.
-        </p>
-        <div class="cta-button">
-          <a href="https://chat.whatsapp.com/HVcDnZ380tpAooloxgLS8F"
-            >Get Involved</a
-          >
-        </div>
-      </div>
-    </div>
-  </section>
 </PageLayout>
 
 <style>
-  /* Base Styles */
-  section {
-    margin-bottom: 6rem;
-    opacity: 1; /* Changed from 0 to make sections initially visible */
-    transform: translateY(0); /* Changed from 20px to fix initial position */
+  /* Local animations if not present in global */
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
-
-  /* Fix heading visibility */
-  .section-heading {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
-    color: rgb(
-      var(--accent)
-    ); /* Direct color instead of gradient for better visibility */
-    position: relative;
-    font-weight: bold;
-  }
-
-  .section-heading::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 4px;
-    background: linear-gradient(
-      90deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light))
-    );
-    border-radius: 2px;
-  }
-
-  /* Hero section - updated to work with PageLayout */
-  .hero-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 0 4rem;
-    margin-bottom: 2rem;
-  }
-
-  .logo-container {
-    margin-bottom: 2rem;
-  }
-
-  .logo-pulse {
-    animation: pulse 2s infinite;
-    width: 200px;
-    height: 200px;
-  }
-
-  .title {
-    font-size: 4rem;
-    font-weight: 800;
-    margin-bottom: 1.5rem;
-    transform: translateY(30px);
-    opacity: 0;
-    animation: slideUp 0.8s forwards ease-out;
-    animation-delay: 0.3s;
-    line-height: 1.2;
-    text-align: center;
-  }
-
-  .text-accent {
-    color: rgb(49, 49, 160);
-    text-shadow: 0 0 5px rgba(0, 0, 139, 0.5); /* Add text shadow for emphasis */
-  }
-
-  .text-neon-green {
-    color: #39ff14; /* Neon green color */
-    text-shadow: 0 0 5px #39ff14; /* Neon glow effect */
-    font-weight: 900; /* Make bolder */
-  }
-
-  .subtitle {
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: #e0e0e0;
-    transform: translateY(30px);
-    opacity: 0;
-    animation: slideUp 0.8s forwards ease-out;
-    animation-delay: 0.6s;
-  }
-
-  /* Keep original h2 style for non-section headings if needed */
-  h2:not(.section-heading) {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
-    background: linear-gradient(
-      90deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light))
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    position: relative;
-  }
-
-  h2:not(.section-heading)::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 4px;
-    background: linear-gradient(
-      90deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light))
-    );
-    border-radius: 2px;
-  }
-
-  /* The rest of your existing styles */
-  /* ...existing code... */
-
-  /* Additional CSS to ensure heading visibility in dark mode */
-  :global(.dark) .section-heading {
-    color: rgb(var(--accent-light)); /* Brighter color for dark mode */
-  }
-
-  :global(.dark) .text-neon-green {
-    text-shadow: 0 0 8px #39ff14; /* Stronger shadow in dark mode */
-  }
-
-  .fade-in-section {
-    opacity: 0;
-    transform: translateY(20px);
-    transition:
-      opacity 0.6s ease,
-      transform 0.6s ease;
-  }
-
-  .typing-text {
-    border-right: 3px solid rgb(var(--accent));
-    white-space: nowrap;
-    overflow: hidden;
-    animation:
-      typing 3.5s steps(30, end) 1s forwards,
-      blink-caret 0.75s step-end infinite;
-    width: 0;
-  }
-
-  /* About Section */
-  /* About Section */
-  .about-content {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .about-text {
-    flex: 1;
-    min-width: 300px;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    text-align: justify;
-  }
-
-  .about-image {
-    flex: 1;
-    min-width: 300px;
-    display: flex;
-    justify-content: center;
-    position: relative;
-  }
-
-  .floating-icons-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns */
-    gap: 1.5rem; /* Space between icons */
-    width: 100%;
-    max-width: 300px; /* Adjust based on your design */
-  }
-
-  .icon {
-    font-size: 2.5rem;
-    text-align: center;
-    opacity: 0;
-    transform: scale(0.8);
-    animation: floatIn 0.8s ease-out forwards;
-  }
-
-  /* Add staggered delays for each icon */
-  .icon:nth-child(1) {
-    animation-delay: 0.1s;
-  }
-  .icon:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-  .icon:nth-child(3) {
-    animation-delay: 0.3s;
-  }
-  .icon:nth-child(4) {
-    animation-delay: 0.4s;
-  }
-  .icon:nth-child(5) {
-    animation-delay: 0.5s;
-  }
-  .icon:nth-child(6) {
-    animation-delay: 0.6s;
-  }
-  .icon:nth-child(7) {
-    animation-delay: 0.7s;
-  }
-  .icon:nth-child(8) {
-    animation-delay: 0.8s;
-  }
-  .icon:nth-child(9) {
-    animation-delay: 0.9s;
-  }
-  .icon:nth-child(10) {
-    animation-delay: 1s;
-  }
-  .icon:nth-child(11) {
-    animation-delay: 1.1s;
-  }
-  .icon:nth-child(12) {
-    animation-delay: 1.2s;
-  }
-  .icon:nth-child(13) {
-    animation-delay: 1.3s;
-  }
-  .icon:nth-child(14) {
-    animation-delay: 1.4s;
-  }
-  .icon:nth-child(15) {
-    animation-delay: 1.5s;
-  }
-
-  /* Float-in animation */
-  @keyframes floatIn {
-    0% {
-      opacity: 0;
-      transform: scale(0.8) translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-  }
-
-  /* Hover effect for icons */
-  .icon:hover {
-    transform: scale(1.1);
-    transition: transform 0.3s ease;
-  }
-
-  /* Timeline Section */
-  .timeline {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2rem 0;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    width: 4px;
-    background: linear-gradient(
-      to bottom,
-      rgba(var(--accent), 0.2),
-      rgba(var(--accent), 0.8)
-    );
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -2px;
-    border-radius: 2px;
-  }
-
-  .timeline-item {
-    padding: 10px 40px;
-    position: relative;
-    width: 50%;
-    box-sizing: border-box;
-    margin: 2rem 0;
-  }
-
-  .timeline-item:nth-child(odd) {
-    left: 0;
-    text-align: right;
-  }
-
-  .timeline-item:nth-child(even) {
-    left: 50%;
-    text-align: left;
-  }
-
-  .timeline-dot {
-    width: 20px;
-    height: 20px;
-    background-color: rgb(var(--accent));
-    border-radius: 50%;
-    position: absolute;
-    top: 20px;
-    right: -10px;
-    z-index: 10;
-    box-shadow: 0 0 10px rgba(var(--accent), 0.5);
-  }
-
-  .timeline-item:nth-child(even) .timeline-dot {
-    left: -10px;
-    visibility: hidden;
-  }
-
-  .timeline-content {
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(var(--accent), 0.2);
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    transform: translateX(50px);
-    transition: all 0.6s ease;
-  }
-
-  .timeline-item:nth-child(even) .timeline-content {
-    transform: translateX(-25px);
-  }
-
-  .timeline-content h3 {
-    color: rgb(var(--accent));
-    margin-top: 0;
-  }
-
-  /* Mission and Vision Section */
-  .mission-container {
-    text-align: center;
-  }
-
-  .mission-cards {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-
-  .mission-card {
-    flex: 1;
-    min-width: 250px;
-    max-width: 350px;
-    padding: 2rem;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(var(--accent), 0.2);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
-
-  .mission-card:hover {
-    transform: translateY(-10px);
-  }
-
-  .card-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: #39ff14; /* Neon green color */
-  }
-
-  .card-icon svg {
-    width: 48px;
-    height: 48px;
-    stroke: #39ff14; /* Neon green color */
-  }
-
-  /* Team Section */
-  .team-container {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-
-  .team-image-container {
-    flex: 1;
-    min-width: 300px;
-    overflow: hidden;
-    border-radius: 10px;
-  }
-
-  .team-image {
-    width: 100%;
-    height: auto;
-    transition: transform 0.5s ease;
-  }
-
-  .team-image:hover {
-    transform: scale(1.05);
-  }
-
-  .team-text {
-    flex: 1;
-    min-width: 300px;
-    font-size: 1.1rem;
-    line-height: 1.7;
-  }
-
-  .cta-button {
-    margin-top: 2rem;
-  }
-
-  .cta-button a {
-    display: inline-block;
-    padding: 12px 24px;
-    background: linear-gradient(
-      90deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light))
-    );
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: 600;
-    transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
-    box-shadow: 0 5px 15px rgba(var(--accent), 0.4);
-  }
-
-  .cta-button a:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(var(--accent), 0.6);
-  }
-
-  /* Animations */
+  
   @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-    100% {
-      transform: scale(1);
-    }
+    0%, 100% { opacity: .5; transform: scale(1); }
+    50% { opacity: .8; transform: scale(1.05); }
   }
 
-  @keyframes slideUp {
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes typing {
-    from {
-      width: 0;
-    }
-    to {
-      width: 100%;
-    }
-  }
-
-  @keyframes blink-caret {
-    from,
-    to {
-      border-color: transparent;
-    }
-    50% {
-      border-color: rgb(var(--accent));
-    }
-  }
-
-  @keyframes floatUp {
-    0%,
-    100% {
-      transform: translateY(0) translateX(-50%);
-    }
-    50% {
-      transform: translateY(-15px) translateX(-50%);
-    }
-  }
-
-  @keyframes floatRight {
-    0%,
-    100% {
-      transform: translateX(0);
-    }
-    50% {
-      transform: translateX(15px);
-    }
-  }
-
-  @keyframes floatLeft {
-    0%,
-    100% {
-      transform: translateX(0);
-    }
-    50% {
-      transform: translateX(-15px);
-    }
-  }
-
-  @keyframes floatDown {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(15px);
-    }
-  }
-
-  .fade-in {
-    animation: fadeIn 1s forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  .slide-right {
-    transform: translateX(-50px);
-    opacity: 0;
-  }
-
-  .slide-left {
-    transform: translateX(50px);
-    opacity: 0;
-  }
-
-  .show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .show .slide-right,
-  .show .slide-left {
-    transform: translateX(0);
-    opacity: 1;
-  }
-
-  /* Dark mode adjustments */
-  :global(.dark) .about-container {
-    color: #e0e0e0;
-  }
-
-  :global(.dark) .mission-card,
-  :global(.dark) .timeline-content {
-    background: rgba(30, 30, 30, 0.7);
-    border-color: rgba(var(--accent), 0.3);
-  }
-
-  /* Responsive styles */
-  @media (max-width: 768px) {
-    .title {
-      font-size: 3rem;
-    }
-
-    .timeline::before {
-      left: 31px;
-    }
-
-    .timeline-item {
-      width: 100%;
-      padding-left: 70px;
-      padding-right: 25px;
-    }
-
-    .timeline-item:nth-child(odd) {
-      left: 0;
-      text-align: left;
-    }
-
-    .timeline-item:nth-child(even) {
-      left: 0;
-    }
-
-    .timeline-dot {
-      left: 21px;
-      right: auto;
-    }
-
-    .timeline-content {
-      transform: translateX(0) !important;
-    }
-
-    .mission-cards {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-
-  .testimonials-section {
-    margin-bottom: 6rem;
-  }
-
-  .testimonial-slider {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-    overflow: hidden;
-  }
-
-  .testimonial-container {
-    display: flex;
-    transition: transform 0.5s ease;
-    gap: 20px;
-    width: 100%;
-  }
-
-  .testimonial-card {
-    flex: 0 0 100%;
-    padding: 2rem;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(var(--accent), 0.2);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    margin: 1rem 0;
-    position: relative;
-    transform: translateY(20px);
-    opacity: 0;
-    animation: fadeInUp 0.6s forwards;
-    animation-delay: 0.2s;
-  }
-
-  .quote-icon {
-    color: #39ff14;
-    margin-bottom: 1rem;
-    display: flex;
-  }
-
-  .quote-icon svg {
-    width: 32px;
-    height: 32px;
-  }
-
-  .testimonial-text {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-    font-style: italic;
-  }
-
-  .testimonial-author {
-    display: flex;
-    align-items: center;
-  }
-
-  .author-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, rgb(var(--accent)), #39ff14);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    margin-right: 1rem;
-  }
-
-  .author-info h4 {
-    margin: 0;
-    font-weight: 600;
-    color: rgb(var(--accent-light));
-  }
-
-  .author-info p {
-    margin: 0;
-    font-size: 0.9rem;
-    opacity: 0.8;
-  }
-
-  .testimonial-nav {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-    gap: 0.5rem;
-  }
-
-  .nav-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(var(--accent), 0.3);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0;
-  }
-
-  .nav-dot.active {
-    background: #39ff14;
-    transform: scale(1.05);
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Dark mode adjustments */
-  :global(.dark) .testimonial-card {
-    background: rgba(30, 30, 30, 0.7);
-  }
-
-  /* Responsive styles */
-  @media (max-width: 768px) {
-    .testimonial-card {
-      padding: 1.5rem;
-    }
-
-    .testimonial-text {
-      font-size: 1rem;
-    }
-  }
-
-  .read-more-button {
-    margin-top: 2rem;
-    padding: 12px 24px;
-    background: linear-gradient(
-      90deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light))
-    );
-    color: white;
-    border: none;
-    border-radius: 30px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
-    box-shadow: 0 5px 15px rgba(var(--accent), 0.4);
-  }
-
-  .read-more-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(var(--accent), 0.6);
+  .bg-gradient-radial {
+    background-image: radial-gradient(var(--tw-gradient-stops));
   }
 </style>
-
-<script>
-  function scrollToSection() {
-    const section = document.querySelector('.about-section') // Replace with the section you want to scroll to
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-
-  function initializeAnimations() {
-    const sections = document.querySelectorAll('.fade-in-section')
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('show')
-          }
-        })
-      },
-      {
-        threshold: 0.1
-      }
-    )
-
-    sections.forEach((section) => {
-      observer.observe(section)
-    })
-  }
-
-  function initializeTestimonials() {
-    const container = document.querySelector('.testimonial-container')
-    const dots = document.querySelectorAll('.nav-dot')
-    let currentIndex = 0
-
-    if (!container || !dots.length) return
-
-    // Hide all testimonials except the first one
-    const testimonials = document.querySelectorAll('.testimonial-card')
-    testimonials.forEach((card, index) => {
-      if (index !== 0) {
-        card.style.display = 'none'
-      }
-    })
-
-    // Add click event listeners to dots
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        currentIndex = index
-        updateSlider()
-      })
-    })
-
-    function updateSlider() {
-      // Hide all testimonials
-      testimonials.forEach((card) => {
-        card.style.display = 'none'
-      })
-
-      // Show current testimonial
-      testimonials[currentIndex].style.display = 'block'
-      testimonials[currentIndex].style.animation = 'fadeInUp 0.6s forwards'
-
-      // Update active dot
-      dots.forEach((dot, index) => {
-        if (index === currentIndex) {
-          dot.classList.add('active')
-        } else {
-          dot.classList.remove('active')
-        }
-      })
-    }
-
-    // Auto-scroll
-    let interval = setInterval(() => {
-      currentIndex = (currentIndex + 1) % testimonials.length
-      updateSlider()
-    }, 5000)
-
-    // Pause auto-scroll when interacting with navigation
-    dots.forEach((dot) => {
-      dot.addEventListener('mouseenter', () => {
-        clearInterval(interval)
-      })
-
-      dot.addEventListener('mouseleave', () => {
-        interval = setInterval(() => {
-          currentIndex = (currentIndex + 1) % testimonials.length
-          updateSlider()
-        }, 5000)
-      })
-    })
-  }
-
-  // Initialize everything on page load
-  function initializePage() {
-    initializeAnimations()
-    initializeTestimonials()
-  }
-
-  // Run on initial page load
-  document.addEventListener('DOMContentLoaded', initializePage)
-
-  // Run on Astro page transitions
-  document.addEventListener('astro:page-load', initializePage)
-
-  // Cleanup on page exit
-  document.addEventListener('astro:before-swap', () => {
-    // Disconnect all existing observers
-    document.querySelectorAll('.fade-in-section').forEach((section) => {
-      section.classList.remove('show')
-    })
-
-    // Clear testimonial interval
-    const interval = document.querySelector('.testimonial-container')?._interval
-    if (interval) clearInterval(interval)
-  })
-</script>

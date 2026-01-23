@@ -4,7 +4,7 @@ startDate: 2025-06-15
 tags:
   - "Recruitment"
   - "Leadership"
-previewImage: "/events/SubcommitteeSelection25.png"
+previewImage: "/events/SubcommitteeSelection25.webp"
 ---
 
 # Subcommittee Selection 2025

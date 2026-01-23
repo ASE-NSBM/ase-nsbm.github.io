@@ -5,7 +5,7 @@ tags:
   - "CSR"
   - "Education"
   - "Platform"
-previewImage: "/events/EduSathkara.png"
+previewImage: "/events/EduSathkara.webp"
 ---
 
 # EduSathkara - Crowdsourced Educational Resources Platform

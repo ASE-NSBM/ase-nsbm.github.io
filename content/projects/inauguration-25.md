@@ -4,7 +4,7 @@ startDate: 2025-02-15
 tags:
   - "Ceremony"
   - "Leadership"
-previewImage: "/events/Inaugration25'.jpg"
+previewImage: "/events/Inaugration25'.webp"
 ---
 
 # Inauguration 25’

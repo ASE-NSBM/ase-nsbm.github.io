@@ -4,7 +4,7 @@ startDate: 2025-10-25
 tags:
   - "Ceremony"
   - "Leadership"
-previewImage: "/events/SubcommitteeBadging.png"
+previewImage: "/events/SubcommitteeBadging.webp"
 ---
 
 # Subcommittee Badging Ceremony 2025

@@ -4,7 +4,7 @@ startDate: 2025-08-15
 tags:
   - "Competition"
   - "Python"
-previewImage: "/events/PyLeauge25.jpg"
+previewImage: "/events/PyLeauge25.webp"
 ---
 
 # Py League 25’

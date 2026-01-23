@@ -5,7 +5,7 @@ tags:
   - "Carnival"
   - "Tech"
   - "Fun"
-previewImage: "/events/TechCarnival25.jpg"
+previewImage: "/events/TechCarnival25.webp"
 ---
 
 # Tech Carnival 25’

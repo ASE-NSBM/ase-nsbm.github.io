@@ -5,7 +5,7 @@ description: "Selection and onboarding of new subcommittee members, fostering le
 tags:
   - "Recruitment"
   - "Leadership"
-previewImage: "/events/SubcommitteeSelection25.png"
+previewImage: "/events/SubcommitteeSelection25.webp"
 ---
 
 # Subcommittee Selection 2025

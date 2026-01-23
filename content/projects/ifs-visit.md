@@ -4,7 +4,7 @@ startDate: 2025-05-15
 tags:
   - "Industrial Visit"
   - "IFS"
-previewImage: "/events/IFSVisit.jpg"
+previewImage: "/events/IFSVisit.webp"
 ---
 
 # IFS Visit

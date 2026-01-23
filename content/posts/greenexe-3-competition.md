@@ -5,7 +5,7 @@ description: "The competitive evaluation phase where teams present their develop
 tags:
   - "Competition"
   - "GreenEXE"
-previewImage: "/events/GreenEXE3.0CompetitionRound.png"
+previewImage: "/events/GreenEXE3.0CompetitionRound.webp"
 ---
 
 # GreenEXE 3.0 – Competition Round

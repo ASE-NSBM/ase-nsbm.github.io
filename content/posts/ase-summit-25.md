@@ -5,7 +5,7 @@ description: "The ASE Year-End Summit was initiated to place people before posit
 tags:
   - "Summit"
   - "Community"
-previewImage: "/events/ASESummit.jpg"
+previewImage: "/events/ASESummit.webp"
 ---
 
 # ASE Summit 25’

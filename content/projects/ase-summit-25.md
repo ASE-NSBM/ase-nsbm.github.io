@@ -4,7 +4,7 @@ startDate: 2025-12-20
 tags:
   - "Summit"
   - "Community"
-previewImage: "/events/ASESummit.jpg"
+previewImage: "/events/ASESummit.webp"
 ---
 
 # ASE Summit 25’

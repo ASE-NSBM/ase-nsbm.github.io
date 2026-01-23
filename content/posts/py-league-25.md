@@ -5,7 +5,7 @@ description: "A friendly programming competition centred around Python, designed
 tags:
   - "Competition"
   - "Python"
-previewImage: "/events/PyLeauge25.jpg"
+previewImage: "/events/PyLeauge25.webp"
 ---
 
 # Py League 25’

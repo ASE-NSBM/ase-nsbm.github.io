@@ -5,7 +5,7 @@ description: "A flagship awareness session exploring the value and opportunities
 tags:
   - "Awareness"
   - "Career"
-previewImage: "/events/WhySE.png"
+previewImage: "/events/WhySE.webp"
 ---
 
 # Why SE?

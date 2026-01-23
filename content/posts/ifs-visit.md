@@ -5,7 +5,7 @@ description: "An exclusive industry exposure visit to IFS Sri Lanka, providing i
 tags:
   - "Industrial Visit"
   - "IFS"
-previewImage: "/events/IFSVisit.jpg"
+previewImage: "/events/IFSVisit.webp"
 ---
 
 # IFS Visit

@@ -4,7 +4,7 @@ startDate: 2025-03-15
 tags:
   - "Awareness"
   - "Career"
-previewImage: "/events/WhySE.png"
+previewImage: "/events/WhySE.webp"
 ---
 
 # Why SE?
