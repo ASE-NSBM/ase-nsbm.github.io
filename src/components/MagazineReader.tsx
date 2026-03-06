@@ -49,11 +49,16 @@ export default function MagazineReader({ pdfUrl }: MagazineReaderProps) {
     const [numPages, setNumPages] = useState<number>(0);
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
     const [isClient, setIsClient] = useState(false);
+    const [isPortrait, setIsPortrait] = useState(false);
+    const [currentPage, setCurrentPage] = useState(0);
 
     useEffect(() => {
         setIsClient(true);
 
         const updateDimensions = () => {
+            const isMobile = window.innerWidth < 768;
+            setIsPortrait(isMobile);
+
             // Remove margin entirely to maximize viewport
             const availableWidth = window.innerWidth;
             const availableHeight = window.innerHeight;
@@ -64,12 +69,20 @@ export default function MagazineReader({ pdfUrl }: MagazineReaderProps) {
             let targetHeight = availableHeight;
             let targetWidth = targetHeight / A4_RATIO;
 
-            // Mobile & Desktop: Always 1 page (usePortrait={true})
-            // If the calculated width is larger than available screen width,
-            // we scale down by the width instead.
-            if (targetWidth > availableWidth) {
-                targetWidth = availableWidth;
-                targetHeight = targetWidth * A4_RATIO;
+            if (!isMobile) {
+                // Desktop: 2 pages side-by-side
+                // Check if the 2 pages fit within width
+                if ((targetWidth * 2) > availableWidth) {
+                    // It doesn't fit, width is the constraint
+                    targetWidth = availableWidth / 2;
+                    targetHeight = targetWidth * A4_RATIO;
+                }
+            } else {
+                // Mobile: 1 page
+                if (targetWidth > availableWidth) {
+                    targetWidth = availableWidth;
+                    targetHeight = targetWidth * A4_RATIO;
+                }
             }
 
             setDimensions({ width: targetWidth, height: targetHeight });
@@ -86,6 +99,11 @@ export default function MagazineReader({ pdfUrl }: MagazineReaderProps) {
     function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
         setNumPages(numPages);
     }
+
+    // Track the current page that the book is turned to
+    const onPageFlip = (e: any) => {
+        setCurrentPage(e.data);
+    };
 
     // Don't render server-side
     if (!isClient || dimensions.width === 0) {
@@ -110,7 +128,17 @@ export default function MagazineReader({ pdfUrl }: MagazineReaderProps) {
                 }
             >
                 {numPages > 0 && dimensions.width > 0 && (
-                    <div className="flex justify-center items-center w-full h-full pb-8">
+                    <div
+                        className="flex justify-center items-center w-full h-full pb-8 transition-transform duration-700 ease-in-out"
+                        style={{
+                            // When on desktop (2-page mode) and on the cover (page 0),
+                            // shift the entire book to the left by half a page width
+                            // so the right-sided cover perfectly aligns with the center of the screen.
+                            transform: (!isPortrait && currentPage === 0)
+                                ? `translateX(-${dimensions.width / 2}px)`
+                                : 'translateX(0)'
+                        }}
+                    >
                         {/* @ts-ignore - react-pageflip typed as object */}
                         <HTMLFlipBook
                             width={dimensions.width}
@@ -128,11 +156,12 @@ export default function MagazineReader({ pdfUrl }: MagazineReaderProps) {
                             style={{ margin: '0 auto' }}
                             drawShadow={true}
                             flippingTime={1000}
-                            usePortrait={true} /* Force 1-page spread everywhere */
+                            usePortrait={isPortrait} /* Dynamic spread scaling based on viewport width */
                             startPage={0}
                             swipeDistance={30}
                             clickEventForward={true}
                             useMouseEvents={true}
+                            onFlip={onPageFlip}
                         >
                             {Array.from(new Array(numPages), (el, index) => (
                                 <PageWrapper
