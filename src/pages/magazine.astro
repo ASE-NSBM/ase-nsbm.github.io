@@ -1,0 +1,27 @@
+---
+import '@/style/main.css'
+import MagazineReader from '@/components/MagazineReader.tsx'
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magazine | ASE Legacy '25</title>
+</head>
+<body class="m-0 p-0 overflow-hidden w-screen h-screen">
+
+  <!-- Background with very dark blue and deep green gradient -->
+  <div class="fixed inset-0 w-full h-full pointer-events-none -z-10 bg-gradient-to-br from-slate-950 via-blue-950/80 to-emerald-950/90 transition-colors duration-500"></div>
+
+  <div class="flex h-screen w-screen flex-col items-center justify-center relative z-10 p-0 m-0 overflow-hidden">
+      <!-- React PDF Reader Component -->
+      <div class="w-full h-full flex items-center justify-center">
+        <MagazineReader client:only="react" pdfUrl="/ASE Legacy 25' Final.pdf" />
+      </div>
+  </div>
+
+</body>
+</html>
